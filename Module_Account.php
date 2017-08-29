@@ -2,13 +2,13 @@
 namespace GDO\Account;
 
 use GDO\Core\Application;
-use GDO\Core\Module;
+use GDO\Core\GDO_Module;
 use GDO\Date\GDT_Duration;
 use GDO\Date\Time;
 use GDO\Template\GDT_Bar;
 use GDO\Type\GDT_Checkbox;
 use GDO\Type\GDT_Int;
-use GDO\User\User;
+use GDO\User\GDO_User;
 /**
  * Member Account Changes.
  * 
@@ -18,13 +18,13 @@ use GDO\User\User;
  * 
  * @see User
  */
-final class Module_Account extends Module
+final class Module_Account extends GDO_Module
 {
 	##################
 	### Module ###
 	##################
 	public function onLoadLanguage() { return $this->loadLanguage('lang/account'); }
-	public function getClasses() { return ['GDO\Account\AccountAccess', 'GDO\Account\AccountChange', 'GDO\Account\AccountDelete', 'GDO\Account\AccountSetting']; }
+	public function getClasses() { return ['GDO\Account\GDO_AccountAccess', 'GDO\Account\GDO_AccountChange', 'GDO\Account\AccountDelete', 'GDO\Account\GDO_AccountSetting']; }
 
 	##############
 	### Config ###
@@ -52,11 +52,11 @@ final class Module_Account extends Module
 	#############
 	### Hooks ###
 	#############
-	public function hookUserAuthenticated(User $user)
+	public function hookUserAuthenticated(GDO_User $user)
 	{
 		if (!Application::instance()->isCLI())
 		{
-			AccountAccess::onAccess($this, $user);
+			GDO_AccountAccess::onAccess($this, $user);
 		}
 	}
 

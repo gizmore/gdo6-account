@@ -1,7 +1,7 @@
 <?php
 namespace GDO\Account\Method;
 
-use GDO\Account\AccountChange;
+use GDO\Account\GDO_AccountChange;
 use GDO\Account\Module_Account;
 use GDO\Core\Application;
 use GDO\Core\Method;
@@ -12,7 +12,7 @@ use GDO\Mail\GDT_Email;
 use GDO\Mail\Mail;
 use GDO\Type\GDT_Base;
 use GDO\UI\GDT_Link;
-use GDO\User\User;
+use GDO\User\GDO_User;
 use GDO\Util\Common;
 use GDO\Form\GDT_Validator;
 /**
@@ -26,7 +26,7 @@ use GDO\Form\GDT_Validator;
  */
 final class ChangeEmail extends Method
 {
-	public function getUserType() { return User::MEMBER; }
+	public function getUserType() { return GDO_User::MEMBER; }
 	public function isEnabled() { return Module_Account::instance()->cfgAllowEmailChange(); }
 	
 	public function execute()
@@ -51,7 +51,7 @@ final class ChangeEmail extends Method
 	#######################
 	### Entry from Form ###
 	#######################
-	public static function changeEmail(Module_Account $module, User $user, $newMail)
+	public static function changeEmail(Module_Account $module, GDO_User $user, $newMail)
 	{
 		if ($module->cfgDemoMail() && $user->getMail())
 		{
@@ -66,7 +66,7 @@ final class ChangeEmail extends Method
 	##############
 	### Step 0 ###
 	##############
-	private static function sendEmail(Module_Account $module, User $user, $newMail)
+	private static function sendEmail(Module_Account $module, GDO_User $user, $newMail)
 	{
 		$sitename = sitename();
 		
@@ -81,10 +81,10 @@ final class ChangeEmail extends Method
 		$mail->sendToUser($user);
 	}
 	
-	private static function createLink(Module_Account $module, User $user, $newMail)
+	private static function createLink(Module_Account $module, GDO_User $user, $newMail)
 	{
 		$userid = $user->getID();
-		$row = AccountChange::addRow($userid, 'email', $newMail);
+		$row = GDO_AccountChange::addRow($userid, 'email', $newMail);
 		$token = $row->getToken();
 		return GDT_Link::anchor(url('Account', 'ChangeEmail', "&userid=$userid&token=$token"));
 	}
@@ -94,14 +94,14 @@ final class ChangeEmail extends Method
 	##############
 	private function onChangeA($token)
 	{
-		if (!($row = AccountChange::getRow(Common::getGetString('userid'), 'email', $token)))
+		if (!($row = GDO_AccountChange::getRow(Common::getGetString('userid'), 'email', $token)))
 		{
 			return $this->error('err_token');
 		}
 		return $this->templateChangeMailB($row);
 	}
 	
-	private function getChangeMailForm(AccountChange $ac)
+	private function getChangeMailForm(GDO_AccountChange $ac)
 	{
 		$form = new GDT_Form();
 		$form->title('ft_change_mail', [sitename()]);
@@ -125,11 +125,11 @@ final class ChangeEmail extends Method
 
 	public function validateEmailUnique(GDT_Form $form, GDT_Base $gdoType)
 	{
-		$count = User::table()->countWhere("user_email={$gdoType->quotedValue()}");
+		$count = GDO_User::table()->countWhere("user_email={$gdoType->quotedValue()}");
 		return $count > 0 ? $gdoType->error('err_email_taken') : true;
 	}
 	
-	private function templateChangeMailB(AccountChange $ac)
+	private function templateChangeMailB(GDO_AccountChange $ac)
 	{
 		$form = $this->getChangeMailForm($ac);
 		return $form->render();
@@ -142,7 +142,7 @@ final class ChangeEmail extends Method
 	{
 		$token = Common::getGetString('token');
 		$userid = Common::getGetString('userid');
-		if (!($row = AccountChange::getRow($userid, 'email', $token)))
+		if (!($row = GDO_AccountChange::getRow($userid, 'email', $token)))
 		{
 			return $this->error('err_token');
 		}
@@ -157,8 +157,8 @@ final class ChangeEmail extends Method
 	
 	private static function sendEmailB(Module_Account $module, $userid, $email)
 	{
-		$user = User::table()->find($userid);
-		$token = AccountChange::addRow($userid, 'email2', $email);
+		$user = GDO_User::table()->find($userid);
+		$token = GDO_AccountChange::addRow($userid, 'email2', $email);
 
 		# Args
 		$username = $user->displayName();
@@ -183,7 +183,7 @@ final class ChangeEmail extends Method
 	##############
 	private function onChangeB($token)
 	{
-		if (!($ac = AccountChange::getRow(Common::getGetString('userid'), 'email2', $token)))
+		if (!($ac = GDO_AccountChange::getRow(Common::getGetString('userid'), 'email2', $token)))
 		{
 			return $this->error('err_token');
 		}

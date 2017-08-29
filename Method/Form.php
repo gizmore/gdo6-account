@@ -10,7 +10,7 @@ use GDO\Form\MethodForm;
 use GDO\Template\GDT_Box;
 use GDO\Template\Message;
 use GDO\UI\GDT_Divider;
-use GDO\User\User;
+use GDO\User\GDO_User;
 /**
  * Change account settings.
  * @author gizmore
@@ -36,7 +36,7 @@ final class Form extends MethodForm
 	public function createForm(GDT_Form $form)
 	{
 		$m = Module_Account::instance();
-		$user = User::current();
+		$user = GDO_User::current();
 		
 		# Section1
 		$form->addField(GDT_Divider::make('div1')->label('section_login'));
@@ -72,7 +72,7 @@ final class Form extends MethodForm
 		$back = '';
 
 		$m = Module_Account::instance();
-		$user = User::current();
+		$user = GDO_User::current();
 		$guest = $user->isGuest();
 		
 		# Real Name
@@ -162,7 +162,7 @@ final class Form extends MethodForm
 		return $this->renderPage();
 	}
 	
-// 	private function changeFlag(GDT_Form $form, User $user, $flagname)
+// 	private function changeFlag(GDT_Form $form, GDO_User $user, $flagname)
 // 	{
 // 		$newFlag = $form->getFormVar($flagname);
 // 		if ($newFlag !== $user->getVar($flagname))

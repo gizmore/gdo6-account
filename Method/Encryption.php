@@ -11,8 +11,8 @@ use GDO\Mail\Mail;
 use GDO\Template\GDT_Bar;
 use GDO\Template\GDT_Box;
 use GDO\UI\GDT_Link;
-use GDO\User\PublicKey;
-use GDO\User\User;
+use GDO\User\GDO_PublicKey;
+use GDO\User\GDO_User;
 /**
  * Setup GPG Mail Encryption.
  * Sends a test mail before key is saved.
@@ -23,7 +23,7 @@ use GDO\User\User;
 final class Encryption extends MethodForm
 {
 	/**
-	 * @var PublicKey
+	 * @var GDO_PublicKey
 	 */
 	private $key;
 	
@@ -33,7 +33,7 @@ final class Encryption extends MethodForm
 	
 	public function execute()
 	{
-		$this->key = PublicKey::getKeyForUser(User::current());
+		$this->key = GDO_PublicKey::getKeyForUser(GDO_User::current());
 		if (isset($_POST['btn_delete']))
 		{
 			return Module_Account::instance()->renderAccountTabs()->add($this->onDelete()->add(parent::execute()));
@@ -44,7 +44,7 @@ final class Encryption extends MethodForm
 	public function createForm(GDT_Form $form)
 	{
 		$form->addField(GDT_Box::make('info')->html(t('infob_gpg_upload')));
-		$form->addField(PublicKey::table()->gdoColumn('gpg_pubkey'));
+		$form->addField(GDO_PublicKey::table()->gdoColumn('gpg_pubkey'));
 		$form->addField(GDT_File::make('gpg_file')->action($this->href()));
 		$form->addField(GDT_AntiCSRF::make());
 		$btns = GDT_Bar::make();
@@ -78,7 +78,7 @@ final class Encryption extends MethodForm
 	###########
 	public function formValidated(GDT_Form $form)
 	{
-		$user = User::current();
+		$user = GDO_User::current();
 		$outfile = GWF_PATH . 'temp/gpg/' . $user->getID();
 		
 		# Get file or paste
@@ -101,7 +101,7 @@ final class Encryption extends MethodForm
 		{
 			$response = $this->error('err_write_file');
 		}
-		elseif (!($fingerprint = PublicKey::grabFingerprint($file_content)))
+		elseif (!($fingerprint = GDO_PublicKey::grabFingerprint($file_content)))
 		{
 			$response = $this->error('err_gpg_fail_fingerprinting');
 		}
@@ -113,7 +113,7 @@ final class Encryption extends MethodForm
 		return $response->add($this->renderPage());
 	}
 	
-	private function sendGPGMail(User $user, $fingerprint)
+	private function sendGPGMail(GDO_User $user, $fingerprint)
 	{
 		if (!($email = $user->getMail()))
 		{
@@ -130,7 +130,7 @@ final class Encryption extends MethodForm
 		return $this->message('msg_gpg_mail_sent');
 	}
 	
-	private function getGPGMailBody(User $user, $fingerprint)
+	private function getGPGMailBody(GDO_User $user, $fingerprint)
 	{
 		$link = GDT_Link::anchor(url('Account', 'SetGPGKey', "&userid={$user->getID()}&token={$fingerprint}"));
 		$args = [$user->displayName(), sitename(), $link];

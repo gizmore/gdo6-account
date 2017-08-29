@@ -11,14 +11,14 @@ use GDO\Form\MethodForm;
 use GDO\Mail\Mail;
 use GDO\Template\GDT_Box;
 use GDO\Type\GDT_Message;
-use GDO\User\User;
+use GDO\User\GDO_User;
 /**
  * Delete your account.
  * @author gizmore
  */
 final class Delete extends MethodForm
 {
-	public function getUserType() { return User::MEMBER; }
+	public function getUserType() { return GDO_User::MEMBER; }
 	public function isEnabled() { return Module_Account::instance()->cfgFeatureDeletion(); }
 	
 	private $prune = false;
@@ -47,7 +47,7 @@ final class Delete extends MethodForm
 	
 	public function formValidated(GDT_Form $form)
 	{
-		$user = User::current();
+		$user = GDO_User::current();
 		
 		# Store note in database
 		if ($note = $form->getVar('accrm_note'))
@@ -74,9 +74,9 @@ final class Delete extends MethodForm
 		}
 	}
 	
-	private function onSendEmail(User $user, $note)
+	private function onSendEmail(GDO_User $user, $note)
 	{
-		foreach (User::admins() as $admin)
+		foreach (GDO_User::admins() as $admin)
 		{
 			$sitename = sitename();
 			$adminame = $admin->displayName();

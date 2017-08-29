@@ -1,7 +1,6 @@
 <?php
 namespace GDO\Account;
 
-use GDO\Core\Application;
 use GDO\DB\GDO;
 use GDO\DB\GDT_AutoInc;
 use GDO\DB\GDT_CreatedAt;
@@ -10,7 +9,7 @@ use GDO\Net\GDT_IP;
 use GDO\Type\GDT_MD5;
 use GDO\UI\GDT_Link;
 use GDO\User\GDT_User;
-use GDO\User\User;
+use GDO\User\GDO_User;
 /**
  * Table with user login history.
  * Alerts user on suspicous change of IP / InternetServiceProvider / UserAgent
@@ -20,9 +19,9 @@ use GDO\User\User;
  * @since 3.0
  * 
  * @see User
- * @see AccountSetting
+ * @see GDO_AccountSetting
  */
-final class AccountAccess extends GDO
+final class GDO_AccountAccess extends GDO
 {
 	public function gdoCached() { return false; }
 	
@@ -46,11 +45,11 @@ final class AccountAccess extends GDO
 	 * Mail on suspicous activity.
 	 * Add a new entry.
 	 * @param Module_Account $module
-	 * @param User $user
+	 * @param GDO_User $user
 	 */
-	public static function onAccess(Module_Account $module, User $user)
+	public static function onAccess(Module_Account $module, GDO_User $user)
 	{
-		$setting = AccountSetting::forUser($user);
+		$setting = GDO_AccountSetting::forUser($user);
 		
 		$query = '';
 		
@@ -124,7 +123,7 @@ final class AccountAccess extends GDO
 		return $value === null ? null : md5($value, true);
 	}
 	
-	public static function sendAlertMail(Module_Account $module, User $user, string $append='')
+	public static function sendAlertMail(Module_Account $module, GDO_User $user, string $append='')
 	{
 		if ($receive_mail = $user->getMail())
 		{

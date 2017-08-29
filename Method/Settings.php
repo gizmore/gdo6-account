@@ -2,8 +2,7 @@
 namespace GDO\Account\Method;
 
 use GDO\Account\Module_Account;
-use GDO\Core\Application;
-use GDO\Core\Module;
+use GDO\Core\GDO_Module;
 use GDO\Form\GDT_AntiCSRF;
 use GDO\Form\GDT_Form;
 use GDO\Form\GDT_Submit;
@@ -12,11 +11,9 @@ use GDO\Template\GDT_Bar;
 use GDO\Template\GDT_Box;
 use GDO\UI\GDT_Divider;
 use GDO\UI\GDT_Link;
-use GDO\User\UserSetting;
+use GDO\User\GDO_UserSetting;
 use GDO\Util\Common;
 use GDO\Core\ModuleLoader;
-use GDO\Forum\GDT_ForumSubscribe;
-use GDO\Template\Response;
 /**
  * Generic setting functionality.
  * Simply return GDT_Base[] in Module->getUserSettings() and you can configure stuff.
@@ -29,7 +26,7 @@ final class Settings extends MethodForm
 	public function isUserRequired() { return true; }
 	
 	/**
-	 * @var Module
+	 * @var GDO_Module
 	 */
 	private $configModule;
 	
@@ -73,7 +70,7 @@ final class Settings extends MethodForm
 		    $form->addField(GDT_Divider::make()->label('div_user_settings', [$moduleName]));
 		    foreach ($settings as $gdoType)
 		    {
-		        $form->addField(UserSetting::get($gdoType->name));
+		        $form->addField(GDO_UserSetting::get($gdoType->name));
 		    }
 		}
 		if ($settings = $this->configModule->getUserConfig())
@@ -81,7 +78,7 @@ final class Settings extends MethodForm
 		    $form->addField(GDT_Divider::make()->label('div_variables', [$moduleName]));
 			foreach ($settings as $gdoType)
 			{
-			    $form->addField(UserSetting::get($gdoType->name)->writable(false));
+			    $form->addField(GDO_UserSetting::get($gdoType->name)->writable(false));
 			}
 		}
 		$form->addField(GDT_AntiCSRF::make());
@@ -100,7 +97,7 @@ final class Settings extends MethodForm
 				$new = $gdoType->getVar($key);
 				if ($old !== $new)
 				{
-					UserSetting::set($key, $new);
+					GDO_UserSetting::set($key, $new);
 					$old = $old === null ? '<i class="null">null</i>' : html($old);
 					$new = $new === null ? '<i class="null">null</i>' : html($new);
 					$info[] = t('msg_modulevar_changed', [$gdoType->label, $old, $new]);

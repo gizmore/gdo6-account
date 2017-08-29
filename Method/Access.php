@@ -1,18 +1,18 @@
 <?php
 namespace GDO\Account\Method;
 
-use GDO\Account\AccountAccess;
+use GDO\Account\GDO_AccountAccess;
 use GDO\Account\Module_Account;
 use GDO\Table\GDT_Count;
 use GDO\Table\MethodQueryTable;
-use GDO\User\User;
+use GDO\User\GDO_User;
 /**
  * Tabular overview of old logins.
  * @author gizmore
  */
 final class Access extends MethodQueryTable
 {
-	public function getUserType() { return User::MEMBER; }
+	public function getUserType() { return GDO_User::MEMBER; }
 	
 	public function isEnabled() { return Module_Account::instance()->cfgFeatureAccess(); }
 	
@@ -23,7 +23,7 @@ final class Access extends MethodQueryTable
 	
 	public function getQuery()
 	{
-		return AccountAccess::table()->select('*')->where('accacc_uid='.User::current()->getID());
+		return GDO_AccountAccess::table()->select('*')->where('accacc_uid='.GDO_User::current()->getID());
 	}
 	
 	public function getHeaders()
@@ -31,7 +31,7 @@ final class Access extends MethodQueryTable
 		$headers = array(
 			GDT_Count::make(),
 		);
-		return array_merge($headers, AccountAccess::table()->getGDOColumns(['accacc_time', 'accacc_ip']));
+		return array_merge($headers, GDO_AccountAccess::table()->getGDOColumns(['accacc_time', 'accacc_ip']));
 	}
 	
 }

@@ -3,7 +3,7 @@ namespace GDO\Account;
 use GDO\DB\GDO;
 use GDO\Type\GDT_Checkbox;
 use GDO\User\GDT_User;
-use GDO\User\User;
+use GDO\User\GDO_User;
 /**
  * UserSettings table for the account module.
  * 
@@ -13,7 +13,7 @@ use GDO\User\User;
  * @author gizmore
  * @version 5.0
  */
-class AccountSetting extends GDO
+class GDO_AccountSetting extends GDO
 {
 	public function gdoCached() { return false; }
 	
@@ -37,10 +37,10 @@ class AccountSetting extends GDO
 
 	/**
 	 * Get settings for a user.
-	 * @param User $user
-	 * @return AccountSetting
+	 * @param GDO_User $user
+	 * @return GDO_AccountSetting
 	 */
-	public static function forUser(User $user)
+	public static function forUser(GDO_User $user)
 	{
 		if (!($setting = self::table()->find($user->getID(), false)))
 		{

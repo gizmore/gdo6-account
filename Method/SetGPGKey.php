@@ -3,8 +3,8 @@ namespace GDO\Account\Method;
 
 use GDO\Account\Module_Account;
 use GDO\Core\Method;
-use GDO\User\PublicKey;
-use GDO\User\User;
+use GDO\User\GDO_PublicKey;
+use GDO\User\GDO_User;
 use GDO\Util\Common;
 /**
  * GPG Mail links here to finally save the GPG key.
@@ -19,12 +19,12 @@ final class SetGPGKey extends Method
 	
 	public function execute()
 	{
-		$user = User::table()->find(Common::getGetString('userid'));
+		$user = GDO_User::table()->find(Common::getGetString('userid'));
 		$tmpfile = GWF_PATH . 'temp/gpg/' . $user->getID();
 		$file_content = file_get_contents($tmpfile);
 		unlink($tmpfile);
 
-		if (!($fingerprint = PublicKey::grabFingerprint($file_content)))
+		if (!($fingerprint = GDO_PublicKey::grabFingerprint($file_content)))
 		{
 			return $this->error('err_gpg_fail_fingerprinting');
 		}
@@ -34,7 +34,7 @@ final class SetGPGKey extends Method
 			return $this->error('err_gpg_token');
 		}
 		
-		PublicKey::updateKey($user->getID(), $file_content);
+		GDO_PublicKey::updateKey($user->getID(), $file_content);
 		
 		return $this->message('msg_gpg_key_added');
 	}

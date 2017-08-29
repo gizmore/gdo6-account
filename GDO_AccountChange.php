@@ -6,7 +6,7 @@ use GDO\Form\GDT_Enum;
 use GDO\Type\GDT_Serialize;
 use GDO\Type\GDT_Token;
 use GDO\User\GDT_User;
-use GDO\User\User;
+use GDO\User\GDO_User;
 /**
  * A table to store tokens associated with a userid type and serialized data.
  * Used to change demographic options on a bunch via mail,
@@ -17,7 +17,7 @@ use GDO\User\User;
  * @version 5.0
  * @since 3.0
  */
-final class AccountChange extends GDO
+final class GDO_AccountChange extends GDO
 {
 	public function gdoCached() { return false; }
 	

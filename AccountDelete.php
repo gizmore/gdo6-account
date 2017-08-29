@@ -4,7 +4,7 @@ namespace GDO\Account;
 use GDO\DB\GDO;
 use GDO\Type\GDT_Message;
 use GDO\User\GDT_Username;
-use GDO\User\User;
+use GDO\User\GDO_User;
 /**
  * An account deletion note.
  * @author gizmore
@@ -27,7 +27,7 @@ final class AccountDelete extends GDO
 	##############
 	### Static ###
 	##############
-	public static function insertNote(User $user, string $note)
+	public static function insertNote(GDO_User $user, string $note)
 	{
 		return self::blank(['accrm_username' => $user->getName(), 'accrm_note' => $note])->insert();
 	}

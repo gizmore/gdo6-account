@@ -1,15 +1,15 @@
 <?php
 namespace GDO\Account\Method;
 
-use GDO\Account\AccountAccess;
-use GDO\Account\AccountSetting;
+use GDO\Account\GDO_AccountAccess;
+use GDO\Account\GDO_AccountSetting;
 use GDO\Account\Module_Account;
 use GDO\Form\GDT_AntiCSRF;
 use GDO\Form\GDT_Form;
 use GDO\Form\GDT_Submit;
 use GDO\Form\MethodForm;
 use GDO\Template\GDT_Box;
-use GDO\User\User;
+use GDO\User\GDO_User;
 /**
  * Toggle account security switches.
  * @author gizmore
@@ -18,7 +18,7 @@ use GDO\User\User;
  */
 final class Security extends MethodForm
 {
-	public function getUserType() { return User::MEMBER; }
+	public function getUserType() { return GDO_User::MEMBER; }
 	public function isEnabled() { return Module_Account::instance()->cfgFeatureAccess(); }
 	
 	/**
@@ -27,7 +27,7 @@ final class Security extends MethodForm
 	private $user;
 	
 	/**
-	 * @var AccountSetting
+	 * @var GDO_AccountSetting
 	 */
 	private $settings;
 	
@@ -39,13 +39,13 @@ final class Security extends MethodForm
 	 */
 	public function execute()
 	{
-		$this->user = User::current();
-		$this->settings = AccountSetting::forUser($this->user);
+		$this->user = GDO_User::current();
+		$this->settings = GDO_AccountSetting::forUser($this->user);
 		return Module_Account::instance()->renderAccountTabs()->add(parent::execute());
 	}
 
 	/**
-	 * Take the checkboxes from AccountSetting class, which is a GDO. The columns are GDT_Base.
+	 * Take the checkboxes from GDO_AccountSetting class, which is a GDO. The columns are GDT_Base.
 	 * Add a submit button and csrf. 
 	 * {@inheritDoc}
 	 * @see MethodForm::createForm()
@@ -73,7 +73,7 @@ final class Security extends MethodForm
 		$this->settings->setVars($form->getFormData())->replace();
 		if ( ($beforeEnabeld) && (!$this->settings->recordIPs()) )
 		{
-			AccountAccess::sendAlertMail($this->module(), $this->user, 'record_disabled');
+			GDO_AccountAccess::sendAlertMail($this->module(), $this->user, 'record_disabled');
 		}
 		return parent::formValidated($form)->add($this->renderPage());
 	}
