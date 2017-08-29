@@ -3,11 +3,11 @@ namespace GDO\Account;
 
 use GDO\Core\Application;
 use GDO\Core\Module;
-use GDO\Date\GDO_Duration;
+use GDO\Date\GDT_Duration;
 use GDO\Date\Time;
-use GDO\Template\GDO_Bar;
-use GDO\Type\GDO_Checkbox;
-use GDO\Type\GDO_Int;
+use GDO\Template\GDT_Bar;
+use GDO\Type\GDT_Checkbox;
+use GDO\Type\GDT_Int;
 use GDO\User\User;
 /**
  * Member Account Changes.
@@ -32,20 +32,20 @@ final class Module_Account extends Module
 	public function getConfig()
 	{
 		return array(
-			GDO_Int::make('adult_age')->unsigned()->min(12)->max(40)->initial('21'),
-			GDO_Duration::make('account_changetime')->min(0)->initial(Time::ONE_MONTH * 3),
-			GDO_Checkbox::make('allow_real_name')->initial('1'),
-			GDO_Checkbox::make('allow_guest_settings')->initial('1'),
-			GDO_Checkbox::make('allow_country_change')->initial('1'),
-			GDO_Checkbox::make('allow_lang_change')->initial('1'),
-			GDO_Checkbox::make('allow_birthday_change')->initial('1'),
-			GDO_Checkbox::make('allow_gender_change')->initial('1'),
-			GDO_Checkbox::make('allow_email_change')->initial('1'),
-			GDO_Checkbox::make('allow_email_fmt_change')->initial('1'),
-			GDO_Checkbox::make('feature_access_history')->initial('1'),
-			GDO_Checkbox::make('feature_account_deletion')->initial('1'),
-			GDO_Checkbox::make('feature_gpg_engine')->initial('1'),
-			GDO_Checkbox::make('feature_demographic_mail_confirm')->initial('1'),
+			GDT_Int::make('adult_age')->unsigned()->min(12)->max(40)->initial('21'),
+			GDT_Duration::make('account_changetime')->min(0)->initial(Time::ONE_MONTH * 3),
+			GDT_Checkbox::make('allow_real_name')->initial('1'),
+			GDT_Checkbox::make('allow_guest_settings')->initial('1'),
+			GDT_Checkbox::make('allow_country_change')->initial('1'),
+			GDT_Checkbox::make('allow_lang_change')->initial('1'),
+			GDT_Checkbox::make('allow_birthday_change')->initial('1'),
+			GDT_Checkbox::make('allow_gender_change')->initial('1'),
+			GDT_Checkbox::make('allow_email_change')->initial('1'),
+			GDT_Checkbox::make('allow_email_fmt_change')->initial('1'),
+			GDT_Checkbox::make('feature_access_history')->initial('1'),
+			GDT_Checkbox::make('feature_account_deletion')->initial('1'),
+			GDT_Checkbox::make('feature_gpg_engine')->initial('1'),
+			GDT_Checkbox::make('feature_demographic_mail_confirm')->initial('1'),
 		);
 	}
 	
@@ -86,7 +86,7 @@ final class Module_Account extends Module
 	/**
 	 * Add account link to right sidebar, if user can use it.
 	 */
-	public function hookRightBar(GDO_Bar $navbar)
+	public function hookRightBar(GDT_Bar $navbar)
 	{
 		$this->templatePHP('rightbar.php', ['navbar' => $navbar]);
 	}

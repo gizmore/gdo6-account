@@ -3,7 +3,7 @@ namespace GDO\Account\Method;
 
 use GDO\Account\AccountAccess;
 use GDO\Account\Module_Account;
-use GDO\Table\GDO_Count;
+use GDO\Table\GDT_Count;
 use GDO\Table\MethodQueryTable;
 use GDO\User\User;
 /**
@@ -29,7 +29,7 @@ final class Access extends MethodQueryTable
 	public function getHeaders()
 	{
 		$headers = array(
-			GDO_Count::make(),
+			GDT_Count::make(),
 		);
 		return array_merge($headers, AccountAccess::table()->getGDOColumns(['accacc_time', 'accacc_ip']));
 	}

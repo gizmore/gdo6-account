@@ -1,14 +1,14 @@
 <?php
 # Create a horizontal navbar.
-use GDO\Template\GDO_Bar;
-use GDO\UI\GDO_Link;
+use GDO\Template\GDT_Bar;
+use GDO\UI\GDT_Link;
 
-$bar = GDO_Bar::make();
+$bar = GDT_Bar::make();
 
 # Add buttons to bar
-$bar->addField(GDO_Link::make('link_account_admin')->href(href('Account', 'Admin'))->icon('admin'));
-$bar->addField(GDO_Link::make('link_account_activations')->href(href('Account', 'Activations'))->icon('account_box'));
-$bar->addField(GDO_Link::make('link_account_deletions')->href(href('Account', 'Deletions'))->icon('delete'));
+$bar->addField(GDT_Link::make('link_account_admin')->href(href('Account', 'Admin'))->icon('admin'));
+$bar->addField(GDT_Link::make('link_account_activations')->href(href('Account', 'Activations'))->icon('account_box'));
+$bar->addField(GDT_Link::make('link_account_deletions')->href(href('Account', 'Deletions'))->icon('delete'));
 
 # Render
 echo $bar->renderCell();

@@ -11,7 +11,7 @@ use GDO\Util\Common;
 use GDO\Date\Time;
 use GDO\Language\Language;
 use GDO\Mail\Mail;
-use GDO\UI\GDO_Link;
+use GDO\UI\GDT_Link;
 /**
  * Demographic chance only once in a while.
  * 
@@ -80,7 +80,7 @@ final class ChangeDemo extends Method
 		$country = Country::getByISOOrUnknown($data['user_country'])->displayName();
 		$language = Language::getByISOOrUnknown($data['user_language'])->displayName();
 		$birthdate = $data['user_birthdate'] > 0 ? Time::displayDate($data['user_birthdate'], 'day') : t('unknown');
-		$link = GDO_Link::anchor(url('Account', 'ChangeDemo', sprintf("&userid=%d&token=%s", $user->getID(), $ac->getToken())));
+		$link = GDT_Link::anchor(url('Account', 'ChangeDemo', sprintf("&userid=%d&token=%s", $user->getID(), $ac->getToken())));
 		$args = [$username, $sitename, $timeout, $country, $language, $gender, $birthdate, $link];
 
 		$mail = new Mail();

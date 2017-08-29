@@ -1,11 +1,11 @@
 <?php
 namespace GDO\Account;
 use GDO\DB\GDO;
-use GDO\DB\GDO_CreatedAt;
-use GDO\Form\GDO_Enum;
-use GDO\Type\GDO_Serialize;
-use GDO\Type\GDO_Token;
-use GDO\User\GDO_User;
+use GDO\DB\GDT_CreatedAt;
+use GDO\Form\GDT_Enum;
+use GDO\Type\GDT_Serialize;
+use GDO\Type\GDT_Token;
+use GDO\User\GDT_User;
 use GDO\User\User;
 /**
  * A table to store tokens associated with a userid type and serialized data.
@@ -27,11 +27,11 @@ final class AccountChange extends GDO
 	public function gdoColumns()
 	{
 		return array(
-			GDO_User::make('accchg_user')->primary(),
-			GDO_Enum::make('accchg_type')->enumValues('email', 'email2', 'demo', 'demo_lock')->primary(),
-			GDO_Token::make('accchg_token')->notNull(),
-			GDO_Serialize::make('accchg_data'),
-			GDO_CreatedAt::make('accchg_time'),
+			GDT_User::make('accchg_user')->primary(),
+			GDT_Enum::make('accchg_type')->enumValues('email', 'email2', 'demo', 'demo_lock')->primary(),
+			GDT_Token::make('accchg_token')->notNull(),
+			GDT_Serialize::make('accchg_data'),
+			GDT_CreatedAt::make('accchg_time'),
 		);
 	}
 	

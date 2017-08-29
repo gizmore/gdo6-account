@@ -1,8 +1,8 @@
 <?php
 namespace GDO\Account;
 use GDO\DB\GDO;
-use GDO\Type\GDO_Checkbox;
-use GDO\User\GDO_User;
+use GDO\Type\GDT_Checkbox;
+use GDO\User\GDT_User;
 use GDO\User\User;
 /**
  * UserSettings table for the account module.
@@ -20,12 +20,12 @@ class AccountSetting extends GDO
 	public function gdoColumns()
 	{
 		return array(
-			GDO_User::make('accset_user')->primary(),
+			GDT_User::make('accset_user')->primary(),
 			# Security
-			GDO_Checkbox::make('accset_record_ip')->initial('0'),
-			GDO_Checkbox::make('accset_uawatch')->initial('0'),
-			GDO_Checkbox::make('accset_ipwatch')->initial('0'),
-			GDO_Checkbox::make('accset_ispwatch')->initial('0'),
+			GDT_Checkbox::make('accset_record_ip')->initial('0'),
+			GDT_Checkbox::make('accset_uawatch')->initial('0'),
+			GDT_Checkbox::make('accset_ipwatch')->initial('0'),
+			GDT_Checkbox::make('accset_ispwatch')->initial('0'),
 			# ???
 		);
 	}

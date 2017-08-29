@@ -3,13 +3,13 @@ namespace GDO\Account;
 
 use GDO\Core\Application;
 use GDO\DB\GDO;
-use GDO\DB\GDO_AutoInc;
-use GDO\DB\GDO_CreatedAt;
+use GDO\DB\GDT_AutoInc;
+use GDO\DB\GDT_CreatedAt;
 use GDO\Mail\Mail;
-use GDO\Net\GDO_IP;
-use GDO\Type\GDO_MD5;
-use GDO\UI\GDO_Link;
-use GDO\User\GDO_User;
+use GDO\Net\GDT_IP;
+use GDO\Type\GDT_MD5;
+use GDO\UI\GDT_Link;
+use GDO\User\GDT_User;
 use GDO\User\User;
 /**
  * Table with user login history.
@@ -32,12 +32,12 @@ final class AccountAccess extends GDO
 	public function gdoColumns()
 	{
 		return array(
-			GDO_AutoInc::make('accacc_id'),
-			GDO_User::make('accacc_uid')->index(),
-			GDO_MD5::make('accacc_ua')->notNull(),
-			GDO_IP::make('accacc_ip')->notNull(),
-			GDO_MD5::make('accacc_isp'),
-			GDO_CreatedAt::make('accacc_time'),
+			GDT_AutoInc::make('accacc_id'),
+			GDT_User::make('accacc_uid')->index(),
+			GDT_MD5::make('accacc_ua')->notNull(),
+			GDT_IP::make('accacc_ip')->notNull(),
+			GDT_MD5::make('accacc_isp'),
+			GDT_CreatedAt::make('accacc_time'),
 		);
 	}
 
@@ -62,7 +62,7 @@ final class AccountAccess extends GDO
 		}
 		
 		# Check exact IP
-		$ip = GDO_IP::current();
+		$ip = GDT_IP::current();
 		if ($setting->alertOnIPChange())
 		{
 			$query .= " AND accacc_ip=".GDO::quoteS($ip);
@@ -102,7 +102,7 @@ final class AccountAccess extends GDO
 	
 	private static function isphash()
 	{
-		if (GDO_IP::current() === ($isp = @gethostbyaddr($_SERVER['REMOTE_ADDR'])))
+		if (GDT_IP::current() === ($isp = @gethostbyaddr($_SERVER['REMOTE_ADDR'])))
 		{
 			$isp = null;
 		}
@@ -139,8 +139,8 @@ final class AccountAccess extends GDO
 				html($_SERVER['HTTP_USER_AGENT']),
 				$_SERVER['REMOTE_ADDR'],
 				gethostbyaddr($_SERVER['REMOTE_ADDR']),
-				GDO_Link::anchor(url('Account', 'Access')),
-				GDO_Link::anchor(url('Account', 'Form')),
+				GDT_Link::anchor(url('Account', 'Access')),
+				GDT_Link::anchor(url('Account', 'Form')),
 			)));
 			$mail->sendToUser($user);
 		}

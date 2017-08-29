@@ -3,14 +3,14 @@ namespace GDO\Account\Method;
 
 use GDO\Account\AccountDelete;
 use GDO\Account\Module_Account;
-use GDO\Core\GDO_Hook;
-use GDO\Form\GDO_AntiCSRF;
-use GDO\Form\GDO_Form;
-use GDO\Form\GDO_Submit;
+use GDO\Core\GDT_Hook;
+use GDO\Form\GDT_AntiCSRF;
+use GDO\Form\GDT_Form;
+use GDO\Form\GDT_Submit;
 use GDO\Form\MethodForm;
 use GDO\Mail\Mail;
-use GDO\Template\GDO_Box;
-use GDO\Type\GDO_Message;
+use GDO\Template\GDT_Box;
+use GDO\Type\GDT_Message;
 use GDO\User\User;
 /**
  * Delete your account.
@@ -33,19 +33,19 @@ final class Delete extends MethodForm
 		return Module_Account::instance()->renderAccountTabs()->add(parent::execute());
 	}
 	
-	public function createForm(GDO_Form $form)
+	public function createForm(GDT_Form $form)
 	{
 		$fields = array(
-			GDO_Box::make('info')->html(t('box_info_deletion', [sitename()])),
-			GDO_Message::make('accrm_note'),
-			GDO_Submit::make()->label('btn_delete_account'),
-			GDO_Submit::make('prune')->label('btn_prune_account'),
-			GDO_AntiCSRF::make(),
+			GDT_Box::make('info')->html(t('box_info_deletion', [sitename()])),
+			GDT_Message::make('accrm_note'),
+			GDT_Submit::make()->label('btn_delete_account'),
+			GDT_Submit::make('prune')->label('btn_prune_account'),
+			GDT_AntiCSRF::make(),
 		);
 		$form->addFields($fields);
 	}
 	
-	public function formValidated(GDO_Form $form)
+	public function formValidated(GDT_Form $form)
 	{
 		$user = User::current();
 		
@@ -60,7 +60,7 @@ final class Delete extends MethodForm
 		
 		# Mark deleted
 		$user->saveValue('user_deleted_at', time());
-		GDO_Hook::call('UserQuit', $user);
+		GDT_Hook::call('UserQuit', $user);
 		if ($this->prune)
 		{
 			$user->delete();

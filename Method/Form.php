@@ -3,13 +3,13 @@ namespace GDO\Account\Method;
 
 use GDO\Account\Module_Account;
 use GDO\Date\Time;
-use GDO\Form\GDO_AntiCSRF;
-use GDO\Form\GDO_Form;
-use GDO\Form\GDO_Submit;
+use GDO\Form\GDT_AntiCSRF;
+use GDO\Form\GDT_Form;
+use GDO\Form\GDT_Submit;
 use GDO\Form\MethodForm;
-use GDO\Template\GDO_Box;
+use GDO\Template\GDT_Box;
 use GDO\Template\Message;
-use GDO\UI\GDO_Divider;
+use GDO\UI\GDT_Divider;
 use GDO\User\User;
 /**
  * Change account settings.
@@ -26,20 +26,20 @@ final class Form extends MethodForm
 	{
 		$delay = Time::humanDuration(Module_Account::instance()->cfgChangeTime());
 		return Module_Account::instance()->renderAccountTabs()->add(
-				GDO_Box::make()->html(t('infobox_account_form', [$delay]))->render()->add(
+				GDT_Box::make()->html(t('infobox_account_form', [$delay]))->render()->add(
 						parent::execute()));
 	}
 	
 	################
 	### The Form ###
 	################
-	public function createForm(GDO_Form $form)
+	public function createForm(GDT_Form $form)
 	{
 		$m = Module_Account::instance();
 		$user = User::current();
 		
 		# Section1
-		$form->addField(GDO_Divider::make('div1')->label('section_login'));
+		$form->addField(GDT_Divider::make('div1')->label('section_login'));
 		if ($user->isGuest()) :
 		$form->addField($user->gdoColumn('user_guest_name')->writable(false));
 		else :
@@ -48,18 +48,18 @@ final class Form extends MethodForm
 		endif;
 		
 		# Section2
-		$form->addField(GDO_Divider::make('div2')->label('section_email'));
+		$form->addField(GDT_Divider::make('div2')->label('section_email'));
 		$form->addField($user->gdoColumn('user_email')->writable($m->cfgAllowEmailChange()));
 		$form->addField($user->gdoColumn('user_email_fmt')->writable($m->cfgAllowEmailFormatChange()));
 		
-		$form->addField(GDO_Divider::make('div3')->label('section_demographic'));
+		$form->addField(GDT_Divider::make('div3')->label('section_demographic'));
 		$form->addField($user->gdoColumn('user_language')->writable($m->cfgAllowLanguageChange()));
 		$form->addField($user->gdoColumn('user_country')->withCompletion()->writable($m->cfgAllowCountryChange()));
 		if ($m->cfgAllowGenderChange()) $form->addField($user->gdoColumn('user_gender'));
 		if ($m->cfgAllowBirthdayChange()) $form->addField($user->gdoColumn('user_birthdate'));
 
-		$form->addField(GDO_Submit::make());
-		$form->addField(GDO_AntiCSRF::make());
+		$form->addField(GDT_Submit::make());
+		$form->addField(GDT_AntiCSRF::make());
 		
 		$form->withGDOValuesFrom($user);
 	}
@@ -67,7 +67,7 @@ final class Form extends MethodForm
 	#######################
 	### Change Settings ###
 	#######################
-	public function formValidated(GDO_Form $form)
+	public function formValidated(GDT_Form $form)
 	{
 		$back = '';
 
@@ -162,7 +162,7 @@ final class Form extends MethodForm
 		return $this->renderPage();
 	}
 	
-// 	private function changeFlag(GDO_Form $form, User $user, $flagname)
+// 	private function changeFlag(GDT_Form $form, User $user, $flagname)
 // 	{
 // 		$newFlag = $form->getFormVar($flagname);
 // 		if ($newFlag !== $user->getVar($flagname))

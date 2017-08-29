@@ -4,11 +4,11 @@ namespace GDO\Account\Method;
 use GDO\Account\AccountAccess;
 use GDO\Account\AccountSetting;
 use GDO\Account\Module_Account;
-use GDO\Form\GDO_AntiCSRF;
-use GDO\Form\GDO_Form;
-use GDO\Form\GDO_Submit;
+use GDO\Form\GDT_AntiCSRF;
+use GDO\Form\GDT_Form;
+use GDO\Form\GDT_Submit;
 use GDO\Form\MethodForm;
-use GDO\Template\GDO_Box;
+use GDO\Template\GDT_Box;
 use GDO\User\User;
 /**
  * Toggle account security switches.
@@ -45,18 +45,18 @@ final class Security extends MethodForm
 	}
 
 	/**
-	 * Take the checkboxes from AccountSetting class, which is a GDO. The columns are GDO_Base.
+	 * Take the checkboxes from AccountSetting class, which is a GDO. The columns are GDT_Base.
 	 * Add a submit button and csrf. 
 	 * {@inheritDoc}
 	 * @see MethodForm::createForm()
 	 */
-	public function createForm(GDO_Form $form)
+	public function createForm(GDT_Form $form)
 	{
-		$form->addField(GDO_Box::make('info')->html(t('box_account_security')));
+		$form->addField(GDT_Box::make('info')->html(t('box_account_security')));
 		$form->addFields($this->settings->getGDOColumns(['accset_record_ip', 'accset_uawatch', 'accset_ipwatch', 'accset_ispwatch']));
 		$form->addFields(array(
-			GDO_Submit::make(),
-			GDO_AntiCSRF::make(),
+			GDT_Submit::make(),
+			GDT_AntiCSRF::make(),
 		));
 		$form->withGDOValuesFrom($this->settings);
 	}
@@ -67,7 +67,7 @@ final class Security extends MethodForm
 	 * {@inheritDoc}
 	 * @see MethodForm::formValidated()
 	 */
-	public function formValidated(GDO_Form $form)
+	public function formValidated(GDT_Form $form)
 	{
 		$beforeEnabeld = $this->settings->recordIPs();
 		$this->settings->setVars($form->getFormData())->replace();

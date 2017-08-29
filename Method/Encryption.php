@@ -2,15 +2,15 @@
 namespace GDO\Account\Method;
 
 use GDO\Account\Module_Account;
-use GDO\File\GDO_File;
-use GDO\Form\GDO_AntiCSRF;
-use GDO\Form\GDO_Form;
-use GDO\Form\GDO_Submit;
+use GDO\File\GDT_File;
+use GDO\Form\GDT_AntiCSRF;
+use GDO\Form\GDT_Form;
+use GDO\Form\GDT_Submit;
 use GDO\Form\MethodForm;
 use GDO\Mail\Mail;
-use GDO\Template\GDO_Bar;
-use GDO\Template\GDO_Box;
-use GDO\UI\GDO_Link;
+use GDO\Template\GDT_Bar;
+use GDO\Template\GDT_Box;
+use GDO\UI\GDT_Link;
 use GDO\User\PublicKey;
 use GDO\User\User;
 /**
@@ -41,20 +41,20 @@ final class Encryption extends MethodForm
 		return Module_Account::instance()->renderAccountTabs()->add(parent::execute());
 	}
 
-	public function createForm(GDO_Form $form)
+	public function createForm(GDT_Form $form)
 	{
-		$form->addField(GDO_Box::make('info')->html(t('infob_gpg_upload')));
+		$form->addField(GDT_Box::make('info')->html(t('infob_gpg_upload')));
 		$form->addField(PublicKey::table()->gdoColumn('gpg_pubkey'));
-		$form->addField(GDO_File::make('gpg_file')->action($this->href()));
-		$form->addField(GDO_AntiCSRF::make());
-		$btns = GDO_Bar::make();
+		$form->addField(GDT_File::make('gpg_file')->action($this->href()));
+		$form->addField(GDT_AntiCSRF::make());
+		$btns = GDT_Bar::make();
 		if ($this->key === null)
 		{
-			$btns->addField(GDO_Submit::make());
+			$btns->addField(GDT_Submit::make());
 		}
 		else
 		{
-			$btns->addField(GDO_Submit::make('btn_delete'));
+			$btns->addField(GDT_Submit::make('btn_delete'));
 		}
 		$form->addField($btns);
 		$form->withGDOValuesFrom($this->key);
@@ -76,7 +76,7 @@ final class Encryption extends MethodForm
 	###########
 	### Add ###
 	###########
-	public function formValidated(GDO_Form $form)
+	public function formValidated(GDT_Form $form)
 	{
 		$user = User::current();
 		$outfile = GWF_PATH . 'temp/gpg/' . $user->getID();
@@ -132,7 +132,7 @@ final class Encryption extends MethodForm
 	
 	private function getGPGMailBody(User $user, $fingerprint)
 	{
-		$link = GDO_Link::anchor(url('Account', 'SetGPGKey', "&userid={$user->getID()}&token={$fingerprint}"));
+		$link = GDT_Link::anchor(url('Account', 'SetGPGKey', "&userid={$user->getID()}&token={$fingerprint}"));
 		$args = [$user->displayName(), sitename(), $link];
 		return tusr($user, 'mail_body_gpg', $args);
 	}

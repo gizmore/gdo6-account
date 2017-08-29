@@ -5,16 +5,16 @@ use GDO\Account\AccountChange;
 use GDO\Account\Module_Account;
 use GDO\Core\Application;
 use GDO\Core\Method;
-use GDO\Form\GDO_AntiCSRF;
-use GDO\Form\GDO_Form;
-use GDO\Form\GDO_Submit;
-use GDO\Mail\GDO_Email;
+use GDO\Form\GDT_AntiCSRF;
+use GDO\Form\GDT_Form;
+use GDO\Form\GDT_Submit;
+use GDO\Mail\GDT_Email;
 use GDO\Mail\Mail;
-use GDO\Type\GDO_Base;
-use GDO\UI\GDO_Link;
+use GDO\Type\GDT_Base;
+use GDO\UI\GDT_Link;
 use GDO\User\User;
 use GDO\Util\Common;
-use GDO\Form\GDO_Validator;
+use GDO\Form\GDT_Validator;
 /**
  * Method only is triggered by Form (Step 0).
  * Consists of two mail sending, old and new.
@@ -86,7 +86,7 @@ final class ChangeEmail extends Method
 		$userid = $user->getID();
 		$row = AccountChange::addRow($userid, 'email', $newMail);
 		$token = $row->getToken();
-		return GDO_Link::anchor(url('Account', 'ChangeEmail', "&userid=$userid&token=$token"));
+		return GDT_Link::anchor(url('Account', 'ChangeEmail', "&userid=$userid&token=$token"));
 	}
 	
 	##############
@@ -103,27 +103,27 @@ final class ChangeEmail extends Method
 	
 	private function getChangeMailForm(AccountChange $ac)
 	{
-		$form = new GDO_Form();
+		$form = new GDT_Form();
 		$form->title('ft_change_mail', [sitename()]);
 		$form->addFields(array(
-			GDO_Email::make('email')->required(),
-		    GDO_Validator::make()->validator('email', [$this, 'validateEmailUnique']),
-			GDO_Email::make('email_re')->required()->label('retype'),
-		    GDO_Validator::make()->validator('email_re', [$this, 'validateEmailRetype']),
-		    GDO_AntiCSRF::make(),
-			GDO_Submit::make('btn_changemail'),
+			GDT_Email::make('email')->required(),
+		    GDT_Validator::make()->validator('email', [$this, 'validateEmailUnique']),
+			GDT_Email::make('email_re')->required()->label('retype'),
+		    GDT_Validator::make()->validator('email_re', [$this, 'validateEmailRetype']),
+		    GDT_AntiCSRF::make(),
+			GDT_Submit::make('btn_changemail'),
 		));
 		return $form;
 	}
 	
-	public function validateEmailRetype(GDO_Form $form, GDO_Base $gdoType)
+	public function validateEmailRetype(GDT_Form $form, GDT_Base $gdoType)
 	{
 		$new1 = $form->getField('email')->getVar();
 		$new2 = $form->getField('email_re')->getVar();
 		return $new1 === $new2 ? true : $gdoType->error('err_email_retype');
 	}
 
-	public function validateEmailUnique(GDO_Form $form, GDO_Base $gdoType)
+	public function validateEmailUnique(GDT_Form $form, GDT_Base $gdoType)
 	{
 		$count = User::table()->countWhere("user_email={$gdoType->quotedValue()}");
 		return $count > 0 ? $gdoType->error('err_email_taken') : true;
@@ -164,7 +164,7 @@ final class ChangeEmail extends Method
 		$username = $user->displayName();
 		$sitename = sitename();
 		$email = htmlspecialchars($email);
-		$link = GDO_Link::anchor(url('Account', 'ChangeEmail', "&userid={$user->getID()}&change={$token->getToken()}"));
+		$link = GDT_Link::anchor(url('Account', 'ChangeEmail', "&userid={$user->getID()}&change={$token->getToken()}"));
 		
 		# Mail
 		$mail = new Mail();
