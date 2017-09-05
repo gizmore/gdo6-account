@@ -39,7 +39,7 @@ final class GDO_AccountChange extends GDO
 	### Getter ###
 	##############
 	/**
-	 * @return User
+	 * @return GDO_User
 	 */
 	public function getUser() { return $this->getValue('accchg_user'); }
 	public function getUserID() { return $this->getVar('accchg_user'); }
