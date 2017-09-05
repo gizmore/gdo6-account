@@ -14,6 +14,8 @@ use GDO\UI\GDT_Link;
 use GDO\User\GDO_UserSetting;
 use GDO\Util\Common;
 use GDO\Core\ModuleLoader;
+use GDO\User\GDO_UserSettingBlob;
+use GDO\Type\GDT_Base;
 /**
  * Generic setting functionality.
  * Simply return GDT_Base[] in Module->getUserSettings() and you can configure stuff.
@@ -50,7 +52,7 @@ final class Settings extends MethodForm
 		$navbar = GDT_Bar::make();
 		foreach (ModuleLoader::instance()->getActiveModules() as $module)
 		{
-			if ($module->getUserSettings() || $module->getUserConfig())
+		    if ($module->getUserSettings() || $module->getUserSettingBlobs() || $module->getUserConfig())
 			{
 				$name = $module->getName();
 				$href = href('Account', 'Settings', "&module=$name");
@@ -71,6 +73,14 @@ final class Settings extends MethodForm
 		    foreach ($settings as $gdoType)
 		    {
 		        $form->addField(GDO_UserSetting::get($gdoType->name));
+		    }
+		}
+		if ($settings = $this->configModule->getUserSettingBlobs())
+		{
+		    $form->addField(GDT_Divider::make()->label('div_user_textual_settings', [$moduleName]));
+		    foreach ($settings as $gdoType)
+		    {
+		        $form->addField(GDO_UserSettingBlob::get($gdoType->name));
 		    }
 		}
 		if ($settings = $this->configModule->getUserConfig())
@@ -97,7 +107,14 @@ final class Settings extends MethodForm
 				$new = $gdoType->getVar($key);
 				if ($old !== $new)
 				{
-					GDO_UserSetting::set($key, $new);
+				    if ($this->isSettingBlob($gdoType))
+				    {
+				        GDO_UserSettingBlob::set($key, $new);
+				    }
+				    else
+				    {
+				        GDO_UserSetting::set($key, $new);
+				    }
 					$old = $old === null ? '<i class="null">null</i>' : html($old);
 					$new = $new === null ? '<i class="null">null</i>' : html($new);
 					$info[] = t('msg_modulevar_changed', [$gdoType->label, $old, $new]);
@@ -110,4 +127,10 @@ final class Settings extends MethodForm
 		return empty($info) ? $page : 
 		  $this->message('msg_settings_saved', [$this->configModule->getName(), implode('<br/>', $info)])->add($page);
 	}
+	
+	private function isSettingBlob(GDT_Base $gdoType)
+	{
+	    return GDO_UserSettingBlob::isRegistered($gdoType->name);
+	}
+	    
 }
