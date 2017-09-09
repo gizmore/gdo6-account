@@ -79,6 +79,7 @@ final class ChangeEmail extends Method
 		$link = self::createLink($module, $user, $newMail);
 		$mail->setBody(t('mail_body_chmail_a', [$user->displayName(), $sitename, $newmail, $link]));
 		$mail->sendToUser($user);
+		return $module->message('msg_mail_sent');
 	}
 	
 	private static function createLink(Module_Account $module, GDO_User $user, $newMail)

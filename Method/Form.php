@@ -11,6 +11,7 @@ use GDO\Template\GDT_Box;
 use GDO\Template\Message;
 use GDO\UI\GDT_Divider;
 use GDO\User\GDO_User;
+use GDO\Template\Response;
 /**
  * Change account settings.
  * @author gizmore
@@ -69,7 +70,7 @@ final class Form extends MethodForm
 	#######################
 	public function formValidated(GDT_Form $form)
 	{
-		$back = '';
+		$back = new Response();
 
 		$m = Module_Account::instance();
 		$user = GDO_User::current();
@@ -83,7 +84,7 @@ final class Form extends MethodForm
 			    if ($realname !== $user->getRealName())
 			    {
     				$user->setVar('user_real_name', $realname);
-    				$back .= t('msg_real_name_now', [$realname]);
+    				$back->add($this->message('msg_real_name_now', [$realname]));
 			    }
 			}
 		}
@@ -96,7 +97,7 @@ final class Form extends MethodForm
 			if ($newfmt !== $oldfmt)
 			{
 				$user->setVar('user_email_fmt', $newfmt);
-				$back .= t('msg_email_fmt_now_'.$newfmt);
+				$back->add($this->message('msg_email_fmt_now_'.$newfmt));
 			}
 		}
 		
@@ -107,7 +108,7 @@ final class Form extends MethodForm
 			$newmail = $form->getFormVar('user_email');
 			if ($newmail !== $oldmail)
 			{
-				$back .= ChangeEmail::changeEmail($this->module(), $user, $newmail);
+			    $back->add(ChangeEmail::changeEmail($this->module(), $user, $newmail));
 			}
 		}
 		
@@ -130,46 +131,26 @@ final class Form extends MethodForm
 		
 		if ($demo_changed)
 		{
+		    $demo_vars = array(
+		        'user_country' => $newcid,
+		        'user_language' => $newlid,
+		        'user_gender' => $newgender,
+		        'user_birthdate' => $newbirthdate,
+		    );
+		    
 			if ($guest)
 			{
-				$user->setVars(array(
-					'user_country' => $newcid,
-					'user_language' => $newlid,
-					'user_gender' => $newgender,
-					'user_birthdate' => $newbirthdate,
-				));
-				$back .= t('msg_demo_changed');
+				$user->setVars($demo_vars);
+				$back->add($this->message('msg_demo_changed'));
 			}
 			else
 			{
-				$data = array(
-					'user_country' => $newcid,
-					'user_language' => $newlid,
-					'user_gender' => $newgender,
-					'user_birthdate' => $newbirthdate,
-				);
-				require_once 'ChangeDemo.php';
-				$back .= ChangeDemo::requestChange($this->module(), $user, $data);
+				$data = $demo_vars;
+				$back->add(ChangeDemo::requestChange($this->module(), $user, $data));
 			}
 		}
-		
-		if ($back)
-		{
-			$user->save();
-			return Message::make($back)->add($this->renderPage());
-		}
-		
-		return $this->renderPage();
+		$user->save();
+		return $back->add($this->renderPage());
 	}
-	
-// 	private function changeFlag(GDT_Form $form, GDO_User $user, $flagname)
-// 	{
-// 		$newFlag = $form->getFormVar($flagname);
-// 		if ($newFlag !== $user->getVar($flagname))
-// 		{
-// 			$user->setVar($flagname, $newFlag);
-// 			return t('msg_'.$flagname.($newFlag?'_on':'_off'));
-// 		}
-// 	}
 	
 }

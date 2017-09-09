@@ -29,6 +29,9 @@ return array(
 'msg_user_want_adult_on' => 'You have now enabled adult content for your account.',
 'msg_mail_sent' => 'We have sent you an E-Mail with instructions how to proceed.',
 'msg_demo_changed' => 'Your demographic settings have been changed.',
+'msg_email_fmt_now_html' => 'Your preferred E-Mail format is now set to HTML.',
+'msg_email_fmt_now_text' => 'Your preferred E-Mail format is now set to PLAINTEXT.',
+'err_demo_wait' => 'You have to wait %s before you can change your demographic options again.',
 ##########################################################
 'ft_account_encryption' => '[%s] GPG Setup',
 'infob_gpg_upload' => 'Here you can upload a GPG key to enable email encryption.',

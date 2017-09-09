@@ -56,7 +56,7 @@ final class ChangeDemo extends Method
 			if ($elapsed < $min_wait)
 			{
 				$wait = $min_wait - $elapsed;
-				return t('err_demo_wait', array(Time::humanDuration($wait)));
+				return $module->error('err_demo_wait', array(Time::humanDuration($wait)));
 			}
 		}
 		return true;
@@ -66,7 +66,7 @@ final class ChangeDemo extends Method
 	{
 		$user->saveVars($data);
 		GDO_AccountChange::addRow($user->getID(), 'demo_lock');
-		return t('msg_demo_changed');
+		return $module->message('msg_demo_changed');
 	}
 	
 	private static function sendMail(Module_Account $module, GDO_User $user, array $data)
@@ -88,7 +88,7 @@ final class ChangeDemo extends Method
 		$mail->setSubject(t('mail_subj_demochange', [$sitename]));
 		$mail->setBody(t('mail_body_demochange', $args));
 		$mail->sendToUser($user);
-		return t('msg_mail_sent');
+		return $module->message('msg_mail_sent');
 	}
 	
 	private function onChange($token)
