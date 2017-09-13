@@ -98,7 +98,7 @@ final class ChangeDemo extends Method
 		{
 			return $this->error('err_token');
 		}
-		if (!($user = GDO_User::getByID($userid)))
+		if (!($user = GDO_User::getById($userid)))
 		{
 			return $this->error('err_user');
 		}
