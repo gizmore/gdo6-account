@@ -1,7 +1,6 @@
 <?php
 namespace GDO\Account\Method;
-
-use GDO\Account\AccountDelete;
+use GDO\Account\GDO_AccountDelete;
 use GDO\Account\Module_Account;
 use GDO\Core\GDT_Hook;
 use GDO\Form\GDT_AntiCSRF;
@@ -52,7 +51,7 @@ final class Delete extends MethodForm
 		# Store note in database
 		if ($note = $form->getVar('accrm_note'))
 		{
-			AccountDelete::insertNote($user, $note);
+			GDO_AccountDelete::insertNote($user, $note);
 		}
 		
 		# Send note as email

@@ -9,7 +9,7 @@ use GDO\User\GDO_User;
  * An account deletion note.
  * @author gizmore
  */
-final class AccountDelete extends GDO
+final class GDO_AccountDelete extends GDO
 {
 	public function gdoCached() { return false; }
 	
