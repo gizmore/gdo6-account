@@ -8,7 +8,6 @@ use GDO\Form\GDT_Form;
 use GDO\Form\GDT_Submit;
 use GDO\Form\MethodForm;
 use GDO\Template\GDT_Box;
-use GDO\Template\Message;
 use GDO\UI\GDT_Divider;
 use GDO\User\GDO_User;
 use GDO\Template\Response;
@@ -55,7 +54,7 @@ final class Form extends MethodForm
 		
 		$form->addField(GDT_Divider::make('div3')->label('section_demographic'));
 		$form->addField($user->gdoColumn('user_language')->writable($m->cfgAllowLanguageChange()));
-		$form->addField($user->gdoColumn('user_country')->withCompletion()->writable($m->cfgAllowCountryChange()));
+		$form->addField($user->gdoColumn('user_country')->withCompletion()->writable($m->cfgAllowCountryChange())->emptyInitial(t('no_country')));
 		if ($m->cfgAllowGenderChange()) $form->addField($user->gdoColumn('user_gender'));
 		if ($m->cfgAllowBirthdayChange()) $form->addField($user->gdoColumn('user_birthdate'));
 
@@ -128,6 +127,8 @@ final class Form extends MethodForm
 		$oldbirthdate = $user->getVar('user_birthdate');
 		$newbirthdate = $m->cfgAllowBirthdayChange() ? $form->getFormVar('user_birthdate') : $oldbirthdate;
 		if ($oldbirthdate != $newbirthdate) { $demo_changed = true; }
+		
+		var_dump($oldcid, $newcid);
 		
 		if ($demo_changed)
 		{
