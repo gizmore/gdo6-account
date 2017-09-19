@@ -24,7 +24,7 @@ final class Module_Account extends GDO_Module
 	### Module ###
 	##################
 	public function onLoadLanguage() { return $this->loadLanguage('lang/account'); }
-	public function getClasses() { return ['GDO\Account\GDO_AccountAccess', 'GDO\Account\GDO_AccountChange', 'GDO\Account\AccountDelete', 'GDO\Account\GDO_AccountSetting']; }
+	public function getClasses() { return ['GDO\Account\GDO_AccountAccess', 'GDO\Account\GDO_AccountChange', 'GDO\Account\GDO_AccountDelete', 'GDO\Account\GDO_AccountSetting']; }
 
 	##############
 	### Config ###
