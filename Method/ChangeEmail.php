@@ -3,7 +3,6 @@ namespace GDO\Account\Method;
 
 use GDO\Account\GDO_AccountChange;
 use GDO\Account\Module_Account;
-use GDO\Core\Application;
 use GDO\Core\Method;
 use GDO\Form\GDT_AntiCSRF;
 use GDO\Form\GDT_Form;

@@ -22,7 +22,7 @@ final class Security extends MethodForm
 	public function isEnabled() { return Module_Account::instance()->cfgFeatureAccess(); }
 	
 	/**
-	 * @var User
+	 * @var GDO_User
 	 */
 	private $user;
 	
