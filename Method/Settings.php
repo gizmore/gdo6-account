@@ -50,7 +50,7 @@ final class Settings extends MethodForm
 	public function navModules()
 	{
 		$navbar = GDT_Bar::make();
-		foreach (ModuleLoader::instance()->getActiveModules() as $module)
+		foreach (ModuleLoader::instance()->getModules() as $module)
 		{
 		    if ($module->getUserSettings() || $module->getUserSettingBlobs() || $module->getUserConfig())
 			{
