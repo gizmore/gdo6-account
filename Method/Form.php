@@ -128,8 +128,6 @@ final class Form extends MethodForm
 		$newbirthdate = $m->cfgAllowBirthdayChange() ? $form->getFormVar('user_birthdate') : $oldbirthdate;
 		if ($oldbirthdate != $newbirthdate) { $demo_changed = true; }
 		
-		var_dump($oldcid, $newcid);
-		
 		if ($demo_changed)
 		{
 		    $demo_vars = array(
