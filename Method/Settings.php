@@ -16,6 +16,7 @@ use GDO\Util\Common;
 use GDO\Core\ModuleLoader;
 use GDO\User\GDO_UserSettingBlob;
 use GDO\Core\GDT;
+use GDO\Core\GDT_Response;
 /**
  * Generic setting functionality.
  * Simply return GDT[] in Module->getUserSettings() and you can configure stuff.
@@ -44,7 +45,7 @@ final class Settings extends MethodForm
 	
 	public function infoBox()
 	{
-		return GDT_Panel::make()->html(t('box_content_account_settings'))->render();
+		return GDT_Response::makeWith(GDT_Panel::make()->html(t('box_content_account_settings')));
 	}
 	
 	public function navModules()
@@ -60,7 +61,7 @@ final class Settings extends MethodForm
 				$navbar->addField($button);
 			}
 		}
-		return $navbar->render();
+		return GDT_Response::makeWith($navbar);
 	}
 	
 	public function createForm(GDT_Form $form)

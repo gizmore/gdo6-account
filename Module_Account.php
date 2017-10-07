@@ -9,6 +9,8 @@ use GDO\UI\GDT_Bar;
 use GDO\DB\GDT_Checkbox;
 use GDO\DB\GDT_Int;
 use GDO\User\GDO_User;
+use GDO\Core\GDT_Response;
+use GDO\Core\GDT_Template;
 /**
  * Member Account Changes.
  * 
@@ -93,12 +95,12 @@ final class Module_Account extends GDO_Module
 	
 	public function renderAdminTabs()
 	{
-		return $this->templatePHP('admin_tabs.php');
+		return GDT_Template::responsePHP('Account', 'admin_tabs.php');
 	}
 
 	public function renderAccountTabs()
 	{
-		return $this->templatePHP('overview.php');
+	    return GDT_Template::responsePHP('Account', 'overview.php');
 	}
 	
 }

@@ -25,9 +25,9 @@ final class Form extends MethodForm
 	public function execute()
 	{
 		$delay = Time::humanDuration(Module_Account::instance()->cfgChangeTime());
-		return Module_Account::instance()->renderAccountTabs()->add(
-				GDT_Panel::make()->html(t('infobox_account_form', [$delay]))->render()->add(
-						parent::execute()));
+		return Module_Account::instance()->renderAccountTabs()->addField(
+				GDT_Panel::make()->html(t('infobox_account_form', [$delay])))->add(
+						parent::execute());
 	}
 	
 	################
