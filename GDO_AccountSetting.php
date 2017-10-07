@@ -1,6 +1,6 @@
 <?php
 namespace GDO\Account;
-use GDO\DB\GDO;
+use GDO\Core\GDO;
 use GDO\Type\GDT_Checkbox;
 use GDO\User\GDT_User;
 use GDO\User\GDO_User;

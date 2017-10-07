@@ -1,7 +1,7 @@
 <?php
 namespace GDO\Account;
 
-use GDO\DB\GDO;
+use GDO\Core\GDO;
 use GDO\Type\GDT_Message;
 use GDO\User\GDT_Username;
 use GDO\User\GDO_User;
