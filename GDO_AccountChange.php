@@ -2,9 +2,9 @@
 namespace GDO\Account;
 use GDO\Core\GDO;
 use GDO\DB\GDT_CreatedAt;
-use GDO\Form\GDT_Enum;
-use GDO\Type\GDT_Serialize;
-use GDO\Type\GDT_Token;
+use GDO\DB\GDT_Enum;
+use GDO\Core\GDT_Serialize;
+use GDO\DB\GDT_Token;
 use GDO\User\GDT_User;
 use GDO\User\GDO_User;
 /**
@@ -56,7 +56,7 @@ final class GDO_AccountChange extends GDO
 	 * @param mixed $data
 	 * @return self
 	 */
-	public static function addRow(string $userid, string $type, $data=null)
+	public static function addRow($userid, $type, $data=null)
 	{
 		$row = self::blank(['accchg_user' => $userid, 'accchg_type' => $type]);
 		$row->setValue('accchg_data', $data);
@@ -69,7 +69,7 @@ final class GDO_AccountChange extends GDO
 	 * @param string $token
 	 * @return self
 	 */
-	public static function getRow(string $userid, string $type, $token=true)
+	public static function getRow($userid, $type, $token=true)
 	{
 		$condition = 'accchg_user=%s AND accchg_type=%s' . ($token===true?'':' AND accchg_token=%s');
 		$condition = sprintf($condition, quote($userid), quote($type), quote($token));

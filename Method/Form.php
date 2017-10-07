@@ -7,10 +7,10 @@ use GDO\Form\GDT_AntiCSRF;
 use GDO\Form\GDT_Form;
 use GDO\Form\GDT_Submit;
 use GDO\Form\MethodForm;
-use GDO\Template\GDT_Box;
+use GDO\UI\GDT_Panel;
 use GDO\UI\GDT_Divider;
 use GDO\User\GDO_User;
-use GDO\Template\Response;
+use GDO\Core\GDT_Response;
 /**
  * Change account settings.
  * @author gizmore
@@ -26,7 +26,7 @@ final class Form extends MethodForm
 	{
 		$delay = Time::humanDuration(Module_Account::instance()->cfgChangeTime());
 		return Module_Account::instance()->renderAccountTabs()->add(
-				GDT_Box::make()->html(t('infobox_account_form', [$delay]))->render()->add(
+				GDT_Panel::make()->html(t('infobox_account_form', [$delay]))->render()->add(
 						parent::execute()));
 	}
 	
@@ -69,7 +69,7 @@ final class Form extends MethodForm
 	#######################
 	public function formValidated(GDT_Form $form)
 	{
-		$back = new Response();
+		$back = new GDT_Response();
 
 		$m = Module_Account::instance();
 		$user = GDO_User::current();

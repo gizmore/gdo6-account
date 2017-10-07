@@ -9,7 +9,7 @@ use GDO\Form\GDT_Form;
 use GDO\Form\GDT_Submit;
 use GDO\Mail\GDT_Email;
 use GDO\Mail\Mail;
-use GDO\Type\GDT_Base;
+use GDO\Core\GDT;
 use GDO\UI\GDT_Link;
 use GDO\User\GDO_User;
 use GDO\Util\Common;
@@ -116,14 +116,14 @@ final class ChangeEmail extends Method
 		return $form;
 	}
 	
-	public function validateEmailRetype(GDT_Form $form, GDT_Base $gdoType)
+	public function validateEmailRetype(GDT_Form $form, GDT $gdoType)
 	{
 		$new1 = $form->getField('email')->getVar();
 		$new2 = $form->getField('email_re')->getVar();
 		return $new1 === $new2 ? true : $gdoType->error('err_email_retype');
 	}
 
-	public function validateEmailUnique(GDT_Form $form, GDT_Base $gdoType)
+	public function validateEmailUnique(GDT_Form $form, GDT $gdoType)
 	{
 		$count = GDO_User::table()->countWhere("user_email={$gdoType->quotedValue()}");
 		return $count > 0 ? $gdoType->error('err_email_taken') : true;

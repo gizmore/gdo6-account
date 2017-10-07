@@ -7,18 +7,18 @@ use GDO\Form\GDT_AntiCSRF;
 use GDO\Form\GDT_Form;
 use GDO\Form\GDT_Submit;
 use GDO\Form\MethodForm;
-use GDO\Template\GDT_Bar;
-use GDO\Template\GDT_Box;
+use GDO\UI\GDT_Bar;
+use GDO\UI\GDT_Panel;
 use GDO\UI\GDT_Divider;
 use GDO\UI\GDT_Link;
 use GDO\User\GDO_UserSetting;
 use GDO\Util\Common;
 use GDO\Core\ModuleLoader;
 use GDO\User\GDO_UserSettingBlob;
-use GDO\Type\GDT_Base;
+use GDO\Core\GDT;
 /**
  * Generic setting functionality.
- * Simply return GDT_Base[] in Module->getUserSettings() and you can configure stuff.
+ * Simply return GDT[] in Module->getUserSettings() and you can configure stuff.
  * 
  * @author gizmore
  * @since 5.0
@@ -44,7 +44,7 @@ final class Settings extends MethodForm
 	
 	public function infoBox()
 	{
-		return GDT_Box::make()->html(t('box_content_account_settings'))->render();
+		return GDT_Panel::make()->html(t('box_content_account_settings'))->render();
 	}
 	
 	public function navModules()
@@ -128,7 +128,7 @@ final class Settings extends MethodForm
 		  $this->message('msg_settings_saved', [$this->configModule->getName(), implode('<br/>', $info)])->add($page);
 	}
 	
-	private function isSettingBlob(GDT_Base $gdoType)
+	private function isSettingBlob(GDT $gdoType)
 	{
 	    return GDO_UserSettingBlob::isRegistered($gdoType->name);
 	}

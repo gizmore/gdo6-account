@@ -1,6 +1,6 @@
 <?php
 # Create a horizontal navbar.
-use GDO\Template\GDT_Bar;
+use GDO\UI\GDT_Bar;
 use GDO\UI\GDT_Link;
 
 $bar = GDT_Bar::make();

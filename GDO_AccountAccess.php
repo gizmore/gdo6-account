@@ -6,7 +6,7 @@ use GDO\DB\GDT_AutoInc;
 use GDO\DB\GDT_CreatedAt;
 use GDO\Mail\Mail;
 use GDO\Net\GDT_IP;
-use GDO\Type\GDT_MD5;
+use GDO\Core\GDT_MD5;
 use GDO\UI\GDT_Link;
 use GDO\User\GDT_User;
 use GDO\User\GDO_User;
@@ -123,7 +123,7 @@ final class GDO_AccountAccess extends GDO
 		return $value === null ? null : md5($value, true);
 	}
 	
-	public static function sendAlertMail(Module_Account $module, GDO_User $user, string $append='')
+	public static function sendAlertMail(Module_Account $module, GDO_User $user, $append='')
 	{
 		if ($receive_mail = $user->getMail())
 		{

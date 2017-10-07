@@ -8,7 +8,7 @@ use GDO\Form\GDT_AntiCSRF;
 use GDO\Form\GDT_Form;
 use GDO\Form\GDT_Submit;
 use GDO\Form\MethodForm;
-use GDO\Template\GDT_Box;
+use GDO\UI\GDT_Panel;
 use GDO\User\GDO_User;
 /**
  * Toggle account security switches.
@@ -45,14 +45,14 @@ final class Security extends MethodForm
 	}
 
 	/**
-	 * Take the checkboxes from GDO_AccountSetting class, which is a GDO. The columns are GDT_Base.
+	 * Take the checkboxes from GDO_AccountSetting class, which is a GDO. The columns are GDT.
 	 * Add a submit button and csrf. 
 	 * {@inheritDoc}
 	 * @see MethodForm::createForm()
 	 */
 	public function createForm(GDT_Form $form)
 	{
-		$form->addField(GDT_Box::make('info')->html(t('box_account_security')));
+		$form->addField(GDT_Panel::make('info')->html(t('box_account_security')));
 		$form->addFields($this->settings->getGDOColumns(['accset_record_ip', 'accset_uawatch', 'accset_ipwatch', 'accset_ispwatch']));
 		$form->addFields(array(
 			GDT_Submit::make(),

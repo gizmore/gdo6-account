@@ -1,6 +1,6 @@
 <?php
 use GDO\Account\Module_Account;
-use GDO\Template\GDT_Bar;
+use GDO\UI\GDT_Bar;
 use GDO\UI\GDT_Link;
 use GDO\User\GDO_User;
 $navbar instanceof GDT_Bar;

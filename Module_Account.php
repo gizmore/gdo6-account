@@ -5,9 +5,9 @@ use GDO\Core\Application;
 use GDO\Core\GDO_Module;
 use GDO\Date\GDT_Duration;
 use GDO\Date\Time;
-use GDO\Template\GDT_Bar;
-use GDO\Type\GDT_Checkbox;
-use GDO\Type\GDT_Int;
+use GDO\UI\GDT_Bar;
+use GDO\DB\GDT_Checkbox;
+use GDO\DB\GDT_Int;
 use GDO\User\GDO_User;
 /**
  * Member Account Changes.

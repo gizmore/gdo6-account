@@ -8,8 +8,8 @@ use GDO\Form\GDT_Form;
 use GDO\Form\GDT_Submit;
 use GDO\Form\MethodForm;
 use GDO\Mail\Mail;
-use GDO\Template\GDT_Bar;
-use GDO\Template\GDT_Box;
+use GDO\UI\GDT_Bar;
+use GDO\UI\GDT_Panel;
 use GDO\UI\GDT_Link;
 use GDO\User\GDO_PublicKey;
 use GDO\User\GDO_User;
@@ -43,7 +43,7 @@ final class Encryption extends MethodForm
 
 	public function createForm(GDT_Form $form)
 	{
-		$form->addField(GDT_Box::make('info')->html(t('infob_gpg_upload')));
+		$form->addField(GDT_Panel::make('info')->html(t('infob_gpg_upload')));
 		$form->addField(GDO_PublicKey::table()->gdoColumn('gpg_pubkey'));
 		$form->addField(GDT_File::make('gpg_file')->action($this->href()));
 		$form->addField(GDT_AntiCSRF::make());
