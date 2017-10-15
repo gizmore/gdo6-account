@@ -6,7 +6,7 @@ use GDO\UI\GDT_Link;
 $module = Module_Account::instance();
 
 # Create a horizontal navbar.
-$bar = GDT_Bar::make();
+$bar = GDT_Bar::make()->horizontal();
 
 # Add buttons to bar
 $bar->addField(GDT_Link::make('link_account_form')->href(href('Account', 'Form'))->icon('account_box'));
