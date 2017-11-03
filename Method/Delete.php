@@ -79,7 +79,7 @@ final class Delete extends MethodForm
 		{
 			$sitename = sitename();
 			$adminame = $admin->displayName();
-			$username = $user->displayName();
+			$username = $user->displayNameLabel();
 			$operation = $this->prune ? tusr($admin, 'btn_prune_account') : tusr($admin, 'btn_delete_account');
 			$note = htmlspecialchars($note);
 			$args = [$adminame, $username, $operation, $note, $sitename];
