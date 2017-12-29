@@ -34,6 +34,8 @@ return array(
 'err_demo_wait' => 'You have to wait %s before you can change your demographic options again.',
 ##########################################################
 'ft_account_encryption' => '[%s] GPG Setup',
+'gpg_pubkey' => 'Public Key',
+'gpg_file' => 'Public Key File',
 'infob_gpg_upload' => 'Here you can upload a GPG key to enable email encryption.',
 'err_gpg_fail_fingerprinting' => 'Fingerprinting your upload failed.',
 'err_gpg_token' => 'Your GPG token is invalid.',
