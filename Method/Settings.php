@@ -98,8 +98,9 @@ final class Settings extends MethodForm
 	
 	public function formValidated(GDT_Form $form)
 	{
-		$info = [];
-		foreach ($form->fields as $gdoType)
+	    $info = [];
+	    $error = [];
+	    foreach ($form->fields as $gdoType)
 		{
 			if ( ($gdoType->writable) && ($gdoType->editable) )
 			{
@@ -108,6 +109,11 @@ final class Settings extends MethodForm
 				$new = $gdoType->getVar($key);
 				if ($old !== $new)
 				{
+				    if (!$gdoType->validate($gdoType->toValue($new)))
+				    {
+				        $error[] = t('err_settings_save', $gdoType->error);
+				        continue;
+				    }
 				    if ($this->isSettingBlob($gdoType))
 				    {
 				        GDO_UserSettingBlob::set($key, $new);
@@ -125,8 +131,17 @@ final class Settings extends MethodForm
 		
 		$page = $this->renderPage();
 		
-		return empty($info) ? $page : 
-		  $this->message('msg_settings_saved', [$this->configModule->getName(), implode('<br/>', $info)])->add($page);
+		if (!empty($error))
+		{
+		    return $this->error('err_settings_saved', [$this->configModule->getName(), implode('<br/>', $info)])->add($page);
+		}
+		
+		if (!empty($info))
+		{
+		  return $this->message('msg_settings_saved', [$this->configModule->getName(), implode('<br/>', $info)])->add($page);
+		}
+		
+		return $page;
 	}
 	
 	private function isSettingBlob(GDT $gdoType)
