@@ -42,7 +42,7 @@ return array(
 'msg_gpg_key_added' => 'Your GPG key has been imported and encryption of your E-Mails is enabled.',
 ##########################################################
 'ft_account_security' => '[%s] Security Options',
-'box_account_security' => 'You have to enable IP recording to get alerts.',
+'box_account_security' => 'You can enable IP recording to get alerts via E-Mail.',
 'accset_record_ip' => 'Record successful login IPs',
 'accset_uawatch' => 'Alert on UserAgent change',
 'accset_ipwatch' => 'Alert on IP change',

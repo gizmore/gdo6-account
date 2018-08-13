@@ -5,9 +5,9 @@ return array(
 'link_account_encryption' => 'GPG',
 'link_account_security' => 'Sicherheit',
 'link_account_access' => 'Logfiles',
-'link_account_delete' => 'Konto Löschen',
+'link_account_delete' => 'Konto LÃ¶schen',
 ##########################################################
-'box_content_account_settings' => 'Hier finde Sie Ihre Einstellungen für alle aktivierten Module.<br/>Einige Einstellungen sind nicht beschreibbar sondern spiegeln ihr Profil wieder.',
+'box_content_account_settings' => 'Hier finde Sie Ihre Einstellungen fï¿½r alle aktivierten Module.<br/>Einige Einstellungen sind nicht beschreibbar sondern spiegeln ihr Profil wieder.',
 'ft_account_settings' => '[%s] %s Settings',
 'div_user_settings' => 'Personal %s settings',
 'div_variables' => 'Your %s variables', 
@@ -42,7 +42,7 @@ return array(
 'msg_gpg_key_added' => 'Your GPG key has been imported and encryption of your E-Mails is enabled.',
 ##########################################################
 'ft_account_security' => '[%s] Security Options',
-'box_account_security' => 'You have to enable IP recording to get alerts.',
+'box_account_security' => 'You can enable IP recording to get alerts via E-Mail.',
 'accset_record_ip' => 'Record successful login IPs',
 'accset_uawatch' => 'Alert on UserAgent change',
 'accset_ipwatch' => 'Alert on IP change',
