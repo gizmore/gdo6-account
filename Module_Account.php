@@ -107,7 +107,7 @@ final class Module_Account extends GDO_Module
 
 	public function renderAccountTabs()
 	{
-	    return GDT_Template::responsePHP('Account', 'overview.php');
+		return GDT_Template::responsePHP('Account', 'overview.php');
 	}
 	
 }

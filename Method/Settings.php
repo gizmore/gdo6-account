@@ -53,7 +53,7 @@ final class Settings extends MethodForm
 		$navbar = GDT_Bar::make()->horizontal();
 		foreach (ModuleLoader::instance()->getEnabledModules() as $module)
 		{
-		    if ($module->getUserSettings() || $module->getUserSettingBlobs() || $module->getUserConfig())
+			if ($module->getUserSettings() || $module->getUserSettingBlobs() || $module->getUserConfig())
 			{
 				$name = $module->getName();
 				$href = href('Account', 'Settings', "&module=$name");
@@ -66,30 +66,30 @@ final class Settings extends MethodForm
 	
 	public function createForm(GDT_Form $form)
 	{
-	    $moduleName = $this->configModule->getName();
+		$moduleName = $this->configModule->getName();
 		$this->title(t('ft_account_settings', [sitename(), $moduleName]));
 		if ($settings = $this->configModule->getUserSettings())
 		{
-		    $form->addField(GDT_Divider::make()->label('div_user_settings', [$moduleName]));
-		    foreach ($settings as $gdoType)
-		    {
-		        $form->addField(GDO_UserSetting::get($gdoType->name));
-		    }
+			$form->addField(GDT_Divider::make()->label('div_user_settings', [$moduleName]));
+			foreach ($settings as $gdoType)
+			{
+				$form->addField(GDO_UserSetting::get($gdoType->name));
+			}
 		}
 		if ($settings = $this->configModule->getUserSettingBlobs())
 		{
-		    $form->addField(GDT_Divider::make()->label('div_user_textual_settings', [$moduleName]));
-		    foreach ($settings as $gdoType)
-		    {
-		        $form->addField(GDO_UserSettingBlob::get($gdoType->name));
-		    }
+			$form->addField(GDT_Divider::make()->label('div_user_textual_settings', [$moduleName]));
+			foreach ($settings as $gdoType)
+			{
+				$form->addField(GDO_UserSettingBlob::get($gdoType->name));
+			}
 		}
 		if ($settings = $this->configModule->getUserConfig())
 		{
-		    $form->addField(GDT_Divider::make()->label('div_variables', [$moduleName]));
+			$form->addField(GDT_Divider::make()->label('div_variables', [$moduleName]));
 			foreach ($settings as $gdoType)
 			{
-			    $form->addField(GDO_UserSetting::get($gdoType->name)->writable(false));
+				$form->addField(GDO_UserSetting::get($gdoType->name)->writable(false));
 			}
 		}
 		$form->addField(GDT_AntiCSRF::make());
@@ -98,9 +98,9 @@ final class Settings extends MethodForm
 	
 	public function formValidated(GDT_Form $form)
 	{
-	    $info = [];
-	    $error = [];
-	    foreach ($form->fields as $gdoType)
+		$info = [];
+		$error = [];
+		foreach ($form->fields as $gdoType)
 		{
 			if ( ($gdoType->writable) && ($gdoType->editable) )
 			{
@@ -109,19 +109,19 @@ final class Settings extends MethodForm
 				$new = $gdoType->getVar($key);
 				if ($old !== $new)
 				{
-				    if (!$gdoType->validate($gdoType->toValue($new)))
-				    {
-				        $error[] = t('err_settings_save', $gdoType->error);
-				        continue;
-				    }
-				    if ($this->isSettingBlob($gdoType))
-				    {
-				        GDO_UserSettingBlob::set($key, $new);
-				    }
-				    else
-				    {
-				        GDO_UserSetting::set($key, $new);
-				    }
+					if (!$gdoType->validate($gdoType->toValue($new)))
+					{
+						$error[] = t('err_settings_save', $gdoType->error);
+						continue;
+					}
+					if ($this->isSettingBlob($gdoType))
+					{
+						GDO_UserSettingBlob::set($key, $new);
+					}
+					else
+					{
+						GDO_UserSetting::set($key, $new);
+					}
 					$old = $old === null ? '<i class="null">null</i>' : html($old);
 					$new = $new === null ? '<i class="null">null</i>' : html($new);
 					$info[] = t('msg_modulevar_changed', [$gdoType->label, $old, $new]);
@@ -133,7 +133,7 @@ final class Settings extends MethodForm
 		
 		if (!empty($error))
 		{
-		    return $this->error('err_settings_saved', [$this->configModule->getName(), implode('<br/>', $info)])->add($page);
+			return $this->error('err_settings_saved', [$this->configModule->getName(), implode('<br/>', $info)])->add($page);
 		}
 		
 		if (!empty($info))
@@ -146,7 +146,7 @@ final class Settings extends MethodForm
 	
 	private function isSettingBlob(GDT $gdoType)
 	{
-	    return GDO_UserSettingBlob::isRegistered($gdoType->name);
+		return GDO_UserSettingBlob::isRegistered($gdoType->name);
 	}
-	    
+		
 }

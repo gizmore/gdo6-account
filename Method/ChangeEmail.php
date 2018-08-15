@@ -107,10 +107,10 @@ final class ChangeEmail extends Method
 		$form->title('ft_change_mail', [sitename()]);
 		$form->addFields(array(
 			GDT_Email::make('email')->required(),
-		    GDT_Validator::make()->validator('email', [$this, 'validateEmailUnique']),
+			GDT_Validator::make()->validator('email', [$this, 'validateEmailUnique']),
 			GDT_Email::make('email_re')->required()->label('retype'),
-		    GDT_Validator::make()->validator('email_re', [$this, 'validateEmailRetype']),
-		    GDT_AntiCSRF::make(),
+			GDT_Validator::make()->validator('email_re', [$this, 'validateEmailRetype']),
+			GDT_AntiCSRF::make(),
 			GDT_Submit::make('btn_changemail'),
 		));
 		return $form;
