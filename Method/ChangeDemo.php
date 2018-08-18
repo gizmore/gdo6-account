@@ -11,6 +11,7 @@ use GDO\Date\Time;
 use GDO\Language\GDO_Language;
 use GDO\Mail\Mail;
 use GDO\UI\GDT_Link;
+use GDO\Core\GDT_Hook;
 /**
  * Demographic chance only once in a while.
  * 
@@ -65,6 +66,7 @@ final class ChangeDemo extends Method
 	public static function change(Module_Account $module, GDO_User $user, array $data)
 	{
 		$user->saveVars($data);
+		GDT_Hook::call('AccountChanged', $user);
 		GDO_AccountChange::addRow($user->getID(), 'demo_lock');
 		return $module->message('msg_demo_changed');
 	}
