@@ -110,6 +110,7 @@ final class ChangeDemo extends Method
 		$ac->delete();
 
 		GDO_AccountChange::addRow($userid, 'demo_lock');
+		GDT_Hook::call('AccountChanged', $user);
 		
 		return $this->message('msg_demo_changed');
 	}
