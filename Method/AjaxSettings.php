@@ -26,7 +26,7 @@ final class AjaxSettings extends Method
 				{
 					$json[$modulename][$gdt->name] = $gdt->configJSON();
 					$json[$modulename][$gdt->name]['type'] = get_class($gdt);
-					$json[$modulename][$gdt->name]['value'] = GDO_UserSetting::get($gdt->name)->initial;
+					$json[$modulename][$gdt->name]['value'] = GDO_UserSetting::get($gdt->name)->var;
 					$json[$modulename][$gdt->name]['help'] = t('cfg_'.$gdt->name);
 				}
 			}
@@ -36,7 +36,7 @@ final class AjaxSettings extends Method
 				{
 					$json[$modulename][$gdt->name] = $gdt->configJSON();
 					$json[$modulename][$gdt->name]['type'] = get_class($gdt);
-					$json[$modulename][$gdt->name]['value'] = GDO_UserSettingBlob::get($gdt->name)->initial;
+					$json[$modulename][$gdt->name]['value'] = GDO_UserSettingBlob::get($gdt->name)->var;
 					$json[$modulename][$gdt->name]['help'] = t('cfg_'.$gdt->name);
 				}
 			}
