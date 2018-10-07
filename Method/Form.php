@@ -80,7 +80,7 @@ final class Form extends MethodForm
 		{
 			if ($realname = $form->getFormVar('user_real_name'))
 			{
-				if ($realname !== $user->getRealName())
+				if ( ($realname !== $user->getRealName()) && (!$user->getRealName()) )
 				{
 					$user->setVar('user_real_name', $realname);
 					$back->add($this->message('msg_real_name_now', [$realname]));
