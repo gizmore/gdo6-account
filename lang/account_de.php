@@ -7,7 +7,7 @@ return array(
 'link_account_access' => 'Logfiles',
 'link_account_delete' => 'Konto Löschen',
 ##########################################################
-'box_content_account_settings' => 'Hier finde Sie Ihre Einstellungen f�r alle aktivierten Module.<br/>Einige Einstellungen sind nicht beschreibbar sondern spiegeln ihr Profil wieder.',
+'box_content_account_settings' => 'Hier finde Sie Ihre Einstellungen für alle aktivierten Module.<br/>Einige Einstellungen sind nicht beschreibbar sondern spiegeln ihr Profil wieder.',
 'ft_account_settings' => '[%s] %s Settings',
 'div_user_settings' => 'Personal %s settings',
 'div_variables' => 'Your %s variables', 
