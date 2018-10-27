@@ -16,7 +16,7 @@ return array(
 'ft_account_form' => '[%s] Account',
 'infobox_account_form' => 'Please note that you cannot change your "Realname" after it has been set.<br/>Your demographic options can be set once every %s.',
 'section_login' => 'Login Settings',
-'section_email' => 'EMail Settings',
+'section_email' => 'E-Mail Settings',
 'section_demographic' => 'Demography',
 'section_options' => 'Options',
 'user_hide_online' => 'Hide your online status',
@@ -32,6 +32,7 @@ return array(
 'msg_email_fmt_now_html' => 'Your preferred E-Mail format is now set to HTML.',
 'msg_email_fmt_now_text' => 'Your preferred E-Mail format is now set to PLAINTEXT.',
 'err_demo_wait' => 'You have to wait %s before you can change your demographic options again.',
+'email_fmt' =>'E-Mail Format',
 ##########################################################
 'ft_account_encryption' => '[%s] GPG Setup',
 'gpg_pubkey' => 'Public Key',

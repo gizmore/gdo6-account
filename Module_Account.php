@@ -9,22 +9,21 @@ use GDO\UI\GDT_Bar;
 use GDO\DB\GDT_Checkbox;
 use GDO\DB\GDT_Int;
 use GDO\User\GDO_User;
-use GDO\Core\GDT_Response;
 use GDO\Core\GDT_Template;
 /**
  * Member Account Changes.
  * 
  * @author gizmore
- * @version 5.0
+ * @version 6.08
  * @since 1.0
  * 
- * @see User
+ * @see GDO_User
  */
 final class Module_Account extends GDO_Module
 {
-	##################
+	##############
 	### Module ###
-	##################
+	##############
 	public function onLoadLanguage() { return $this->loadLanguage('lang/account'); }
 	public function getClasses() { return ['GDO\Account\GDO_AccountAccess', 'GDO\Account\GDO_AccountChange', 'GDO\Account\GDO_AccountDelete', 'GDO\Account\GDO_AccountSetting']; }
 

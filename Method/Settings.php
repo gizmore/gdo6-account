@@ -89,7 +89,7 @@ final class Settings extends MethodForm
 			$form->addField(GDT_Divider::make()->label('div_variables', [$moduleName]));
 			foreach ($settings as $gdoType)
 			{
-				$form->addField(GDO_UserSetting::get($gdoType->name)->writable(false));
+				$form->addField(GDO_UserSetting::get($gdoType->name)->editable(false));
 			}
 		}
 		$form->addField(GDT_AntiCSRF::make());
@@ -124,7 +124,7 @@ final class Settings extends MethodForm
 					}
 					$old = $old === null ? '<i class="null">null</i>' : html($old);
 					$new = $new === null ? '<i class="null">null</i>' : html($new);
-					$info[] = t('msg_modulevar_changed', [$gdoType->label, $old, $new]);
+					$info[] = t('msg_modulevar_changed', [$gdoType->displayLabel(), $old, $new]);
 				}
 			}
 		}
