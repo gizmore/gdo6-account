@@ -66,7 +66,7 @@ final class ChangeDemo extends Method
 	public static function change(Module_Account $module, GDO_User $user, array $data)
 	{
 		$user->saveVars($data);
-		GDT_Hook::call('AccountChanged', $user);
+		GDT_Hook::callWithIPC('AccountChanged', $user);
 		GDO_AccountChange::addRow($user->getID(), 'demo_lock');
 		return $module->message('msg_demo_changed');
 	}
@@ -110,7 +110,7 @@ final class ChangeDemo extends Method
 		$ac->delete();
 
 		GDO_AccountChange::addRow($userid, 'demo_lock');
-		GDT_Hook::call('AccountChanged', $user);
+		GDT_Hook::callWithIPC('AccountChanged', $user);
 		
 		return $this->message('msg_demo_changed');
 	}

@@ -59,7 +59,7 @@ final class Delete extends MethodForm
 		
 		# Mark deleted
 		$user->saveValue('user_deleted_at', time());
-		GDT_Hook::call('UserQuit', $user);
+		GDT_Hook::callWithIPC('UserQuit', $user);
 		if ($this->prune)
 		{
 			$user->delete();
