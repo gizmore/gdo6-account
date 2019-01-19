@@ -11,6 +11,7 @@ use GDO\UI\GDT_Panel;
 use GDO\UI\GDT_Divider;
 use GDO\User\GDO_User;
 use GDO\Core\GDT_Response;
+
 /**
  * Change account settings.
  * @author gizmore
