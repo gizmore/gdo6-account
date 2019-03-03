@@ -73,7 +73,9 @@ final class Settings extends MethodForm
 			$form->addField(GDT_Divider::make()->label('div_user_settings', [$moduleName]));
 			foreach ($settings as $gdoType)
 			{
-				$form->addField(GDO_UserSetting::get($gdoType->name));
+				$gdt = GDO_UserSetting::get($gdoType->name);
+				$gdt->label('cfg_'.$gdoType->name);
+				$form->addField($gdt);
 			}
 		}
 		if ($settings = $this->configModule->getUserSettingBlobs())
@@ -81,7 +83,9 @@ final class Settings extends MethodForm
 			$form->addField(GDT_Divider::make()->label('div_user_textual_settings', [$moduleName]));
 			foreach ($settings as $gdoType)
 			{
-				$form->addField(GDO_UserSettingBlob::get($gdoType->name));
+				$gdt = GDO_UserSettingBlob::get($gdoType->name);
+				$gdt->label('cfg_'.$gdoType->name);
+				$form->addField($gdt);
 			}
 		}
 		if ($settings = $this->configModule->getUserConfig())
@@ -89,7 +93,9 @@ final class Settings extends MethodForm
 			$form->addField(GDT_Divider::make()->label('div_variables', [$moduleName]));
 			foreach ($settings as $gdoType)
 			{
-				$form->addField(GDO_UserSetting::get($gdoType->name)->editable(false));
+				$gdt = GDO_UserSetting::get($gdoType->name)->editable(false);
+				$gdt->label('cfg_'.$gdoType->name);
+				$form->addField($gdt);
 			}
 		}
 		$form->addField(GDT_AntiCSRF::make());
