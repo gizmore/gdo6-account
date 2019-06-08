@@ -79,7 +79,7 @@ final class Encryption extends MethodForm
 	public function formValidated(GDT_Form $form)
 	{
 		$user = GDO_User::current();
-		$outfile = GWF_PATH . 'temp/gpg/' . $user->getID();
+		$outfile = GDO_PATH . 'temp/gpg/' . $user->getID();
 		
 		# Get file or paste
 		$file_content = '';

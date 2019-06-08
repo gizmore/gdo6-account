@@ -20,7 +20,7 @@ final class SetGPGKey extends Method
 	public function execute()
 	{
 		$user = GDO_User::table()->find(Common::getGetString('userid'));
-		$tmpfile = GWF_PATH . 'temp/gpg/' . $user->getID();
+		$tmpfile = GDO_PATH . 'temp/gpg/' . $user->getID();
 		$file_content = file_get_contents($tmpfile);
 		unlink($tmpfile);
 
