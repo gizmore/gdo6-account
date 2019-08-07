@@ -67,7 +67,7 @@ final class Settings extends MethodForm
 	public function createForm(GDT_Form $form)
 	{
 		$moduleName = $this->configModule->getName();
-		$this->title(t('ft_account_settings', [sitename(), $moduleName]));
+		$this->title(t('ft_account_settings', [$moduleName]));
 		if ($settings = $this->configModule->getUserSettings())
 		{
 			$form->addField(GDT_Divider::make()->label('div_user_settings', [$moduleName]));

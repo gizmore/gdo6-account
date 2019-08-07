@@ -7,13 +7,29 @@ return array(
 'link_account_access' => 'Logs',
 'link_account_delete' => 'Delete',
 ##########################################################
+'cfg_adult_age' => 'Adult age',
+'cfg_tt_adult_age' => 'Specify what the min age is for adult content.',
+'cfg_account_changetime' => 'Demographic change timeout',
+'cfg_allow_real_name' => 'Allow change of Realname',
+'cfg_allow_guest_settings' => 'Allow guests to change account',
+'cfg_allow_country_change' => 'Allow change of country',
+'cfg_allow_lang_change' => 'Allow change of language',
+'cfg_allow_birthday_change' => 'Allow change of birthdate',
+'cfg_allow_gender_change' => 'Allow change of gender',
+'cfg_allow_email_change' => 'Allow change of email',
+'cfg_allow_email_fmt_change' => 'Allow change of email format',
+'cfg_feature_access_history' => 'Security: Enable login history',
+'cfg_feature_account_deletion' => 'Allow account deletion',
+'cfg_feature_gpg_engine' => 'Enable Email GPG Éngine',
+'cfg_feature_demographic_mail_confirm' => 'Enable email confirmation',
+##########################################################
 'box_content_account_settings' => 'Here you find settings for all enabled modules with configuration variables.<br/>Note that we distingush variables which are just informative for you, and settings which you can toggle.',
-'ft_account_settings' => '[%s] %s Settings',
+'ft_account_settings' => '%s Settings',
 'div_user_settings' => 'Personal %s settings',
 'div_variables' => 'Your %s variables', 
 'msg_settings_saved' => 'Your settings for the %s module have been saved.<br/>%s',
 ##########################################################
-'ft_account_form' => '[%s] Account',
+'ft_account_form' => 'Account',
 'infobox_account_form' => 'Please note that you cannot change your "Realname" after it has been set.<br/>Your demographic options can be set once every %s.',
 'section_login' => 'Login Settings',
 'section_email' => 'E-Mail Settings',
@@ -34,7 +50,7 @@ return array(
 'err_demo_wait' => 'You have to wait %s before you can change your demographic options again.',
 'email_fmt' =>'E-Mail Format',
 ##########################################################
-'ft_account_encryption' => '[%s] GPG Setup',
+'ft_account_encryption' => 'GPG Setup',
 'gpg_pubkey' => 'Public Key',
 'gpg_file' => 'Public Key File',
 'infob_gpg_upload' => 'Here you can upload a GPG key to enable email encryption.',
@@ -42,14 +58,14 @@ return array(
 'err_gpg_token' => 'Your GPG token is invalid.',
 'msg_gpg_key_added' => 'Your GPG key has been imported and encryption of your E-Mails is enabled.',
 ##########################################################
-'ft_account_security' => '[%s] Security Options',
+'ft_account_security' => 'Security Options',
 'box_account_security' => 'You can enable IP recording to get alerts via E-Mail.',
 'accset_record_ip' => 'Record successful login IPs',
 'accset_uawatch' => 'Alert on UserAgent change',
 'accset_ipwatch' => 'Alert on IP change',
 'accset_ispwatch' => 'Alert on Provider change',
 ##########################################################
-'ft_account_delete' => '[%s] Delete Account',
+'ft_account_delete' => 'Delete Account',
 'box_info_deletion' => 'You can choose between disabling your account, and preserving your identity on %s,
 Or completely prune your account and all information associated.
 If you like, you can leave us a message with feedback on why you wanted to leave.',
@@ -58,7 +74,7 @@ If you like, you can leave us a message with feedback on why you wanted to leave
 'msg_account_marked_deleted' => 'Your account has been marked as deleted.',
 'msg_account_pruned' => 'Your account has been wiped from the database.',
 ##########################################################
-'ft_change_mail' => '[%s] Change E-Mail',
+'ft_change_mail' => 'Change E-Mail',
 'err_email_retype' => 'Please recheck your E-Mail, as you did not retype it correctly.',
 'btn_changemail' => 'Change E-Mail',
 ##########################################################
