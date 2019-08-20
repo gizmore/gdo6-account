@@ -53,7 +53,7 @@ final class Settings extends MethodForm
 		$navbar = GDT_Bar::make()->horizontal();
 		foreach (ModuleLoader::instance()->getEnabledModules() as $module)
 		{
-			if ($module->getUserSettings() || $module->getUserSettingBlobs() || $module->getUserConfig())
+			if ($module->getUserSettings() || $module->getUserSettingBlobs())
 			{
 				$name = $module->getName();
 				$href = href('Account', 'Settings', "&module=$name");
