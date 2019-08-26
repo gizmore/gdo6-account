@@ -6,6 +6,7 @@ return array(
 'link_account_security' => 'Sicherheit',
 'link_account_access' => 'Logs',
 'link_account_delete' => 'Konto Löschen',
+'link_settings' => 'Einstellungen',
 ##########################################################
 'cfg_adult_age' => 'Adult age',
 'cfg_tt_adult_age' => 'Specify what the min age is for adult content.',
@@ -22,6 +23,7 @@ return array(
 'cfg_feature_account_deletion' => 'Allow account deletion',
 'cfg_feature_gpg_engine' => 'Enable Email GPG Éngine',
 'cfg_feature_demographic_mail_confirm' => 'Enable email confirmation',
+'cfg_user_allow_email' => 'Mitglieder dürfen Dir eine Email zu senden?',
 ##########################################################
 'box_content_account_settings' => 'Hier finden Sie alle Ihre Einstellungen.',
 'ft_account_settings' => '%s Einstellungen',

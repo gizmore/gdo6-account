@@ -6,6 +6,7 @@ return array(
 'link_account_security' => 'Security',
 'link_account_access' => 'Logs',
 'link_account_delete' => 'Delete',
+'link_settings' => 'Settings',
 ##########################################################
 'cfg_adult_age' => 'Adult age',
 'cfg_tt_adult_age' => 'Specify what the min age is for adult content.',
@@ -22,6 +23,7 @@ return array(
 'cfg_feature_account_deletion' => 'Allow account deletion',
 'cfg_feature_gpg_engine' => 'Enable Email GPG Éngine',
 'cfg_feature_demographic_mail_confirm' => 'Enable email confirmation',
+'cfg_user_allow_email' => 'Allow people to email you?',
 ##########################################################
 'box_content_account_settings' => 'Here you find settings for all enabled modules with configuration variables.<br/>Note that we distingush variables which are just informative for you, and settings which you can toggle.',
 'ft_account_settings' => '%s Settings',
