@@ -53,10 +53,11 @@ final class Settings extends MethodForm
 		$navbar = GDT_Bar::make()->horizontal();
 		foreach (ModuleLoader::instance()->getEnabledModules() as $module)
 		{
-			if ($module->getUserSettings() || $module->getUserSettingBlobs())
+			$href = $module->getUserSettingsURL();
+			if ($module->getUserSettings() || $module->getUserSettingBlobs() || $href)
 			{
 				$name = $module->getName();
-				$href = href('Account', 'Settings', "&module=$name");
+				$href = $href ? $href : href('Account', 'Settings', "&module=$name");
 				$button = GDT_Link::make("link_$name")->rawlabel($name)->href($href)->icon('settings');
 				$navbar->addField($button);
 			}
