@@ -2,7 +2,6 @@
 return array(
 'btn_account' => 'Account',
 'link_account_form' => 'Account',
-'link_account_encryption' => 'GPG',
 'link_account_security' => 'Security',
 'link_account_access' => 'Logs',
 'link_account_delete' => 'Delete',
@@ -21,7 +20,6 @@ return array(
 'cfg_allow_email_fmt_change' => 'Allow change of email format',
 'cfg_feature_access_history' => 'Security: Enable login history',
 'cfg_feature_account_deletion' => 'Allow account deletion',
-'cfg_feature_gpg_engine' => 'Enable Email GPG Éngine',
 'cfg_feature_demographic_mail_confirm' => 'Enable email confirmation',
 'cfg_user_allow_email' => 'Allow people to email you?',
 ##########################################################
@@ -51,14 +49,6 @@ return array(
 'msg_email_fmt_now_text' => 'Your preferred E-Mail format is now set to PLAINTEXT.',
 'err_demo_wait' => 'You have to wait %s before you can change your demographic options again.',
 'email_fmt' =>'E-Mail Format',
-##########################################################
-'ft_account_encryption' => 'GPG Setup',
-'gpg_pubkey' => 'Public Key',
-'gpg_file' => 'Public Key File',
-'infob_gpg_upload' => 'Here you can upload a GPG key to enable email encryption.',
-'err_gpg_fail_fingerprinting' => 'Fingerprinting your upload failed.',
-'err_gpg_token' => 'Your GPG token is invalid.',
-'msg_gpg_key_added' => 'Your GPG key has been imported and encryption of your E-Mails is enabled.',
 ##########################################################
 'ft_account_security' => 'Security Options',
 'box_account_security' => 'You can enable IP recording to get alerts via E-Mail.',

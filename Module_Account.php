@@ -45,7 +45,6 @@ final class Module_Account extends GDO_Module
 			GDT_Checkbox::make('allow_email_fmt_change')->initial('1'),
 			GDT_Checkbox::make('feature_access_history')->initial('1'),
 			GDT_Checkbox::make('feature_account_deletion')->initial('1'),
-			GDT_Checkbox::make('feature_gpg_engine')->initial('1'),
 			GDT_Checkbox::make('feature_demographic_mail_confirm')->initial('1'),
 		);
 	}
@@ -86,7 +85,6 @@ final class Module_Account extends GDO_Module
 	
 	public function cfgFeatureAccess() { return $this->getConfigValue('feature_access_history'); }
 	public function cfgFeatureDeletion() { return $this->getConfigValue('feature_account_deletion'); }
-	public function cfgFeatureGPGEngine() { return $this->getConfigValue('feature_gpg_engine'); }
 	
 	##############
 	### Navbar ###
