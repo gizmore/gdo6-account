@@ -39,7 +39,7 @@ return array(
 'user_want_adult' => 'Mostra contenuto per adulti?',
 'user_show_birthdays' => 'Visualizza data di nascita?',
 'msg_real_name_now' => 'Il suo "nome reale" adesso é %s.',
-'msg_user_hide_online_on' => 'Il suo status online é adesso invisibile.',,
+'msg_user_hide_online_on' => 'Il suo status online é adesso invisibile.',
 'msg_user_show_birthdays_on' => 'Adesso avete attivato il communicato di il communicato di nascite.',
 'msg_user_allow_email_on' => 'Lei permette ad altri di inviarLe e-Mail, senza svelare la sua e-Mail.',
 'msg_user_want_adult_on' => 'Adesso Lei vedrá contenuti per adulti.',
