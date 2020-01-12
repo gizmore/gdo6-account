@@ -17,6 +17,9 @@ use GDO\Core\ModuleLoader;
 use GDO\User\GDO_UserSettingBlob;
 use GDO\Core\GDT;
 use GDO\Core\GDT_Response;
+use GDO\Core\GDT_Hook;
+use GDO\User\GDO_User;
+use GDO\Language\Trans;
 /**
  * Generic setting functionality.
  * Simply return GDT[] in Module->getUserSettings() and you can configure stuff.
@@ -75,7 +78,10 @@ final class Settings extends MethodForm
 			foreach ($settings as $gdoType)
 			{
 				$gdt = GDO_UserSetting::get($gdoType->name);
-				$gdt->label('cfg_'.$gdoType->name);
+				if (Trans::hasKey('cfg_'.$gdoType->name) || (!$gdt->hasName()))
+				{
+					$gdt->label('cfg_'.$gdoType->name);
+				}
 				$form->addField($gdt);
 			}
 		}
@@ -85,7 +91,10 @@ final class Settings extends MethodForm
 			foreach ($settings as $gdoType)
 			{
 				$gdt = GDO_UserSettingBlob::get($gdoType->name);
-				$gdt->label('cfg_'.$gdoType->name);
+				if (Trans::hasKey('cfg_'.$gdoType->name) || (!$gdt->hasName()))
+				{
+					$gdt->label('cfg_'.$gdoType->name);
+				}
 				$form->addField($gdt);
 			}
 		}
@@ -95,7 +104,10 @@ final class Settings extends MethodForm
 			foreach ($settings as $gdoType)
 			{
 				$gdt = GDO_UserSetting::get($gdoType->name)->editable(false);
-				$gdt->label('cfg_'.$gdoType->name);
+				if (Trans::hasKey('cfg_'.$gdoType->name) || (!$gdt->hasName()))
+				{
+					$gdt->label('cfg_'.$gdoType->name);
+				}
 				$form->addField($gdt);
 			}
 		}
@@ -107,6 +119,7 @@ final class Settings extends MethodForm
 	{
 		$info = [];
 		$error = [];
+		$changes = array();
 		foreach ($form->fields as $gdoType)
 		{
 			if ( ($gdoType->writable) && ($gdoType->editable) )
@@ -116,6 +129,7 @@ final class Settings extends MethodForm
 				$new = $gdoType->getVar($key);
 				if ($old !== $new)
 				{
+					$changes[$key] = array($old, $new);
 					if (!$gdoType->validate($gdoType->toValue($new)))
 					{
 						$error[] = t('err_settings_save', $gdoType->error);
@@ -145,8 +159,10 @@ final class Settings extends MethodForm
 		
 		if (!empty($info))
 		{
-		  return $this->message('msg_settings_saved', [$this->configModule->getName(), implode('<br/>', $info)])->add($page);
+			GDT_Hook::callHook('UserSettingSaved', $this->configModule, GDO_User::current(), $changes);
+			return $this->message('msg_settings_saved', [$this->configModule->getName(), implode('<br/>', $info)])->add($page);
 		}
+		
 		
 		return $page;
 	}
