@@ -1,5 +1,6 @@
 <?php
 return array(
+'module_account' => 'User accounts',
 'btn_account' => 'Account',
 'link_account_form' => 'Account',
 'link_account_security' => 'Security',
