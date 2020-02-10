@@ -1,17 +1,18 @@
 <?php
 namespace GDO\Account\Method;
-use GDO\Core\Method;
+
 use GDO\Core\ModuleLoader;
 use GDO\Core\GDT_JSONResponse;
 use GDO\Core\GDT_Response;
 use GDO\User\GDO_UserSetting;
 use GDO\User\GDO_UserSettingBlob;
+use GDO\Core\MethodAjax;
 /**
  * API Request to get all module configs.
  * Useful for JS Apps.
  * @author gizmore
  */
-final class AjaxSettings extends Method
+final class AjaxSettings extends MethodAjax
 {
 	public function execute()
 	{
