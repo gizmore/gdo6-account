@@ -12,6 +12,7 @@ use GDO\Language\GDO_Language;
 use GDO\Mail\Mail;
 use GDO\UI\GDT_Link;
 use GDO\Core\GDT_Hook;
+use GDO\DB\GDT_String;
 /**
  * Demographic chance only once in a while.
  * 
@@ -21,6 +22,13 @@ use GDO\Core\GDT_Hook;
 final class ChangeDemo extends Method
 {
 	public function isAlwaysTransactional() { return true; }
+	
+	public function gdoParameters()
+	{
+		return array(
+			GDT_String::make('token')->notNull(),
+		);
+	}
 	
 	public function execute()
 	{
