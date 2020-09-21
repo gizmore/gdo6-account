@@ -13,6 +13,7 @@ use GDO\Mail\Mail;
 use GDO\UI\GDT_Link;
 use GDO\Core\GDT_Hook;
 use GDO\DB\GDT_String;
+use GDO\Core\Application;
 /**
  * Demographic chance only once in a while.
  * 
@@ -60,7 +61,7 @@ final class ChangeDemo extends Method
 		if ($row = GDO_AccountChange::getRow($user->getID(), 'demo_lock'))
 		{
 			$last = $row->getTimestamp();
-			$elapsed = time() - $last;
+			$elapsed = Application::$TIME - $last;
 			$min_wait = $module->cfgChangeTime();
 			if ($elapsed < $min_wait)
 			{

@@ -11,6 +11,8 @@ use GDO\Mail\Mail;
 use GDO\UI\GDT_Panel;
 use GDO\UI\GDT_Message;
 use GDO\User\GDO_User;
+use GDO\Core\Application;
+use GDO\Date\Time;
 /**
  * Delete your account.
  * @author gizmore
@@ -58,7 +60,7 @@ final class Delete extends MethodForm
 		$this->onSendEmail($user, $note);			
 		
 		# Mark deleted
-		$user->saveValue('user_deleted_at', time());
+		$user->saveValue('user_deleted_at', Time::getDate());
 		GDT_Hook::callWithIPC('UserQuit', $user);
 		if ($this->prune)
 		{
