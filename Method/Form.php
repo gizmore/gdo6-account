@@ -56,6 +56,8 @@ final class Form extends MethodForm
 		$form->addField(GDT_Divider::make('div3')->label('section_demographic'));
 		$form->addField($user->gdoColumn('user_language')->writable($m->cfgAllowLanguageChange()));
 		$form->addField($user->gdoColumn('user_country')->withCompletion()->writable($m->cfgAllowCountryChange())->emptyInitial(t('no_country')));
+		$form->addField($user->gdoColumn('user_timezone'));
+		
 		if ($m->cfgAllowGenderChange()) $form->addField($user->gdoColumn('user_gender'));
 		if ($m->cfgAllowBirthdayChange()) $form->addField($user->gdoColumn('user_birthdate'));
 
@@ -75,6 +77,8 @@ final class Form extends MethodForm
 		$m = Module_Account::instance();
 		$user = GDO_User::current();
 		$guest = $user->isGuest();
+		
+		$user->setVar('user_timezone', $form->getFormVar('user_timezone'));
 		
 		# Real Name
 		if ( (!$guest) && ($m->cfgAllowRealName()) )
