@@ -53,10 +53,12 @@ final class Form extends MethodForm
 		$form->addField($user->gdoColumn('user_email')->writable($m->cfgAllowEmailChange()));
 		$form->addField($user->gdoColumn('user_email_fmt')->writable($m->cfgAllowEmailFormatChange()));
 		
+		$form->addField(GDT_Divider::make('div4')->label('timezone'));
+		$form->addField($user->gdoColumn('user_timezone'));
+		
 		$form->addField(GDT_Divider::make('div3')->label('section_demographic'));
 		$form->addField($user->gdoColumn('user_language')->writable($m->cfgAllowLanguageChange()));
 		$form->addField($user->gdoColumn('user_country')->withCompletion()->writable($m->cfgAllowCountryChange())->emptyInitial(t('no_country')));
-		$form->addField($user->gdoColumn('user_timezone'));
 		
 		if ($m->cfgAllowGenderChange()) $form->addField($user->gdoColumn('user_gender'));
 		if ($m->cfgAllowBirthdayChange()) $form->addField($user->gdoColumn('user_birthdate'));
