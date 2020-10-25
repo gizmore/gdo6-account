@@ -14,7 +14,7 @@ use GDO\Core\GDT_Template;
  * Member Account Changes.
  * 
  * @author gizmore
- * @version 6.08
+ * @version 6.10
  * @since 1.0
  * 
  * @see GDO_User

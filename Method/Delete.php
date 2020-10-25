@@ -1,5 +1,6 @@
 <?php
 namespace GDO\Account\Method;
+
 use GDO\Account\GDO_AccountDelete;
 use GDO\Account\Module_Account;
 use GDO\Core\GDT_Hook;
@@ -11,11 +12,13 @@ use GDO\Mail\Mail;
 use GDO\UI\GDT_Panel;
 use GDO\UI\GDT_Message;
 use GDO\User\GDO_User;
-use GDO\Core\Application;
 use GDO\Date\Time;
+
 /**
  * Delete your account.
  * @author gizmore
+ * @version 6.10
+ * @since 3.00
  */
 final class Delete extends MethodForm
 {
@@ -26,9 +29,10 @@ final class Delete extends MethodForm
 	
 	public function execute()
 	{
-		if (isset($_POST['prune']))
+		if (isset($_REQUEST['prune']))
 		{
 			$this->prune = true; # remember to prune
+			unset($_REQUEST['prune']); # Mimic normal POST
 			$_REQUEST['submit'] = true; # Mimic normal POST
 		}
 		return Module_Account::instance()->renderAccountTabs()->add(parent::execute());
@@ -59,20 +63,20 @@ final class Delete extends MethodForm
 		# Send note as email
 		$this->onSendEmail($user, $note);			
 		
-		# Mark deleted
-		$user->saveValue('user_deleted_at', Time::getDate());
-		GDT_Hook::callWithIPC('UserQuit', $user);
-		if ($this->prune)
+		if ($this->prune) # kill
 		{
 			$user->delete();
 			# Report and logout
 			return $this->message('msg_account_pruned')->add(method('Login', 'Logout')->execute());
 		}
-		else
+		else # Mark deleted
 		{
+    		$user->saveVar('user_deleted_at', Time::getDate());
 			# Report and logout
 			return $this->message('msg_account_marked_deleted')->add(method('Login', 'Logout')->execute());
 		}
+
+		GDT_Hook::callWithIPC('UserQuit', $user);
 	}
 	
 	private function onSendEmail(GDO_User $user, $note)
