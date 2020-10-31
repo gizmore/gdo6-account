@@ -20,6 +20,7 @@ use GDO\Core\GDT_Response;
 use GDO\Core\GDT_Hook;
 use GDO\User\GDO_User;
 use GDO\Language\Trans;
+use GDO\UI\GDT_Page;
 /**
  * Generic setting functionality.
  * Simply return GDT[] in Module->getUserSettings() and you can configure stuff.
@@ -36,14 +37,19 @@ final class Settings extends MethodForm
 	 */
 	private $configModule;
 	
+	public function beforeExecute()
+	{
+	    Module_Account::instance()->renderAccountTabs();
+	    GDT_Page::$INSTANCE->topTabs->addField($this->navModules());
+	}
+	
 	public function execute()
 	{
-		$tabs = Module_Account::instance()->renderAccountTabs();
 		if ($this->configModule = ModuleLoader::instance()->getModule(Common::getGetString('module')))
 		{
-			return $tabs->add($this->navModules())->add(parent::execute());
+			return parent::execute();
 		}
-		return $tabs->add($this->navModules())->add($this->infoBox());
+		return $this->infoBox();
 	}
 	
 	public function infoBox()
@@ -65,7 +71,7 @@ final class Settings extends MethodForm
 				$navbar->addField($button);
 			}
 		}
-		return GDT_Response::makeWith($navbar);
+		return $navbar;
 	}
 	
 	public function createForm(GDT_Form $form)

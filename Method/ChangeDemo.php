@@ -18,7 +18,7 @@ use GDO\Core\Application;
  * Demographic chance only once in a while.
  * 
  * @author gizmore
- * @version 5.0
+ * @version 6.10
  */
 final class ChangeDemo extends Method
 {

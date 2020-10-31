@@ -23,12 +23,15 @@ final class Form extends MethodForm
 	public function isUserRequired() { return true; }
 	public function isGuestAllowed() { return Module_Account::instance()->cfgAllowGuests(); }
 	
+	public function beforeExecute()
+	{
+	    Module_Account::instance()->renderAccountTabs();
+	}
+	
 	public function execute()
 	{
 		$delay = Time::humanDuration(Module_Account::instance()->cfgChangeTime());
-		return Module_Account::instance()->renderAccountTabs()->addField(
-				GDT_Panel::make()->html(t('infobox_account_form', [$delay])))->add(
-						parent::execute());
+		return GDT_Response::makeWith(GDT_Panel::make()->html(t('infobox_account_form', [$delay])))->add(parent::execute());
 	}
 	
 	################

@@ -7,6 +7,7 @@ use GDO\Core\GDT_Response;
 use GDO\User\GDO_UserSetting;
 use GDO\User\GDO_UserSettingBlob;
 use GDO\Core\MethodAjax;
+
 /**
  * API Request to get all module configs.
  * Useful for JS Apps.
@@ -45,4 +46,5 @@ final class AjaxSettings extends MethodAjax
 		
 		return GDT_Response::make()->addField(GDT_JSONResponse::make()->json($json));
 	}
+
 }
