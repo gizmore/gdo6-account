@@ -4,7 +4,6 @@ namespace GDO\Account;
 use GDO\Core\Application;
 use GDO\Core\GDO_Module;
 use GDO\Date\GDT_Duration;
-use GDO\Date\Time;
 use GDO\UI\GDT_Bar;
 use GDO\DB\GDT_Checkbox;
 use GDO\DB\GDT_Int;
@@ -35,7 +34,7 @@ final class Module_Account extends GDO_Module
 	{
 		return array(
 			GDT_Int::make('adult_age')->unsigned()->min(12)->max(40)->initial('21'),
-			GDT_Duration::make('account_changetime')->min(0)->initial(Time::ONE_MONTH * 3),
+			GDT_Duration::make('account_changetime')->min(0)->initial('90d'),
 			GDT_Checkbox::make('allow_real_name')->initial('1'),
 			GDT_Checkbox::make('allow_guest_settings')->initial('1'),
 			GDT_Checkbox::make('allow_country_change')->initial('1'),

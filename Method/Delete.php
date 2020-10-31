@@ -37,7 +37,7 @@ final class Delete extends MethodForm
 		}
 		
 		Module_Account::instance()->renderAccountTabs();
-		return add(parent::execute());
+		return parent::execute();
 	}
 	
 	public function createForm(GDT_Form $form)
