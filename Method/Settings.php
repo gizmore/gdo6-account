@@ -21,6 +21,7 @@ use GDO\Core\GDT_Hook;
 use GDO\User\GDO_User;
 use GDO\Language\Trans;
 use GDO\UI\GDT_Page;
+use GDO\Core\Website;
 /**
  * Generic setting functionality.
  * Simply return GDT[] in Module->getUserSettings() and you can configure stuff.
@@ -71,7 +72,8 @@ final class Settings extends MethodForm
 				$navbar->addField($button);
 			}
 		}
-		return $navbar;
+		Website::topResponse()->addField($navbar);
+// 		return $navbar;
 	}
 	
 	public function createForm(GDT_Form $form)

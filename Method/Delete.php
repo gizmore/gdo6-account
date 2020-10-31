@@ -33,9 +33,11 @@ final class Delete extends MethodForm
 		{
 			$this->prune = true; # remember to prune
 			unset($_REQUEST['prune']); # Mimic normal POST
-			$_REQUEST['submit'] = true; # Mimic normal POST
+			$_REQUEST[$this->formName()]['submit'] = true; # Mimic normal POST
 		}
-		return Module_Account::instance()->renderAccountTabs()->add(parent::execute());
+		
+		Module_Account::instance()->renderAccountTabs();
+		return add(parent::execute());
 	}
 	
 	public function createForm(GDT_Form $form)

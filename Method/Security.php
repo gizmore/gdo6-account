@@ -41,7 +41,8 @@ final class Security extends MethodForm
 	{
 		$this->user = GDO_User::current();
 		$this->settings = GDO_AccountSetting::forUser($this->user);
-		return Module_Account::instance()->renderAccountTabs()->add(parent::execute());
+		Module_Account::instance()->renderAccountTabs()
+		return add(parent::execute());
 	}
 
 	/**

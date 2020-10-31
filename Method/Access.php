@@ -18,7 +18,8 @@ final class Access extends MethodQueryTable
 	
 	public function execute()
 	{
-		return Module_Account::instance()->renderAccountTabs()->add(parent::execute());
+		Module_Account::instance()->renderAccountTabs();
+		return parent::execute();
 	}
 	
 	public function getQuery()
