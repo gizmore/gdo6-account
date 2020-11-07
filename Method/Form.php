@@ -117,7 +117,7 @@ final class Form extends MethodForm
 			$newmail = $form->getFormVar('user_email');
 			if ($newmail !== $oldmail)
 			{
-				$back->add(ChangeEmail::changeEmail($this->module(), $user, $newmail));
+			    $back->add(ChangeEmail::changeEmail($this->getModule(), $user, $newmail));
 			}
 		}
 		
@@ -155,7 +155,7 @@ final class Form extends MethodForm
 			else
 			{
 				$data = $demo_vars;
-				$back->add(ChangeDemo::requestChange($this->module(), $user, $data));
+				$back->add(ChangeDemo::requestChange($this->getModule(), $user, $data));
 			}
 		}
 		$user->save();

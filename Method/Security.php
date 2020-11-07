@@ -74,7 +74,7 @@ final class Security extends MethodForm
 		$this->settings->setVars($form->getFormData())->replace();
 		if ( ($beforeEnabeld) && (!$this->settings->recordIPs()) )
 		{
-			GDO_AccountAccess::sendAlertMail($this->module(), $this->user, 'record_disabled');
+		    GDO_AccountAccess::sendAlertMail($this->getModule(), $this->user, 'record_disabled');
 		}
 		return parent::formValidated($form)->add($this->renderPage());
 	}

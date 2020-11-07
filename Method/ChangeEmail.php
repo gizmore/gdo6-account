@@ -152,7 +152,7 @@ final class ChangeEmail extends Method
 			return $this->error('err_form_invalid')->add($form->render());
 		}
 		$row->delete();
-		return self::sendEmailB($this->module(), $userid, trim($form->getFormVar('email')));
+		return self::sendEmailB($this->getModule(), $userid, trim($form->getFormVar('email')));
 	}
 	
 	private static function sendEmailB(Module_Account $module, $userid, $email)
