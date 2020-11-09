@@ -53,7 +53,7 @@ final class Security extends MethodForm
 	 */
 	public function createForm(GDT_Form $form)
 	{
-		$form->addField(GDT_Panel::make('info')->html(t('box_account_security')));
+	    $form->info(t('box_account_security'));
 		$form->addFields($this->settings->getGDOColumns(['accset_record_ip', 'accset_uawatch', 'accset_ipwatch', 'accset_ispwatch']));
 		$form->addFields(array(
 			GDT_Submit::make(),

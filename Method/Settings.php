@@ -55,7 +55,7 @@ final class Settings extends MethodForm
 	
 	public function infoBox()
 	{
-		return GDT_Response::makeWith(GDT_Panel::make()->html(t('box_content_account_settings')));
+		return GDT_Response::makeWith(GDT_Panel::make()->title(t('link_settings'))->html(t('box_content_account_settings')));
 	}
 	
 	public function navModules()
@@ -73,7 +73,6 @@ final class Settings extends MethodForm
 			}
 		}
 		Website::topResponse()->addField($navbar);
-// 		return $navbar;
 	}
 	
 	public function createForm(GDT_Form $form)

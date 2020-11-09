@@ -7,7 +7,6 @@ use GDO\Form\GDT_AntiCSRF;
 use GDO\Form\GDT_Form;
 use GDO\Form\GDT_Submit;
 use GDO\Form\MethodForm;
-use GDO\UI\GDT_Panel;
 use GDO\UI\GDT_Divider;
 use GDO\User\GDO_User;
 use GDO\Core\GDT_Response;
@@ -15,7 +14,7 @@ use GDO\Core\GDT_Response;
 /**
  * Change account settings.
  * @author gizmore
- * @version 5.0
+ * @version 6.10
  * @since 2.0
  */
 final class Form extends MethodForm
@@ -28,12 +27,6 @@ final class Form extends MethodForm
 	    Module_Account::instance()->renderAccountTabs();
 	}
 	
-	public function execute()
-	{
-		$delay = Time::humanDuration(Module_Account::instance()->cfgChangeTime());
-		return GDT_Response::makeWith(GDT_Panel::make()->html(t('infobox_account_form', [$delay])))->add(parent::execute());
-	}
-	
 	################
 	### The Form ###
 	################
@@ -41,6 +34,9 @@ final class Form extends MethodForm
 	{
 		$m = Module_Account::instance();
 		$user = GDO_User::current();
+		
+		$delay = Time::humanDuration(Module_Account::instance()->cfgChangeTime());
+		$form->info(t('infobox_account_form', [$delay]));
 		
 		# Section1
 		$form->addField(GDT_Divider::make('div1')->label('section_login'));

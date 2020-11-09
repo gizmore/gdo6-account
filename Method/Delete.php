@@ -9,7 +9,6 @@ use GDO\Form\GDT_Form;
 use GDO\Form\GDT_Submit;
 use GDO\Form\MethodForm;
 use GDO\Mail\Mail;
-use GDO\UI\GDT_Panel;
 use GDO\UI\GDT_Message;
 use GDO\User\GDO_User;
 use GDO\Date\Time;
@@ -42,8 +41,8 @@ final class Delete extends MethodForm
 	
 	public function createForm(GDT_Form $form)
 	{
+	    $form->info(t('box_info_deletion', [sitename()]));
 		$fields = array(
-			GDT_Panel::make('info')->html(t('box_info_deletion', [sitename()])),
 			GDT_Message::make('accrm_note'),
 			GDT_Submit::make()->label('btn_delete_account'),
 			GDT_Submit::make('prune')->label('btn_prune_account'),
@@ -100,5 +99,5 @@ final class Delete extends MethodForm
 			$mail->sendToUser($admin);
 		}
 	}
+	
 }
-
