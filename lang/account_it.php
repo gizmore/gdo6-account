@@ -153,5 +153,6 @@ Puó disattivare l´avviso di accesso qui:
 Saluti,
 Il suo %2$s Team.',
 ##########################################################
-		
+'msg_change_allow_email' => 'Hai modificato se qualcuno è autorizzato a inviarti un\' email a %s.',
+    
 );

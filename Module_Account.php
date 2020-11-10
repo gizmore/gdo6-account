@@ -49,7 +49,7 @@ final class Module_Account extends GDO_Module
 		);
 	}
 	
-	public function getUserSettings()
+	public function getUserConfig()
 	{
 		return array(
 			GDT_Checkbox::make('user_allow_email')->initial('0'),

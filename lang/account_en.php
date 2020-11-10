@@ -153,5 +153,5 @@ You can toggle your access alerts here.
 Kind Regards,
 The %2$s Team',
 ##########################################################
-		
+'msg_change_allow_email' => 'You changed that if someone may email you to %s.',
 );

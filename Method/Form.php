@@ -10,6 +10,7 @@ use GDO\Form\MethodForm;
 use GDO\UI\GDT_Divider;
 use GDO\User\GDO_User;
 use GDO\Core\GDT_Response;
+use GDO\User\GDO_UserSetting;
 
 /**
  * Change account settings.
@@ -51,6 +52,7 @@ final class Form extends MethodForm
 		$form->addField(GDT_Divider::make('div2')->label('section_email'));
 		$form->addField($user->gdoColumn('user_email')->writable($m->cfgAllowEmailChange()));
 		$form->addField($user->gdoColumn('user_email_fmt')->writable($m->cfgAllowEmailFormatChange()));
+		$form->addField(GDO_UserSetting::userGet($user, 'user_allow_email')->label('cfg_user_allow_email'));
 		
 		$form->addField(GDT_Divider::make('div4')->label('timezone'));
 		$form->addField($user->gdoColumn('user_timezone'));
@@ -117,6 +119,14 @@ final class Form extends MethodForm
 			}
 		}
 		
+		# Allow Mail
+		$field = $form->getField('user_allow_email');
+		$var = $form->getFormVar('user_allow_email');
+		if ($field->initial !== $var)
+		{
+		    GDO_UserSetting::userSet($user, 'user_allow_email', $var);
+		    $back->add($this->message('msg_change_allow_email', [$field->displayValue($var)]));
+		}
 		
 		# Change Demo
 		$demo_changed = false;
