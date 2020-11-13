@@ -10,6 +10,7 @@ use GDO\Core\GDT_MD5;
 use GDO\UI\GDT_Link;
 use GDO\User\GDT_User;
 use GDO\User\GDO_User;
+use GDO\DB\GDT_Index;
 /**
  * Table with user login history.
  * Alerts user on suspicous change of IP / InternetServiceProvider / UserAgent
@@ -32,11 +33,12 @@ final class GDO_AccountAccess extends GDO
 	{
 		return array(
 			GDT_AutoInc::make('accacc_id'),
-			GDT_User::make('accacc_uid')->index(),
+			GDT_User::make('accacc_uid'),
 			GDT_MD5::make('accacc_ua')->notNull(),
 			GDT_IP::make('accacc_ip')->notNull(),
 			GDT_MD5::make('accacc_isp'),
 			GDT_CreatedAt::make('accacc_time'),
+		    GDT_Index::make('user_index')->indexColumns('accacc_uid')->hash(),
 		);
 	}
 

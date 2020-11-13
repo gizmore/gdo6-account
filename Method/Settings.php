@@ -11,10 +11,8 @@ use GDO\UI\GDT_Bar;
 use GDO\UI\GDT_Panel;
 use GDO\UI\GDT_Divider;
 use GDO\UI\GDT_Link;
-use GDO\User\GDO_UserSetting;
 use GDO\Util\Common;
 use GDO\Core\ModuleLoader;
-use GDO\User\GDO_UserSettingBlob;
 use GDO\Core\GDT;
 use GDO\Core\GDT_Response;
 use GDO\Core\GDT_Hook;
@@ -84,7 +82,7 @@ final class Settings extends MethodForm
 			$form->addField(GDT_Divider::make()->label('div_user_settings', [$moduleName]));
 			foreach ($settings as $gdoType)
 			{
-				$gdt = GDO_UserSetting::get($gdoType->name);
+				$gdt = $this->configModule->setting($gdoType->name);
 				if (Trans::hasKey('cfg_'.$gdoType->name) || (!$gdt->hasName()))
 				{
 					$gdt->label('cfg_'.$gdoType->name);
@@ -97,7 +95,7 @@ final class Settings extends MethodForm
 			$form->addField(GDT_Divider::make()->label('div_user_textual_settings', [$moduleName]));
 			foreach ($settings as $gdoType)
 			{
-				$gdt = GDO_UserSettingBlob::get($gdoType->name);
+			    $gdt = $this->configModule->setting($gdoType->name);
 				if (Trans::hasKey('cfg_'.$gdoType->name) || (!$gdt->hasName()))
 				{
 					$gdt->label('cfg_'.$gdoType->name);
@@ -110,7 +108,7 @@ final class Settings extends MethodForm
 			$form->addField(GDT_Divider::make()->label('div_variables', [$moduleName]));
 			foreach ($settings as $gdoType)
 			{
-				$gdt = GDO_UserSetting::get($gdoType->name)->editable(false);
+			    $gdt = $this->configModule->setting($gdoType->name);
 				if (Trans::hasKey('cfg_'.$gdoType->name) || (!$gdt->hasName()))
 				{
 					$gdt->label('cfg_'.$gdoType->name);
@@ -142,16 +140,9 @@ final class Settings extends MethodForm
 						$error[] = t('err_settings_save', $gdoType->error);
 						continue;
 					}
-					if ($this->isSettingBlob($gdoType))
-					{
-						GDO_UserSettingBlob::set($key, $new);
-					}
-					else
-					{
-						GDO_UserSetting::set($key, $new);
-					}
-					$old = $old === null ? '<i class="null">null</i>' : html($old);
-					$new = $new === null ? '<i class="null">null</i>' : html($new);
+					$this->configModule->saveSetting($key, $new);
+					$old = $old === null ? '<i class="null">null</i>' : html($gdoType->displayValue($old));
+					$new = $new === null ? '<i class="null">null</i>' : html($gdoType->displayValue($new));
 					$info[] = t('msg_modulevar_changed', [$gdoType->displayLabel(), $old, $new]);
 				}
 			}
@@ -174,9 +165,4 @@ final class Settings extends MethodForm
 		return $page;
 	}
 	
-	private function isSettingBlob(GDT $gdoType)
-	{
-		return GDO_UserSettingBlob::isRegistered($gdoType->name);
-	}
-		
 }

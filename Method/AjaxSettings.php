@@ -4,8 +4,6 @@ namespace GDO\Account\Method;
 use GDO\Core\ModuleLoader;
 use GDO\Core\GDT_JSONResponse;
 use GDO\Core\GDT_Response;
-use GDO\User\GDO_UserSetting;
-use GDO\User\GDO_UserSettingBlob;
 use GDO\Core\MethodAjax;
 
 /**
@@ -22,25 +20,10 @@ final class AjaxSettings extends MethodAjax
 		foreach ($modules as $module)
 		{
 			$modulename = $module->getName();
-			if ($settings = $module->getUserSettings())
+			
+			foreach ($module->getSettingsCache() as $gdt)
 			{
-				foreach ($settings as $gdt)
-				{
-					$json[$modulename][$gdt->name] = $gdt->configJSON();
-					$json[$modulename][$gdt->name]['type'] = get_class($gdt);
-					$json[$modulename][$gdt->name]['value'] = GDO_UserSetting::get($gdt->name)->var;
-					$json[$modulename][$gdt->name]['help'] = t('cfg_'.$gdt->name);
-				}
-			}
-			if ($settings = $module->getUserSettingBlobs())
-			{
-				foreach ($settings as $gdt)
-				{
-					$json[$modulename][$gdt->name] = $gdt->configJSON();
-					$json[$modulename][$gdt->name]['type'] = get_class($gdt);
-					$json[$modulename][$gdt->name]['value'] = GDO_UserSettingBlob::get($gdt->name)->var;
-					$json[$modulename][$gdt->name]['help'] = t('cfg_'.$gdt->name);
-				}
+			    $json[$modulename][$gdt->name] = $gdt->configJSON();
 			}
 		}
 		
