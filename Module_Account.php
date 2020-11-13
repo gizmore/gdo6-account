@@ -10,6 +10,7 @@ use GDO\DB\GDT_Int;
 use GDO\User\GDO_User;
 use GDO\Core\GDT_Template;
 use GDO\UI\GDT_Page;
+use GDO\UI\GDT_Link;
 /**
  * Member Account Changes.
  * 
@@ -46,6 +47,7 @@ final class Module_Account extends GDO_Module
 			GDT_Checkbox::make('feature_access_history')->initial('1'),
 			GDT_Checkbox::make('feature_account_deletion')->initial('1'),
 			GDT_Checkbox::make('feature_demographic_mail_confirm')->initial('1'),
+		    GDT_Checkbox::make('hook_right_bar')->initial('1'),
 		);
 	}
 	
@@ -86,15 +88,24 @@ final class Module_Account extends GDO_Module
 	public function cfgFeatureAccess() { return $this->getConfigValue('feature_access_history'); }
 	public function cfgFeatureDeletion() { return $this->getConfigValue('feature_account_deletion'); }
 	
+	public function cfgHookRightBar() { return $this->getConfigValue('hook_right_bar'); }
+	
 	##############
 	### Navbar ###
 	##############
-	/**
-	 * Add account link to right sidebar, if user can use it.
-	 */
-	public function hookRightBar(GDT_Bar $navbar)
+	public function onInitSidebar()
 	{
-		$this->templatePHP('rightbar.php', ['navbar' => $navbar]);
+// 	    if ($this->cfgHookRightBar())
+	    {
+	        $user = GDO_User::current();
+	        if ( ($user->isMember()) ||
+	            ($user->isGuest() && $this->cfgAllowGuests()) )
+	        {
+	            GDT_Page::$INSTANCE->rightNav->addField(
+	                GDT_Link::make('btn_account')->href(href('Account', 'Settings')));
+	        }
+	        
+	    }
 	}
 	
 	public function renderAdminTabs()
