@@ -13,18 +13,19 @@ use GDO\UI\GDT_Divider;
 use GDO\UI\GDT_Link;
 use GDO\Util\Common;
 use GDO\Core\ModuleLoader;
-use GDO\Core\GDT;
 use GDO\Core\GDT_Response;
 use GDO\Core\GDT_Hook;
 use GDO\User\GDO_User;
 use GDO\Language\Trans;
 use GDO\UI\GDT_Page;
 use GDO\Core\Website;
+
 /**
  * Generic setting functionality.
  * Simply return GDT[] in Module->getUserSettings() and you can configure stuff.
  * 
  * @author gizmore
+ * @version 6.10
  * @since 5.0
  */
 final class Settings extends MethodForm
@@ -53,7 +54,7 @@ final class Settings extends MethodForm
 	
 	public function infoBox()
 	{
-		return GDT_Response::makeWith(GDT_Panel::make()->title(t('link_settings'))->html(t('box_content_account_settings')));
+		return GDT_Response::makeWith(GDT_Panel::make()->title('link_settings')->text('box_content_account_settings'));
 	}
 	
 	public function navModules()
@@ -66,7 +67,7 @@ final class Settings extends MethodForm
 			{
 				$name = $module->getName();
 				$href = $href ? $href : href('Account', 'Settings', "&module=$name");
-				$button = GDT_Link::make("link_$name")->rawlabel($name)->href($href)->icon('settings');
+				$button = GDT_Link::make("link_$name")->labelRaw($name)->href($href)->icon('settings');
 				$navbar->addField($button);
 			}
 		}
@@ -147,6 +148,8 @@ final class Settings extends MethodForm
 				}
 			}
 		}
+		
+		$this->resetForm();
 		
 		$page = $this->renderPage();
 		
