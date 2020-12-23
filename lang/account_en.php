@@ -154,4 +154,5 @@ Kind Regards,
 The %2$s Team',
 ##########################################################
 'msg_change_allow_email' => 'You changed that if someone may email you to %s.',
+'table_account_access' => '%s IPs logged for you',
 );
