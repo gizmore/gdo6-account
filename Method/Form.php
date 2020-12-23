@@ -74,7 +74,7 @@ final class Form extends MethodForm
 	#######################
 	public function formValidated(GDT_Form $form)
 	{
-		$back = new GDT_Response();
+		$back = GDT_Response::make();
 
 		$m = Module_Account::instance();
 		$user = GDO_User::current();

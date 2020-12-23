@@ -103,7 +103,7 @@ final class ChangeEmail extends Method
 	
 	private function getChangeMailForm(GDO_AccountChange $ac)
 	{
-		$form = new GDT_Form();
+		$form = GDT_Form::make();
 		$form->title('ft_change_mail', [sitename()]);
 		$form->addFields(array(
 			GDT_Email::make('email')->required(),
