@@ -51,7 +51,7 @@ final class Form extends MethodForm
 		$form->addField(GDT_Divider::make('div2')->label('section_email'));
 		$form->addField($user->gdoColumn('user_email')->writable($m->cfgAllowEmailChange()));
 		$form->addField($user->gdoColumn('user_email_fmt')->writable($m->cfgAllowEmailFormatChange()));
-		$form->addField($m->userSetting($user, 'user_allow_email'));
+		$form->addField($m->userSetting($user, 'user_allow_email')->editable(true));
 		
 		$form->addField(GDT_Divider::make('div4')->label('timezone'));
 		$form->addField($user->gdoColumn('user_timezone'));
