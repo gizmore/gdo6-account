@@ -14,6 +14,7 @@ use GDO\UI\GDT_Link;
 use GDO\User\GDO_User;
 use GDO\Util\Common;
 use GDO\Form\GDT_Validator;
+use GDO\Core\GDT_Response;
 /**
  * Method only is triggered by Form (Step 0).
  * Consists of two mail sending, old and new.
@@ -132,7 +133,7 @@ final class ChangeEmail extends Method
 	private function templateChangeMailB(GDO_AccountChange $ac)
 	{
 		$form = $this->getChangeMailForm($ac);
-		return $form->render();
+		return GDT_Response::makeWith($form);
 	}
 	
 	##############

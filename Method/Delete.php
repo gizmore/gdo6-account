@@ -28,10 +28,10 @@ final class Delete extends MethodForm
 	
 	public function execute()
 	{
-		if (isset($_REQUEST['prune']))
+	    if (isset($_REQUEST[$this->formName()]['prune']))
 		{
 			$this->prune = true; # remember to prune
-			unset($_REQUEST['prune']); # Mimic normal POST
+			unset($_REQUEST[$this->formName()]['prune']); # Mimic normal POST
 			$_REQUEST[$this->formName()]['submit'] = true; # Mimic normal POST
 		}
 		
