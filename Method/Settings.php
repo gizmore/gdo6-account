@@ -43,6 +43,14 @@ final class Settings extends MethodForm
 	    GDT_Page::$INSTANCE->topTabs->addField($this->navModules());
 	}
 	
+	public function getTitle()
+	{
+	    $mod = $this->configModule ? 
+	       $this->configModule->displayName() :
+	       sitename();
+	    return t('ft_account_settings', [$mod]);
+	}
+	
 	public function execute()
 	{
 		if ($this->configModule = ModuleLoader::instance()->getModule(Common::getGetString('module')))
