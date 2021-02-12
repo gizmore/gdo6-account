@@ -4,13 +4,13 @@ namespace GDO\Account;
 use GDO\Core\Application;
 use GDO\Core\GDO_Module;
 use GDO\Date\GDT_Duration;
-use GDO\UI\GDT_Bar;
 use GDO\DB\GDT_Checkbox;
 use GDO\DB\GDT_Int;
 use GDO\User\GDO_User;
 use GDO\Core\GDT_Template;
 use GDO\UI\GDT_Page;
 use GDO\UI\GDT_Link;
+
 /**
  * Member Account Changes.
  * 
@@ -33,7 +33,7 @@ final class Module_Account extends GDO_Module
 	##############
 	public function getConfig()
 	{
-		return array(
+		return [
 			GDT_Int::make('adult_age')->unsigned()->min(12)->max(40)->initial('21'),
 			GDT_Duration::make('account_changetime')->min(0)->initial('90d'),
 			GDT_Checkbox::make('allow_real_name')->initial('1'),
@@ -48,14 +48,14 @@ final class Module_Account extends GDO_Module
 			GDT_Checkbox::make('feature_account_deletion')->initial('1'),
 			GDT_Checkbox::make('feature_demographic_mail_confirm')->initial('1'),
 		    GDT_Checkbox::make('hook_right_bar')->initial('1'),
-		);
+		];
 	}
 	
 	public function getUserConfig()
 	{
-		return array(
+		return [
 		    GDT_Checkbox::make('user_allow_email')->label('cfg_user_allow_email')->initial('0'),
-		);
+		];
 	}
 	
 	#############

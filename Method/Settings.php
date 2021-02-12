@@ -53,7 +53,7 @@ final class Settings extends MethodForm
 	
 	public function execute()
 	{
-		if ($this->configModule = ModuleLoader::instance()->getModule(Common::getGetString('module')))
+		if ($this->configModule = ModuleLoader::instance()->getModule(@$_REQUEST['module']))
 		{
 			return parent::execute();
 		}
@@ -62,7 +62,8 @@ final class Settings extends MethodForm
 	
 	public function infoBox()
 	{
-		return GDT_Response::makeWith(GDT_Panel::make()->title('link_settings')->text('box_content_account_settings'));
+		return GDT_Response::makeWith(
+		    GDT_Panel::make()->title('link_settings')->text('box_content_account_settings'));
 	}
 	
 	public function navModules()
@@ -126,7 +127,7 @@ final class Settings extends MethodForm
 			}
 		}
 		$form->addField(GDT_AntiCSRF::make());
-		$form->addField(GDT_Submit::make());
+		$form->actions()->addField(GDT_Submit::make());
 	}
 	
 	public function formValidated(GDT_Form $form)
@@ -134,42 +135,64 @@ final class Settings extends MethodForm
 		$info = [];
 		$error = [];
 		$changes = array();
-		foreach ($form->fields as $gdoType)
+		foreach ($form->fields as $gdt)
 		{
-			if ( ($gdoType->writable) && ($gdoType->editable) )
+			if ( ($gdt->writable) && ($gdt->editable) ) # can change?
 			{
-				$key = $gdoType->name;
-				$old = $gdoType->initial;
-				$new = $gdoType->getVar($key);
+				$key = $gdt->name;
+				$old = $gdt->initial;
+				$new = $gdt->getVar($key);
+				
+				# Changed?
 				if ($old !== $new)
 				{
 					$changes[$key] = array($old, $new);
-					if (!$gdoType->validate($gdoType->toValue($new)))
+					
+					# Validate first
+					if (!$gdt->validate($gdt->toValue($new)))
 					{
-						$error[] = t('err_settings_save', $gdoType->error);
+						$error[] = t('err_settings_save', $gdt->error);
 						continue;
 					}
+					
+					# Save
 					$this->configModule->saveSetting($key, $new);
-					$old = $old === null ? '<i class="null">null</i>' : html($gdoType->displayValue($old));
-					$new = $new === null ? '<i class="null">null</i>' : html($gdoType->displayValue($new));
-					$info[] = t('msg_modulevar_changed', [$gdoType->displayLabel(), $old, $new]);
+					
+					# Prepare response text
+					$old = $old === null ?
+					   '<i class="null gdo-setting-old">null</i>' :
+					   '<i class="gdo-setting-old">' . $gdt->displayValue($old) . '</i>';
+					$new = $new === null ?
+					   '<i class="null gdo-setting-new">null</i>' :
+					   '<i class="gdo-setting-new">' . $gdt->displayValue($new) . '</i>';
+					$name  = sprintf('<i class="gdo-setting-name">%s</i>', $gdt->displayLabel());
+					$info[] = t('msg_modulevar_changed', [$name, $old, $new]);
 				}
 			}
 		}
 		
+		# Reset form
 		$this->resetForm();
 		
+		# Add form page to response later
 		$page = $this->renderPage();
 		
+		# Quit on error
 		if (!empty($error))
 		{
-			return $this->error('err_settings_saved', [$this->configModule->getName(), implode('<br/>', $info)])->add($page);
+			return $this->error('err_settings_saved',
+			    [$this->configModule->getName(), implode('<br/>', $info)])->add($page);
 		}
 		
+		# Saved on success
 		if (!empty($info))
 		{
-			GDT_Hook::callHook('UserSettingSaved', $this->configModule, GDO_User::current(), $changes);
-			return $this->message('msg_settings_saved', [$this->configModule->getName(), implode('<br/>', $info)])->add($page);
+		    # Call hook on changes
+			GDT_Hook::callHook('UserSettingSaved',
+			    $this->configModule, GDO_User::current(), $changes);
+			# Print changes
+			return $this->message('msg_settings_saved',
+			    [$this->configModule->getName(), implode('<br/>', $info)])->add($page);
 		}
 		
 		

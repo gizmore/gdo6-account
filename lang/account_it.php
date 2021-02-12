@@ -155,4 +155,5 @@ Il suo %2$s Team.',
 ##########################################################
 'msg_change_allow_email' => 'Hai modificato se qualcuno è autorizzato a inviarti un\' email a %s.',
 'table_account_access' => '%s accessi sono stati registrati per te.',
+'confirm_account_prune' => 'Sei sicuro di voler rimuovere completamente il tuo account? Questo non può essere annullato!',
 );

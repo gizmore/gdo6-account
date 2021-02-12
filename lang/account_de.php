@@ -155,4 +155,5 @@ The %2$s Team',
 ##########################################################
 'msg_change_allow_email' => 'Sie haben geändert, ob Ihnen jemand eine Email schreiben darf, hin zu %s.',
 'table_account_access' => '%s Zugriff(e) wurden für Sie protokolliert',
+'confirm_account_prune' => 'Möchten Sie Ihr Konto wirklich vollständig entfernen? Dies lässt sich nicht rückgängig machen!',
 );

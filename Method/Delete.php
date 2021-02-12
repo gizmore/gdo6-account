@@ -12,6 +12,7 @@ use GDO\Mail\Mail;
 use GDO\UI\GDT_Message;
 use GDO\User\GDO_User;
 use GDO\Date\Time;
+use GDO\Form\GDT_DeleteButton;
 
 /**
  * Delete your account.
@@ -44,11 +45,13 @@ final class Delete extends MethodForm
 	    $form->info(t('box_info_deletion', [sitename()]));
 		$fields = array(
 			GDT_Message::make('accrm_note'),
-			GDT_Submit::make()->label('btn_delete_account'),
-			GDT_Submit::make('prune')->label('btn_prune_account'),
 			GDT_AntiCSRF::make(),
 		);
 		$form->addFields($fields);
+		$form->actions()->addFields([
+		    GDT_Submit::make()->label('btn_delete_account'),
+		    GDT_DeleteButton::make('prune')->label('btn_prune_account')->confirmText('confirm_account_prune'),
+		]);
 	}
 	
 	public function formValidated(GDT_Form $form)

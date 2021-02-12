@@ -63,7 +63,7 @@ final class Form extends MethodForm
 		if ($m->cfgAllowGenderChange()) $form->addField($user->gdoColumn('user_gender'));
 		if ($m->cfgAllowBirthdayChange()) $form->addField($user->gdoColumn('user_birthdate'));
 
-		$form->addField(GDT_Submit::make());
+		$form->actions()->addField(GDT_Submit::make());
 		$form->addField(GDT_AntiCSRF::make());
 		
 		$form->withGDOValuesFrom($user);

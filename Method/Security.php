@@ -55,10 +55,10 @@ final class Security extends MethodForm
 	{
 	    $form->info(t('box_account_security'));
 		$form->addFields($this->settings->getGDOColumns(['accset_record_ip', 'accset_uawatch', 'accset_ipwatch', 'accset_ispwatch']));
-		$form->addFields(array(
+		$form->actions()->addFields(array(
 			GDT_Submit::make(),
-			GDT_AntiCSRF::make(),
 		));
+		$form->addField(GDT_AntiCSRF::make());
 		$form->withGDOValuesFrom($this->settings);
 	}
 

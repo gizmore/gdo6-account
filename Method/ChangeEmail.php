@@ -112,8 +112,8 @@ final class ChangeEmail extends Method
 			GDT_Email::make('email_re')->required()->label('retype'),
 			GDT_Validator::make()->validator('email_re', [$this, 'validateEmailRetype']),
 			GDT_AntiCSRF::make(),
-			GDT_Submit::make('btn_changemail'),
 		));
+		$form->actions()->addField(GDT_Submit::make('btn_changemail'));
 		return $form;
 	}
 	
