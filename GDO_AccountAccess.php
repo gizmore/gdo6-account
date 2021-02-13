@@ -80,7 +80,7 @@ final class GDO_AccountAccess extends GDO
 		# Query alert
 		if (!empty($query))
 		{
-			if (0 != self::table()->select('COUNT(*)')->where("accacc_uid={$user->getID()}")->exec()->fetchValue())
+			if (0 != self::table()->countWhere("accacc_uid={$user->getID()}"))
 			{
 				if (!self::table()->select('1')->where("accacc_uid={$user->getID()} $query")->exec()->fetchValue())
 				{
