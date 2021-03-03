@@ -11,7 +11,6 @@ use GDO\UI\GDT_Bar;
 use GDO\UI\GDT_Panel;
 use GDO\UI\GDT_Divider;
 use GDO\UI\GDT_Link;
-use GDO\Util\Common;
 use GDO\Core\ModuleLoader;
 use GDO\Core\GDT_Response;
 use GDO\Core\GDT_Hook;
