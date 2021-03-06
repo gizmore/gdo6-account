@@ -49,7 +49,7 @@ final class Delete extends MethodForm
 		);
 		$form->addFields($fields);
 		$form->actions()->addFields([
-		    GDT_Submit::make()->label('btn_delete_account'),
+		    GDT_DeleteButton::make()->label('btn_delete_account')->confirmText('confirm_account_delete'),
 		    GDT_DeleteButton::make('prune')->label('btn_prune_account')->confirmText('confirm_account_prune'),
 		]);
 	}

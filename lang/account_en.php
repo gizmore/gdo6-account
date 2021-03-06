@@ -156,4 +156,5 @@ The %2$s Team',
 'msg_change_allow_email' => 'You changed that if someone may email you to %s.',
 'table_account_access' => '%s IPs logged for you',
 'confirm_account_prune' => 'Do you really delete your account from the database and all information associated with it? This cannot be undone!',
+'confirm_account_delete' => 'Do you really want to mark your account as deleted? This is not final. An admin could recover your account later.',
 );
