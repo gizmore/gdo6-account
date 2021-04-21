@@ -144,7 +144,7 @@ final class Settings extends MethodForm
 			{
 				$key = $gdt->name;
 				$old = $gdt->initial;
-				$new = $gdt->getVar($key);
+				$new = $gdt->getVar();
 				
 				# Changed?
 				if ($old !== $new)
