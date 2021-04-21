@@ -132,13 +132,13 @@ final class Form extends MethodForm
 
 		$oldcid = $user->getVar('user_country');
 		$newcid = $m->cfgAllowCountryChange() ? $form->getFormVar('user_country') : $oldcid;
-		if ($oldcid !== $newcid) { $demo_changed = true; }
+		if ($oldcid != $newcid) { $demo_changed = true; }
 		$oldlid = $user->getVar('user_language');
 		$newlid = $m->cfgAllowLanguageChange() ? $form->getFormVar('user_language') : $oldlid;
-		if ($oldlid !== $newlid) { $demo_changed = true; }
+		if ($oldlid != $newlid) { $demo_changed = true; }
 		$oldgender = $user->getVar('user_gender');
 		$newgender = $m->cfgAllowGenderChange() ? $form->getFormVar('user_gender') : $oldgender;
-		if ($oldgender !== $newgender) { $demo_changed = true; }
+		if ($oldgender != $newgender) { $demo_changed = true; }
 		$oldbirthdate = $user->getVar('user_birthdate');
 		$newbirthdate = $m->cfgAllowBirthdayChange() ? $form->getFormVar('user_birthdate') : $oldbirthdate;
 		if ($oldbirthdate != $newbirthdate) { $demo_changed = true; }

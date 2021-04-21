@@ -23,11 +23,14 @@ final class AjaxSettings extends MethodAjax
 			
 			foreach ($module->getSettingsCache() as $gdt)
 			{
-			    $json[$modulename][$gdt->name] = $gdt->configJSON();
+			    if ($gdt->isSerializable())
+			    {
+			        $json[$modulename][$gdt->name] = $gdt->configJSON();
+			    }
 			}
 		}
 		
-		return GDT_Response::make()->addField(GDT_JSONResponse::make()->json($json));
+		return GDT_Response::make()->addField(GDT_JSONResponse::make('data')->json($json));
 	}
 
 }

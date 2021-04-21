@@ -11,6 +11,7 @@ use GDO\UI\GDT_Bar;
 use GDO\UI\GDT_Panel;
 use GDO\UI\GDT_Divider;
 use GDO\UI\GDT_Link;
+use GDO\Core\Application;
 use GDO\Core\ModuleLoader;
 use GDO\Core\GDT_Response;
 use GDO\Core\GDT_Hook;
@@ -38,8 +39,11 @@ final class Settings extends MethodForm
 	
 	public function beforeExecute()
 	{
-	    Module_Account::instance()->renderAccountTabs();
-	    GDT_Page::$INSTANCE->topTabs->addField($this->navModules());
+	    if (Application::instance()->isHTML())
+	    {
+    	    Module_Account::instance()->renderAccountTabs();
+    	    GDT_Page::$INSTANCE->topTabs->addField($this->navModules());
+	    }
 	}
 	
 	public function getTitle()

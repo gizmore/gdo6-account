@@ -14,11 +14,11 @@ use GDO\UI\GDT_Link;
 /**
  * Member Account Changes.
  * 
- * @author gizmore
- * @version 6.10
- * @since 1.0
- * 
  * @see GDO_User
+ * 
+ * @author gizmore
+ * @version 6.10.1
+ * @since 2.0.0
  */
 final class Module_Account extends GDO_Module
 {
@@ -110,12 +110,18 @@ final class Module_Account extends GDO_Module
 	
 	public function renderAdminTabs()
 	{
-		GDT_Page::$INSTANCE->topTabs->addField(GDT_Template::responsePHP('Account', 'admin_tabs.php'));
+	    if (Application::instance()->isHTML())
+	    {
+	        GDT_Page::$INSTANCE->topTabs->addField(GDT_Template::responsePHP('Account', 'admin_tabs.php'));
+	    }
 	}
 
 	public function renderAccountTabs()
 	{
-	    GDT_Page::$INSTANCE->topTabs->addField(GDT_Template::responsePHP('Account', 'overview.php'));
+	    if (Application::instance()->isHTML())
+	    {
+	        GDT_Page::$INSTANCE->topTabs->addField(GDT_Template::responsePHP('Account', 'overview.php'));
+	    }
 	}
 	
 }
