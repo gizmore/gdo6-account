@@ -61,7 +61,7 @@ final class Form extends MethodForm
 		$form->addField($user->gdoColumn('user_country')->withCompletion()->writable($m->cfgAllowCountryChange())->emptyInitial(t('no_country')));
 		
 		if ($m->cfgAllowGenderChange()) $form->addField($user->gdoColumn('user_gender'));
-		if ($m->cfgAllowBirthdayChange()) $form->addField($user->gdoColumn('user_birthdate'));
+// 		if ($m->cfgAllowBirthdayChange()) $form->addField($user->gdoColumn('user_birthdate'));
 
 		$form->actions()->addField(GDT_Submit::make());
 		$form->addField(GDT_AntiCSRF::make());
@@ -139,9 +139,9 @@ final class Form extends MethodForm
 		$oldgender = $user->getVar('user_gender');
 		$newgender = $m->cfgAllowGenderChange() ? $form->getFormVar('user_gender') : $oldgender;
 		if ($oldgender != $newgender) { $demo_changed = true; }
-		$oldbirthdate = $user->getVar('user_birthdate');
-		$newbirthdate = $m->cfgAllowBirthdayChange() ? $form->getFormVar('user_birthdate') : $oldbirthdate;
-		if ($oldbirthdate != $newbirthdate) { $demo_changed = true; }
+// 		$oldbirthdate = $user->getVar('user_birthdate');
+// 		$newbirthdate = $m->cfgAllowBirthdayChange() ? $form->getFormVar('user_birthdate') : $oldbirthdate;
+// 		if ($oldbirthdate != $newbirthdate) { $demo_changed = true; }
 		
 		if ($demo_changed)
 		{
@@ -149,7 +149,7 @@ final class Form extends MethodForm
 				'user_country' => $newcid,
 				'user_language' => $newlid,
 				'user_gender' => $newgender,
-				'user_birthdate' => $newbirthdate,
+// 				'user_birthdate' => $newbirthdate,
 			);
 			
 			if ($guest)

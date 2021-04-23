@@ -89,9 +89,9 @@ final class ChangeDemo extends Method
 		$gender = t('enum_'.$data['user_gender']);
 		$country = GDO_Country::getByISOOrUnknown($data['user_country'])->displayName();
 		$language = GDO_Language::getByISOOrUnknown($data['user_language'])->displayName();
-		$birthdate = $data['user_birthdate'] > 0 ? Time::displayDate($data['user_birthdate'], 'day') : t('unknown');
+// 		$birthdate = $data['user_birthdate'] > 0 ? Time::displayDate($data['user_birthdate'], 'day') : t('unknown');
 		$link = GDT_Link::anchor(url('Account', 'ChangeDemo', sprintf("&userid=%d&token=%s", $user->getID(), $ac->getToken())));
-		$args = [$username, $sitename, $timeout, $country, $language, $gender, $birthdate, $link];
+		$args = [$username, $sitename, $timeout, $country, $language, $gender, $link];
 
 		$mail = new Mail();
 		$mail->setSender(GWF_BOT_EMAIL);

@@ -121,7 +121,6 @@ visto che le puó cambiare solo ogni %s.
 	Nazione: 			%s
 	Lingua: 			%s	
 	Sesso:				%s
-	Data di nascita:	%s
 
  Se le informazioni sono corrette, accetti le impostazioni nel link seguente:
 	 

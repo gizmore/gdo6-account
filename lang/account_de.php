@@ -121,7 +121,6 @@ because you can only change them once every %s.
 Country: %s
 Language: %s
 Gender: %s
-Date of Birth: %s
 
 If the information is correct, you can accept these settings by visiting this link.
 
