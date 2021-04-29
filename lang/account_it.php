@@ -18,11 +18,9 @@ return array(
 'cfg_allow_birthday_change' => 'Permetti al utente di cambiare la data di nascita?',
 'cfg_allow_gender_change' => 'Permetti al utente di cambiare il sesso?',
 'cfg_allow_email_change' => 'Permetti al utente di cambiare l´e-Mail?',
-'cfg_allow_email_fmt_change' => 'Permetti di cambiare il formato e-Mail?',
 'cfg_feature_access_history' => 'Attivazione registrazione login?',
 'cfg_feature_account_deletion' => 'Attivazione cancellazione dei conti?',
 'cfg_feature_demographic_mail_confirm' => 'Modifiche mail confermare via mail?',
-'cfg_user_allow_email' => 'Permetti a membri di inviarti mail?',
 ##########################################################
 'box_content_account_settings' => 'qui trovate tutte le vostre impostazioni.', 
 'ft_account_settings' => '%s Impostazioni',

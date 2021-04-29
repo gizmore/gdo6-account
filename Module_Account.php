@@ -26,7 +26,15 @@ final class Module_Account extends GDO_Module
 	### Module ###
 	##############
 	public function onLoadLanguage() { return $this->loadLanguage('lang/account'); }
-	public function getClasses() { return ['GDO\Account\GDO_AccountAccess', 'GDO\Account\GDO_AccountChange', 'GDO\Account\GDO_AccountDelete', 'GDO\Account\GDO_AccountSetting']; }
+	public function getClasses()
+	{
+	    return [
+	        'GDO\Account\GDO_AccountAccess',
+	        'GDO\Account\GDO_AccountChange',
+	        'GDO\Account\GDO_AccountDelete',
+	        'GDO\Account\GDO_AccountSetting'
+	    ];
+	}
 
 	##############
 	### Config ###
@@ -40,10 +48,10 @@ final class Module_Account extends GDO_Module
 			GDT_Checkbox::make('allow_guest_settings')->initial('1'),
 			GDT_Checkbox::make('allow_country_change')->initial('1'),
 			GDT_Checkbox::make('allow_lang_change')->initial('1'),
-			GDT_Checkbox::make('allow_birthday_change')->initial('1'),
+// 			GDT_Checkbox::make('allow_birthday_change')->initial('1'),
 			GDT_Checkbox::make('allow_gender_change')->initial('1'),
 			GDT_Checkbox::make('allow_email_change')->initial('1'),
-			GDT_Checkbox::make('allow_email_fmt_change')->initial('1'),
+// 			GDT_Checkbox::make('allow_email_fmt_change')->initial('1'),
 			GDT_Checkbox::make('feature_access_history')->initial('1'),
 			GDT_Checkbox::make('feature_account_deletion')->initial('1'),
 			GDT_Checkbox::make('feature_demographic_mail_confirm')->initial('1'),
@@ -51,12 +59,12 @@ final class Module_Account extends GDO_Module
 		];
 	}
 	
-	public function getUserConfig()
-	{
-		return [
-		    GDT_Checkbox::make('user_allow_email')->label('cfg_user_allow_email')->initial('0'),
-		];
-	}
+// 	public function getUserConfig()
+// 	{
+// 		return [
+// 		    GDT_Checkbox::make('user_allow_email')->label('cfg_user_allow_email')->initial('0'),
+// 		];
+// 	}
 	
 	#############
 	### Hooks ###
@@ -95,7 +103,7 @@ final class Module_Account extends GDO_Module
 	##############
 	public function onInitSidebar()
 	{
-// 	    if ($this->cfgHookRightBar())
+	    if ($this->cfgHookRightBar())
 	    {
 	        $user = GDO_User::current();
 	        if ( ($user->isMember()) ||

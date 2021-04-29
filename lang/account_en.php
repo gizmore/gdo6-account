@@ -18,11 +18,9 @@ return array(
 'cfg_allow_birthday_change' => 'Allow change of birthdate',
 'cfg_allow_gender_change' => 'Allow change of gender',
 'cfg_allow_email_change' => 'Allow change of email',
-'cfg_allow_email_fmt_change' => 'Allow change of email format',
 'cfg_feature_access_history' => 'Security: Enable login history',
 'cfg_feature_account_deletion' => 'Allow account deletion',
 'cfg_feature_demographic_mail_confirm' => 'Enable email confirmation',
-'cfg_user_allow_email' => 'Allow people to email you?',
 ##########################################################
 'box_content_account_settings' => 'Here you find settings for all enabled modules with configuration variables.<br/>Note that we distingush variables which are just informative for you, and settings which you can toggle.',
 'ft_account_settings' => '%s Settings',
