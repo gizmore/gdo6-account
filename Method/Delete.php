@@ -6,7 +6,6 @@ use GDO\Account\Module_Account;
 use GDO\Core\GDT_Hook;
 use GDO\Form\GDT_AntiCSRF;
 use GDO\Form\GDT_Form;
-use GDO\Form\GDT_Submit;
 use GDO\Form\MethodForm;
 use GDO\Mail\Mail;
 use GDO\UI\GDT_Message;
@@ -17,8 +16,8 @@ use GDO\Form\GDT_DeleteButton;
 /**
  * Delete your account.
  * @author gizmore
- * @version 6.10
- * @since 3.00
+ * @version 6.10.1
+ * @since 3.0.0
  */
 final class Delete extends MethodForm
 {
@@ -43,11 +42,10 @@ final class Delete extends MethodForm
 	public function createForm(GDT_Form $form)
 	{
 	    $form->info(t('box_info_deletion', [sitename()]));
-		$fields = array(
+		$form->addFields([
 			GDT_Message::make('accrm_note'),
 			GDT_AntiCSRF::make(),
-		);
-		$form->addFields($fields);
+		]);
 		$form->actions()->addFields([
 		    GDT_DeleteButton::make()->label('btn_delete_account')->confirmText('confirm_account_delete'),
 		    GDT_DeleteButton::make('prune')->label('btn_prune_account')->confirmText('confirm_account_prune'),

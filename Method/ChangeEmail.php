@@ -15,23 +15,25 @@ use GDO\User\GDO_User;
 use GDO\Util\Common;
 use GDO\Form\GDT_Validator;
 use GDO\Core\GDT_Response;
+
 /**
  * Method only is triggered by Form (Step 0).
  * Consists of two mail sending, old and new.
  * 
  * @author gizmore
- * 
- * @see Form
- *
+ * @version 6.10.1
+ * @since 3.0.4
  */
 final class ChangeEmail extends Method
 {
 	public function getUserType() { return GDO_User::MEMBER; }
 	public function isEnabled() { return Module_Account::instance()->cfgAllowEmailChange(); }
 	
+	public function getTitleLangKey() { return 'ft_change_mail'; }
+	
 	public function execute()
 	{
-		if (Common::getPostString('btn_changemail'))
+		if (isset($_POST['form']['btn_changemail']))
 		{
 			# Step 2 - Form for mail 2
 			return $this->onRequestB();
@@ -104,7 +106,7 @@ final class ChangeEmail extends Method
 	
 	private function getChangeMailForm(GDO_AccountChange $ac)
 	{
-		$form = GDT_Form::make();
+		$form = GDT_Form::make('form');
 		$form->title('ft_change_mail', [sitename()]);
 		$form->addFields(array(
 			GDT_Email::make('email')->required(),
@@ -126,7 +128,7 @@ final class ChangeEmail extends Method
 
 	public function validateEmailUnique(GDT_Form $form, GDT $gdoType)
 	{
-		$count = GDO_User::table()->countWhere("user_email={$gdoType->quotedValue()}");
+		$count = GDO_User::table()->countWhere("user_email=" . quote($gdoType->getVar()));
 		return $count > 0 ? $gdoType->error('err_email_taken') : true;
 	}
 	
@@ -148,9 +150,9 @@ final class ChangeEmail extends Method
 			return $this->error('err_token');
 		}
 		$form = $this->getChangeMailForm($row);
-		if (!$form->validate())
+		if (!$form->validateForm())
 		{
-			return $this->error('err_form_invalid')->add($form->render());
+			return $this->error('err_form_invalid')->add(GDT_Response::makeWith($form));
 		}
 		$row->delete();
 		return self::sendEmailB($this->getModule(), $userid, trim($form->getFormVar('email')));
@@ -199,4 +201,5 @@ final class ChangeEmail extends Method
 		
 		return $this->message('msg_mail_changed', [$user->getMail()]);
 	}
+	
 }

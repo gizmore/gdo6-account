@@ -29,7 +29,7 @@ return array(
 'msg_settings_saved' => 'Your settings for the %s module have been saved.<br/>%s',
 ##########################################################
 'ft_account_form' => 'Account',
-'infobox_account_form' => 'Please note that you cannot change your "Realname" after it has been set.<br/>Your demographic options can be set once every %s.',
+'infobox_account_form' => 'Please note that you cannot change your "Realname" after it has been set, and it is <b>visible to anyone!</b><br/>Your demographic options can be set once every %s.',
 'section_login' => 'Login Settings',
 'section_email' => 'E-Mail Settings',
 'section_demographic' => 'Demography',
@@ -154,4 +154,5 @@ The %2$s Team',
 'table_account_access' => '%s IPs logged for you',
 'confirm_account_prune' => 'Do you really delete your account from the database and all information associated with it? This cannot be undone!',
 'confirm_account_delete' => 'Do you really want to mark your account as deleted? This is not final. An admin could recover your account later.',
+'msg_mail_changed' => 'Your email has been changed to %s.',
 );

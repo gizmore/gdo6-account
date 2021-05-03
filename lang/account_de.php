@@ -29,7 +29,7 @@ return array(
 'msg_settings_saved' => 'Ihre Einstellungen im %s Modul wurden übernommen.<br/>%s',
 ##########################################################
 'ft_account_form' => 'Konto',
-'infobox_account_form' => 'Hinweis: Ihren &quot;Realnamen&quot; können Sie nur einmalig setzen.<br/>Ihre Demographischen Optionen können sie alle %s ändern.',
+'infobox_account_form' => 'Hinweis: Ihren &quot;Realnamen&quot; können Sie nur einmalig setzen und <b>er ist öffentlich sichtbar</b>.<br/>Ihre Demographischen Optionen können sie alle %s ändern.',
 'section_login' => 'Kontoinformationen',
 'section_email' => 'E-Mail Einstellungen',
 'section_demographic' => 'Demographie',
@@ -154,4 +154,5 @@ The %2$s Team',
 'table_account_access' => '%s Zugriff(e) wurden für Sie protokolliert',
 'confirm_account_prune' => 'Möchten Sie Ihr Konto wirklich vollständig entfernen? Dies lässt sich nicht rückgängig machen!',
 'confirm_account_delete' => 'Möchten Sie Ihr Konto wirklich als gelöscht markieren? Dies ist nicht endgültig. Ein Mitarbeiter kann Ihr Konto später wieder reaktivieren.',
+'msg_mail_changed' => 'Ihre Email wurde zu %s geändert.',
 );

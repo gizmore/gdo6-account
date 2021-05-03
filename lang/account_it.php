@@ -29,7 +29,7 @@ return array(
 'msg_settings_saved' => 'Le vostre impostazioni sono state riportate nel %s modulo.<br/>%s',
 ##########################################################
 'ft_account_form' => 'Conto',
-'infobox_account_form' => 'Avviso: Il vostro &quot;nome reale&quot; possiamo inserirlo solo una volta.<br/>La sua opzione demografica puó cambiarla ogni %s.',
+'infobox_account_form' => 'Avviso: Il vostro &quot;nome reale&quot; possiamo inserirlo solo una volta ed <b>è pubblicamente visibile</b>.<br/>La sua opzione demografica puó cambiarla ogni %s.',
 'section_login' => 'Informazioni sul conto',
 'section_email' => 'Impostazioni e-Mail',
 'section_demographic' => 'Demografico',
@@ -154,4 +154,5 @@ Il suo %2$s Team.',
 'table_account_access' => '%s accessi sono stati registrati per te.',
 'confirm_account_prune' => 'Sei sicuro di voler rimuovere completamente il tuo account? Questo non può essere annullato!',
 'confirm_account_delete' => 'Sei sicuro di voler contrassegnare il tuo account come eliminato? Questo non è definitivo. Un dipendente può riattivare il tuo account in un secondo momento.',
+'msg_mail_changed' => 'La tua email è stata cambiata in %s.',
 );

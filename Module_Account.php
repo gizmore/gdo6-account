@@ -90,7 +90,7 @@ final class Module_Account extends GDO_Module
 	public function cfgAllowLanguageChange() { return $this->getConfigValue('allow_lang_change'); }
 	public function cfgAllowBirthdayChange() { return $this->getConfigValue('allow_birthday_change'); }
 	public function cfgAllowGenderChange() { return $this->getConfigValue('allow_gender_change'); }
-	public function cfgAllowEmailChange() { return $this->getConfigValue('allow_email_change'); }
+	public function cfgAllowEmailChange() { return module_enabled('Mail') && $this->getConfigValue('allow_email_change'); }
 	public function cfgAllowEmailFormatChange() { return $this->getConfigValue('allow_email_fmt_change'); }
 	
 	public function cfgFeatureAccess() { return $this->getConfigValue('feature_access_history'); }

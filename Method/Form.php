@@ -14,7 +14,7 @@ use GDO\Core\GDT_Response;
 /**
  * Change account settings.
  * @author gizmore
- * @version 6.10
+ * @version 6.10.1
  * @since 2.0
  */
 final class Form extends MethodForm
@@ -47,21 +47,20 @@ final class Form extends MethodForm
 		$form->addField($user->gdoColumn('user_real_name')->writable(!$user->getRealName()));
 		endif;
 		
-		# Section2
-// 		$form->addField(GDT_Divider::make('div2')->label('section_email'));
-		$form->addField($user->gdoColumn('user_email')->writable($m->cfgAllowEmailChange()));
-// 		$form->addField($user->gdoColumn('user_email_fmt')->writable($m->cfgAllowEmailFormatChange()));
-// 		$form->addField($m->userSetting($user, 'user_allow_email')->editable(true));
+		if (module_enabled('Mail'))
+		{
+		    $form->addField($user->gdoColumn('user_email')->writable($m->cfgAllowEmailChange()));
+		}
 		
+		# section 2
 		$form->addField(GDT_Divider::make('div4')->label('timezone'));
 		$form->addField($user->gdoColumn('user_timezone'));
 		
+		# section 3
 		$form->addField(GDT_Divider::make('div3')->label('section_demographic'));
 		$form->addField($user->gdoColumn('user_language')->writable($m->cfgAllowLanguageChange()));
 		$form->addField($user->gdoColumn('user_country')->withCompletion()->writable($m->cfgAllowCountryChange())->emptyInitial(t('no_country')));
-		
 		if ($m->cfgAllowGenderChange()) $form->addField($user->gdoColumn('user_gender'));
-// 		if ($m->cfgAllowBirthdayChange()) $form->addField($user->gdoColumn('user_birthdate'));
 
 		$form->actions()->addField(GDT_Submit::make());
 		$form->addField(GDT_AntiCSRF::make());
@@ -95,18 +94,6 @@ final class Form extends MethodForm
 			}
 		}
 		
-		# Email Format
-// 		if ( (!$guest) && $m->cfgAllowEmailFormatChange() )
-// 		{
-// 			$oldfmt = $user->getVar('user_email_fmt');
-// 			$newfmt = $form->getFormVar('user_email_fmt');
-// 			if ($newfmt !== $oldfmt)
-// 			{
-// 				$user->setVar('user_email_fmt', $newfmt);
-// 				$back->add($this->message('msg_email_fmt_now_'.$newfmt));
-// 			}
-// 		}
-		
 		# Change EMAIL
 		if ( (!$guest) && ($m->cfgAllowEmailChange()) )
 		{
@@ -117,15 +104,6 @@ final class Form extends MethodForm
 			    $back->add(ChangeEmail::changeEmail($this->getModule(), $user, $newmail));
 			}
 		}
-		
-// 		# Allow Mail
-// 		$field = $form->getField('user_allow_email');
-// 		$var = $form->getFormVar('user_allow_email');
-// 		if ($field->initial !== $var)
-// 		{
-// 		    $m->saveUserSetting($user, 'user_allow_email', $var);
-// 		    $back->add($this->message('msg_change_allow_email', [$field->displayValue($var)]));
-// 		}
 		
 		# Change Demo
 		$demo_changed = false;
@@ -139,9 +117,6 @@ final class Form extends MethodForm
 		$oldgender = $user->getVar('user_gender');
 		$newgender = $m->cfgAllowGenderChange() ? $form->getFormVar('user_gender') : $oldgender;
 		if ($oldgender != $newgender) { $demo_changed = true; }
-// 		$oldbirthdate = $user->getVar('user_birthdate');
-// 		$newbirthdate = $m->cfgAllowBirthdayChange() ? $form->getFormVar('user_birthdate') : $oldbirthdate;
-// 		if ($oldbirthdate != $newbirthdate) { $demo_changed = true; }
 		
 		if ($demo_changed)
 		{
@@ -149,7 +124,6 @@ final class Form extends MethodForm
 				'user_country' => $newcid,
 				'user_language' => $newlid,
 				'user_gender' => $newgender,
-// 				'user_birthdate' => $newbirthdate,
 			);
 			
 			if ($guest)
