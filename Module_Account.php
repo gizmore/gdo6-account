@@ -22,7 +22,9 @@ use GDO\UI\GDT_Link;
  */
 final class Module_Account extends GDO_Module
 {
-	##############
+    public $module_priority = 20;
+    
+    ##############
 	### Module ###
 	##############
 	public function onLoadLanguage() { return $this->loadLanguage('lang/account'); }
