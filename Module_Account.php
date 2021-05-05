@@ -17,8 +17,8 @@ use GDO\UI\GDT_Link;
  * @see GDO_User
  * 
  * @author gizmore
- * @version 6.10.1
- * @since 2.0.0
+ * @version 6.10.2
+ * @since 3.0.0
  */
 final class Module_Account extends GDO_Module
 {
@@ -50,23 +50,14 @@ final class Module_Account extends GDO_Module
 			GDT_Checkbox::make('allow_guest_settings')->initial('1'),
 			GDT_Checkbox::make('allow_country_change')->initial('1'),
 			GDT_Checkbox::make('allow_lang_change')->initial('1'),
-// 			GDT_Checkbox::make('allow_birthday_change')->initial('1'),
 			GDT_Checkbox::make('allow_gender_change')->initial('1'),
 			GDT_Checkbox::make('allow_email_change')->initial('1'),
-// 			GDT_Checkbox::make('allow_email_fmt_change')->initial('1'),
 			GDT_Checkbox::make('feature_access_history')->initial('1'),
 			GDT_Checkbox::make('feature_account_deletion')->initial('1'),
 			GDT_Checkbox::make('feature_demographic_mail_confirm')->initial('1'),
 		    GDT_Checkbox::make('hook_right_bar')->initial('1'),
 		];
 	}
-	
-// 	public function getUserConfig()
-// 	{
-// 		return [
-// 		    GDT_Checkbox::make('user_allow_email')->label('cfg_user_allow_email')->initial('0'),
-// 		];
-// 	}
 	
 	#############
 	### Hooks ###

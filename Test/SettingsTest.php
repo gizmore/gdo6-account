@@ -24,7 +24,8 @@ final class SettingsTest extends TestCase
         $gp = [
             'module' => 'Account',
         ];
-        $r = MethodTest::make()->parameters($p)->getParameters($gp)->method($m)->execute();
+        MethodTest::make()->parameters($p)->getParameters($gp)->method($m)->execute();
+        $this->assert200("Check account settings method for 200 response code");
     }
     
 }

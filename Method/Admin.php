@@ -3,20 +3,20 @@ namespace GDO\Account\Method;
 
 use GDO\Account\Module_Account;
 use GDO\Core\Method;
+use GDO\Core\MethodAdmin;
 
 final class Admin extends Method
 {
-	public function getPermission()
+    use MethodAdmin;
+    
+	public function getPermission() { return 'staff'; }
+	
+	public function beforeExecute()
 	{
-		return 'staff';
+	    Module_Account::instance()->renderAdminTabs();
 	}
 	
 	public function execute()
-	{
-		return Module_Account::instance()->onRenderAdminTabs()->add($this->renderPage());
-	}
-	
-	public function renderPage()
 	{
 		return $this->templatePHP('admin.php');
 	}

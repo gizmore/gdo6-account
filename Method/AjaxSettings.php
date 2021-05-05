@@ -2,10 +2,10 @@
 namespace GDO\Account\Method;
 
 use GDO\Core\ModuleLoader;
-use GDO\Core\GDT_JSONResponse;
 use GDO\Core\GDT_Response;
 use GDO\Core\MethodAjax;
 use GDO\User\GDO_User;
+use GDO\Core\GDT_Array;
 
 /**
  * API Request to get all module configs.
@@ -34,7 +34,7 @@ final class AjaxSettings extends MethodAjax
 			}
 		}
 		
-		return GDT_Response::make()->addField(GDT_JSONResponse::make('data')->json($json));
+		return GDT_Response::makeWith(GDT_Array::make()->data($json));
 	}
 
 }

@@ -8,13 +8,13 @@ use GDO\Form\GDT_AntiCSRF;
 use GDO\Form\GDT_Form;
 use GDO\Form\GDT_Submit;
 use GDO\Form\MethodForm;
-use GDO\UI\GDT_Panel;
 use GDO\User\GDO_User;
+
 /**
  * Toggle account security switches.
  * @author gizmore
- * @since 4.0
  * @version 5.0
+ * @since 4.0
  */
 final class Security extends MethodForm
 {
