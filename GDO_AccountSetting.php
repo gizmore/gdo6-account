@@ -10,6 +10,7 @@ use GDO\User\GDO_User;
  *  - record IPs
  *  - alertion on suspicous account activity
  *  
+ * @todo move this to Module_Account::getUserSettings()  
  * @author gizmore
  * @version 5.0
  */
