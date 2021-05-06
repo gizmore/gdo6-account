@@ -10,6 +10,7 @@ use GDO\User\GDO_User;
 use GDO\Core\GDT_Template;
 use GDO\UI\GDT_Page;
 use GDO\UI\GDT_Link;
+use GDO\Core\Module_Core;
 
 /**
  * Member Account Changes.
@@ -76,7 +77,7 @@ final class Module_Account extends GDO_Module
 	public function cfgDemoMail() { return $this->getConfigValue('feature_demographic_mail_confirm'); }
 	public function cfgAdultAge() { return $this->getConfigValue('adult_age'); }
 	public function cfgChangeTime() { return $this->getConfigValue('account_changetime'); }
-	public function cfgAllowGuests() { return $this->getConfigValue('allow_guest_settings'); }
+	public function cfgAllowGuests() { return $this->getConfigValue('allow_guest_settings') && Module_Core::instance()->cfgAllowGuests(); }
 	public function cfgAllowRealName() { return $this->getConfigValue('allow_real_name'); }
 	
 	public function cfgAllowCountryChange() { return $this->getConfigValue('allow_country_change'); }
