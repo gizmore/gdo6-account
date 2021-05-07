@@ -40,7 +40,6 @@ return array(
 'msg_real_name_now' => 'Il suo "nome reale" adesso é %s.',
 'msg_user_hide_online_on' => 'Il suo status online é adesso invisibile.',
 'msg_user_show_birthdays_on' => 'Adesso avete attivato il communicato di il communicato di nascite.',
-'msg_user_allow_email_on' => 'Lei permette ad altri di inviarLe e-Mail, senza svelare la sua e-Mail.',
 'msg_user_want_adult_on' => 'Adesso Lei vedrá contenuti per adulti.',
 'msg_mail_sent' => 'A Lei é stata inviata una Mail con istruzioni.',
 'msg_demo_changed' => 'Le Sue impostazioni demografiche sono state cambiate.',
@@ -150,7 +149,6 @@ Puó disattivare l´avviso di accesso qui:
 Saluti,
 Il suo %2$s Team.',
 ##########################################################
-'msg_change_allow_email' => 'Hai modificato se qualcuno è autorizzato a inviarti un\' email a %s.',
 'table_account_access' => '%s accessi sono stati registrati per te.',
 'confirm_account_prune' => 'Sei sicuro di voler rimuovere completamente il tuo account? Questo non può essere annullato!',
 'confirm_account_delete' => 'Sei sicuro di voler contrassegnare il tuo account come eliminato? Questo non è definitivo. Un dipendente può riattivare il tuo account in un secondo momento.',

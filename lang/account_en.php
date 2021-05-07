@@ -40,7 +40,6 @@ return array(
 'msg_real_name_now' => 'Your realname is now set to %s.',
 'msg_user_hide_online_on' => 'Your online status is now hidden.',
 'msg_user_show_birthdays_on' => 'You have enabled Birthday announcementa and your own Birthday is shown to others.',
-'msg_user_allow_email_on' => 'You now do allow people to email you without spoiling your E-Mail address.',
 'msg_user_want_adult_on' => 'You have now enabled adult content for your account.',
 'msg_mail_sent' => 'We have sent you an E-Mail with instructions how to proceed.',
 'msg_demo_changed' => 'Your demographic settings have been changed.',
@@ -150,7 +149,6 @@ You can toggle your access alerts here.
 Kind Regards,
 The %2$s Team',
 ##########################################################
-'msg_change_allow_email' => 'You changed that if someone may email you to %s.',
 'table_account_access' => '%s IPs logged for you',
 'confirm_account_prune' => 'Do you really delete your account from the database and all information associated with it? This cannot be undone!',
 'confirm_account_delete' => 'Do you really want to mark your account as deleted? This is not final. An admin could recover your account later.',
