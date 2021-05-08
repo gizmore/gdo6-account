@@ -93,8 +93,8 @@ final class Delete extends MethodForm
 			$args = [$adminame, $username, $operation, $note, $sitename];
 			
 			$mail = new Mail();
-			$mail->setSender(GWF_BOT_EMAIL);
-			$mail->setSenderName(GWF_BOT_NAME);
+			$mail->setSender(GDO_BOT_EMAIL);
+			$mail->setSenderName(GDO_BOT_NAME);
 			$mail->setSubject(tusr($admin, 'mail_subj_account_deleted', [$sitename, $username]));
 			$mail->setBody(tusr($admin, 'mail_body_account_deleted', $args));
 			$mail->sendToUser($admin);

@@ -74,8 +74,8 @@ final class ChangeEmail extends Method
 		
 		$mail = new Mail();
 		$mail->setReceiver($user->getMail());
-		$mail->setSender(GWF_BOT_EMAIL);
-		$mail->setSenderName(GWF_BOT_NAME);
+		$mail->setSender(GDO_BOT_EMAIL);
+		$mail->setSenderName(GDO_BOT_NAME);
 		$mail->setSubject(t('mail_subj_chmail_a', [$sitename]));
 		$newmail = trim(htmlspecialchars($newMail));
 		$link = self::createLink($module, $user, $newMail);
@@ -171,8 +171,8 @@ final class ChangeEmail extends Method
 		
 		# Mail
 		$mail = new Mail();
-		$mail->setSender(GWF_BOT_EMAIL);
-		$mail->setSenderName(GWF_BOT_NAME);
+		$mail->setSender(GDO_BOT_EMAIL);
+		$mail->setSenderName(GDO_BOT_NAME);
 		$mail->setReceiver($email);
 		$mail->setSubject(t('mail_subj_chmail_b', [$sitename]));
 		$mail->setBody(t('mail_body_chmail_b', [$username, $sitename, $email, $link]));

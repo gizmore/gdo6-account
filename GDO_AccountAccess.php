@@ -130,8 +130,8 @@ final class GDO_AccountAccess extends GDO
 		if ($receive_mail = $user->getMail())
 		{
 			$mail = new Mail();
-			$mail->setSender(GWF_BOT_EMAIL);
-			$mail->setSenderName(GWF_BOT_NAME);
+			$mail->setSender(GDO_BOT_EMAIL);
+			$mail->setSenderName(GDO_BOT_NAME);
 			$mail->setReceiver($receive_mail);
 			$mail->setSubject(t("mail_subj_account_alert$append", [sitename()]));
 			$mail->setBody(t("mail_body_account_alert$append", array(

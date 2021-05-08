@@ -94,8 +94,8 @@ final class ChangeDemo extends Method
 		$args = [$username, $sitename, $timeout, $country, $language, $gender, $link];
 
 		$mail = new Mail();
-		$mail->setSender(GWF_BOT_EMAIL);
-		$mail->setSenderName(GWF_BOT_NAME);
+		$mail->setSender(GDO_BOT_EMAIL);
+		$mail->setSenderName(GDO_BOT_NAME);
 		$mail->setSubject(t('mail_subj_demochange', [$sitename]));
 		$mail->setBody(t('mail_body_demochange', $args));
 		$mail->sendToUser($user);
