@@ -19,10 +19,9 @@ final class Access extends MethodQueryTable
 	
 	public function gdoTable() { return GDO_AccountAccess::table(); }
 	
-	public function execute()
+	public function beforeExecute()
 	{
 		Module_Account::instance()->renderAccountTabs();
-		return parent::execute();
 	}
 	
 	public function getQuery()

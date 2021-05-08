@@ -153,4 +153,6 @@ Il suo %2$s Team.',
 'confirm_account_prune' => 'Sei sicuro di voler rimuovere completamente il tuo account? Questo non può essere annullato!',
 'confirm_account_delete' => 'Sei sicuro di voler contrassegnare il tuo account come eliminato? Questo non è definitivo. Un dipendente può riattivare il tuo account in un secondo momento.',
 'msg_mail_changed' => 'La tua email è stata cambiata in %s.',
+'mdescr_account_access' => 'Review logins for your account.',
+'mdescr_account_access' => 'Sehen Sie sich Ihre letzten Authentifizierungen an.',
 );

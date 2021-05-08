@@ -153,4 +153,5 @@ The %2$s Team',
 'confirm_account_prune' => 'Do you really delete your account from the database and all information associated with it? This cannot be undone!',
 'confirm_account_delete' => 'Do you really want to mark your account as deleted? This is not final. An admin could recover your account later.',
 'msg_mail_changed' => 'Your email has been changed to %s.',
+'mdescr_account_access' => 'Review logins for your account.',
 );

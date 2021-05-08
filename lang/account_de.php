@@ -153,4 +153,5 @@ The %2$s Team',
 'confirm_account_prune' => 'Möchten Sie Ihr Konto wirklich vollständig entfernen? Dies lässt sich nicht rückgängig machen!',
 'confirm_account_delete' => 'Möchten Sie Ihr Konto wirklich als gelöscht markieren? Dies ist nicht endgültig. Ein Mitarbeiter kann Ihr Konto später wieder reaktivieren.',
 'msg_mail_changed' => 'Ihre Email wurde zu %s geändert.',
+'mdescr_account_access' => 'Sehen Sie sich Ihre letzten Authentifizierungen an.',
 );

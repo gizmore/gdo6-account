@@ -16,8 +16,10 @@ use GDO\DB\GDT_Index;
  * Alerts user on suspicous change of IP / InternetServiceProvider / UserAgent
  * 
  * @author gizmore
- * @version 5.0
+ * @version 6.10.3
  * @since 3.0
+ * 
+ * @todo Move to gdo6-security
  * 
  * @see User
  * @see GDO_AccountSetting
@@ -103,7 +105,7 @@ final class GDO_AccountAccess extends GDO
 	
 	private static function isphash()
 	{
-		if (GDT_IP::current() === ($isp = @gethostbyaddr($_SERVER['REMOTE_ADDR'])))
+		if (GDT_IP::current() === ($isp = @gethostbyaddr(@$_SERVER['REMOTE_ADDR'])))
 		{
 			$isp = null;
 		}

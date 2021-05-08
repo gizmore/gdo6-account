@@ -18,7 +18,7 @@ use GDO\Core\Module_Core;
  * @see GDO_User
  * 
  * @author gizmore
- * @version 6.10.2
+ * @version 6.10.3
  * @since 3.0.0
  */
 final class Module_Account extends GDO_Module
@@ -32,10 +32,10 @@ final class Module_Account extends GDO_Module
 	public function getClasses()
 	{
 	    return [
-	        'GDO\Account\GDO_AccountAccess',
-	        'GDO\Account\GDO_AccountChange',
-	        'GDO\Account\GDO_AccountDelete',
-	        'GDO\Account\GDO_AccountSetting'
+	        GDO_AccountAccess::class,
+	        GDO_AccountChange::class,
+	        GDO_AccountDelete::class,
+	        GDO_AccountSetting::class,
 	    ];
 	}
 
@@ -103,7 +103,8 @@ final class Module_Account extends GDO_Module
 	            ($user->isGuest() && $this->cfgAllowGuests()) )
 	        {
 	            GDT_Page::$INSTANCE->rightNav->addField(
-	                GDT_Link::make('btn_account')->href(href('Account', 'Settings')));
+	                GDT_Link::make('btn_account')->href(
+	                    href('Account', 'Settings')));
 	        }
 	        
 	    }
@@ -111,18 +112,12 @@ final class Module_Account extends GDO_Module
 	
 	public function renderAdminTabs()
 	{
-	    if (Application::instance()->isHTML())
-	    {
-	        GDT_Page::$INSTANCE->topTabs->addField(GDT_Template::templatePHP('Account', 'admin_tabs.php'));
-	    }
+        GDT_Page::$INSTANCE->topTabs->addField(GDT_Template::templatePHP('Account', 'admin_tabs.php'));
 	}
 
 	public function renderAccountTabs()
 	{
-	    if (Application::instance()->isHTML())
-	    {
-	        GDT_Page::$INSTANCE->topTabs->addField(GDT_Template::templatePHP('Account', 'overview.php'));
-	    }
+        GDT_Page::$INSTANCE->topTabs->addField(GDT_Template::templatePHP('Account', 'overview.php'));
 	}
 	
 }
