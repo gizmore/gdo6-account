@@ -113,7 +113,7 @@ final class Module_Account extends GDO_Module
 	{
 	    if (Application::instance()->isHTML())
 	    {
-	        GDT_Page::$INSTANCE->topTabs->addField(GDT_Template::responsePHP('Account', 'admin_tabs.php'));
+	        GDT_Page::$INSTANCE->topTabs->addField(GDT_Template::templatePHP('Account', 'admin_tabs.php'));
 	    }
 	}
 
@@ -121,7 +121,7 @@ final class Module_Account extends GDO_Module
 	{
 	    if (Application::instance()->isHTML())
 	    {
-	        GDT_Page::$INSTANCE->topTabs->addField(GDT_Template::responsePHP('Account', 'overview.php'));
+	        GDT_Page::$INSTANCE->topTabs->addField(GDT_Template::templatePHP('Account', 'overview.php'));
 	    }
 	}
 	

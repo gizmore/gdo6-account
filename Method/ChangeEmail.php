@@ -152,7 +152,7 @@ final class ChangeEmail extends Method
 		$form = $this->getChangeMailForm($row);
 		if (!$form->validateForm())
 		{
-			return $this->error('err_form_invalid')->add(GDT_Response::makeWith($form));
+			return $this->error('err_form_invalid')->addField($form);
 		}
 		$row->delete();
 		return self::sendEmailB($this->getModule(), $userid, trim($form->getFormVar('email')));

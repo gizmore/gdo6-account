@@ -25,8 +25,8 @@ use GDO\Core\Website;
  * Simply return GDT[] in Module->getUserSettings() and you can configure stuff.
  * 
  * @author gizmore
- * @version 6.10
- * @since 5.0
+ * @version 6.10.3
+ * @since 5.0.0
  */
 final class Settings extends MethodForm
 {
@@ -184,7 +184,7 @@ final class Settings extends MethodForm
 		if (!empty($error))
 		{
 			return $this->error('err_settings_saved',
-			    [$this->configModule->getName(), implode('<br/>', $info)])->add($page);
+			    [$this->configModule->getName(), implode('<br/>', $info)])->addField($page);
 		}
 		
 		# Saved on success
@@ -195,7 +195,7 @@ final class Settings extends MethodForm
 			    $this->configModule, GDO_User::current(), $changes);
 			# Print changes
 			return $this->message('msg_settings_saved',
-			    [$this->configModule->getName(), implode('<br/>', $info)])->add($page);
+			    [$this->configModule->getName(), implode('<br/>', $info)])->addField($page);
 		}
 		
 		

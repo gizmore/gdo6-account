@@ -76,6 +76,6 @@ final class Security extends MethodForm
 		{
 		    GDO_AccountAccess::sendAlertMail($this->getModule(), $this->user, 'record_disabled');
 		}
-		return parent::formValidated($form)->add($this->renderPage());
+		return parent::formValidated($form)->addField($this->renderPage());
 	}
 }

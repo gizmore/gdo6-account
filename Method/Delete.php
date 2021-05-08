@@ -69,13 +69,13 @@ final class Delete extends MethodForm
 		{
 			$user->delete();
 			# Report and logout
-			return $this->message('msg_account_pruned')->add(method('Login', 'Logout')->execute());
+			return $this->message('msg_account_pruned')->addField(method('Login', 'Logout')->execute());
 		}
 		else # Mark deleted
 		{
     		$user->saveVar('user_deleted_at', Time::getDate());
 			# Report and logout
-			return $this->message('msg_account_marked_deleted')->add(method('Login', 'Logout')->execute());
+			return $this->message('msg_account_marked_deleted')->addField(method('Login', 'Logout')->execute());
 		}
 
 		GDT_Hook::callWithIPC('UserQuit', $user);
