@@ -89,7 +89,7 @@ final class Form extends MethodForm
 				if ( ($realname !== $user->getRealName()) && (!$user->getRealName()) )
 				{
 					$user->setVar('user_real_name', $realname);
-					$back->add($this->message('msg_real_name_now', [$realname]));
+					$back->addField($this->message('msg_real_name_now', [$realname]));
 				}
 			}
 		}
@@ -101,7 +101,7 @@ final class Form extends MethodForm
 			$newmail = $form->getFormVar('user_email');
 			if ($newmail !== $oldmail)
 			{
-			    $back->add(ChangeEmail::changeEmail($this->getModule(), $user, $newmail));
+			    $back->addField(ChangeEmail::changeEmail($this->getModule(), $user, $newmail));
 			}
 		}
 		
@@ -129,16 +129,16 @@ final class Form extends MethodForm
 			if ($guest)
 			{
 				$user->setVars($demo_vars);
-				$back->add($this->message('msg_demo_changed'));
+				$back->addField($this->message('msg_demo_changed'));
 			}
 			else
 			{
 				$data = $demo_vars;
-				$back->add(ChangeDemo::requestChange($this->getModule(), $user, $data));
+				$back->addField(ChangeDemo::requestChange($this->getModule(), $user, $data));
 			}
 		}
 		$user->save();
-		return $back->add($this->renderPage());
+		return $back->addField($this->renderPage());
 	}
 	
 }
