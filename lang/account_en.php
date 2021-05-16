@@ -3,8 +3,6 @@ return array(
 'module_account' => 'User accounts',
 'btn_account' => 'Account',
 'link_account_form' => 'Account',
-'link_account_security' => 'Security',
-'link_account_access' => 'Logs',
 'link_account_delete' => 'Delete',
 'link_settings' => 'Settings',
 ##########################################################
@@ -18,7 +16,6 @@ return array(
 'cfg_allow_birthday_change' => 'Allow change of birthdate',
 'cfg_allow_gender_change' => 'Allow change of gender',
 'cfg_allow_email_change' => 'Allow change of email',
-'cfg_feature_access_history' => 'Security: Enable login history',
 'cfg_feature_account_deletion' => 'Allow account deletion',
 'cfg_feature_demographic_mail_confirm' => 'Enable email confirmation',
 ##########################################################
@@ -47,13 +44,6 @@ return array(
 'msg_email_fmt_now_text' => 'Your preferred E-Mail format is now set to PLAINTEXT.',
 'err_demo_wait' => 'You have to wait %s before you can change your demographic options again.',
 'email_fmt' =>'E-Mail Format',
-##########################################################
-'ft_account_security' => 'Security Options',
-'box_account_security' => 'You can enable IP recording to get alerts via E-Mail.',
-'accset_record_ip' => 'Record successful login IPs',
-'accset_uawatch' => 'Alert on UserAgent change',
-'accset_ipwatch' => 'Alert on IP change',
-'accset_ispwatch' => 'Alert on Provider change',
 ##########################################################
 'ft_account_delete' => 'Delete Account',
 'box_info_deletion' => 'You can choose between disabling your account, and preserving your identity on %s,

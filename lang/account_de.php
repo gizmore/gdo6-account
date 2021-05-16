@@ -3,8 +3,6 @@ return array(
 'module_account' => 'Nutzerkonto',
 'btn_account' => 'Konto',
 'link_account_form' => 'Ihr Konto',
-'link_account_security' => 'Sicherheit',
-'link_account_access' => 'Logs',
 'link_account_delete' => 'Konto Löschen',
 'link_settings' => 'Einstellungen',
 ##########################################################
@@ -18,7 +16,6 @@ return array(
 'cfg_allow_birthday_change' => 'Erlaube Nutzern ihr Geburtsdatum zu ändern?',
 'cfg_allow_gender_change' => 'Erlaube Nutzern das Geschlecht zu ändern?',
 'cfg_allow_email_change' => 'Erlaube Nutzern die Email zu ändern?',
-'cfg_feature_access_history' => 'Aktiviere login Aufzeichnung?',
 'cfg_feature_account_deletion' => 'Aktiviere Löschen von Konten?',
 'cfg_feature_demographic_mail_confirm' => 'Email Änderungen per Email bestätigen?',
 ##########################################################
@@ -47,13 +44,6 @@ return array(
 'msg_email_fmt_now_text' => 'Ihr bevorzugtes E-Mail Format ist nun PLAINTEXT.',
 'err_demo_wait' => 'Bitte warten Sie %s bevor Sie ihre Einstellungen ändern.',
 'email_fmt' =>'E-Mail Format',
-##########################################################
-'ft_account_security' => 'Security Options',
-'box_account_security' => 'You can enable IP recording to get alerts via E-Mail.',
-'accset_record_ip' => 'Record successful login IPs',
-'accset_uawatch' => 'Alert on UserAgent change',
-'accset_ipwatch' => 'Alert on IP change',
-'accset_ispwatch' => 'Alert on Provider change',
 ##########################################################
 'ft_account_delete' => 'Delete Account',
 'box_info_deletion' => 'You can choose between disabling your account, and preserving your identity on %s,
@@ -128,28 +118,6 @@ Otherwise, please ignore this E-Mail and try again anytime.
 Kind Regards
 The %2$s Team',
 ##########################################################
-'mail_subj_account_alert' => '[%s] Access Alert',
-'mail_body_account_alert' => '
-Hello %s,
-
-There has been access to your %s account with an unusual configuration.
-
-UserAgent: %s
-IP Address: %s
-Hostname/ISP: %s
-
-You can check your access history here.
-
-%s
-
-You can toggle your access alerts here.
-
-%s
-
-Kind Regards,
-The %2$s Team',
-##########################################################
-'table_account_access' => '%s Zugriff(e) wurden für Sie protokolliert',
 'confirm_account_prune' => 'Möchten Sie Ihr Konto wirklich vollständig entfernen? Dies lässt sich nicht rückgängig machen!',
 'confirm_account_delete' => 'Möchten Sie Ihr Konto wirklich als gelöscht markieren? Dies ist nicht endgültig. Ein Mitarbeiter kann Ihr Konto später wieder reaktivieren.',
 'msg_mail_changed' => 'Ihre Email wurde zu %s geändert.',

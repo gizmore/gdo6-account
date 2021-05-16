@@ -3,8 +3,6 @@ return array(
 'module_account' => 'Conto',
 'btn_account' => 'Conto',
 'link_account_form' => 'Il suo conto',
-'link_account_security' => 'Sicurezza',
-'link_account_access' => 'Logs',
 'link_account_delete' => 'Cancellare conto',
 'link_settings' => 'Impostazioni',
 ##########################################################
@@ -18,7 +16,6 @@ return array(
 'cfg_allow_birthday_change' => 'Permetti al utente di cambiare la data di nascita?',
 'cfg_allow_gender_change' => 'Permetti al utente di cambiare il sesso?',
 'cfg_allow_email_change' => 'Permetti al utente di cambiare l´e-Mail?',
-'cfg_feature_access_history' => 'Attivazione registrazione login?',
 'cfg_feature_account_deletion' => 'Attivazione cancellazione dei conti?',
 'cfg_feature_demographic_mail_confirm' => 'Modifiche mail confermare via mail?',
 ##########################################################
@@ -47,13 +44,6 @@ return array(
 'msg_email_fmt_now_text' => 'Il Suo formato e-Mail é ora PLAINTEXT.',
 'err_demo_wait' => 'Prego attenda %s prima di cambiare le sue impostazioni!',
 'email_fmt' => 'Formato e-Mail',
-##########################################################
-'ft_account_security' => 'Opzioni di sicurezza',
-'box_account_security' => 'Potete attivare la registrazione dell`IP per ottenere alerts via mail.',
-'accset_record_ip' => 'Registrati con successo',
-'accset_uawatch' => 'Avviso di cambio utente',
-'accset_ipwatch' => 'Avviso di cambio IP',
-'accset_ispwatch' => 'Avviso di cambio Provider',
 ##########################################################
 'ft_account_delete' => 'Cancella account',
 'box_info_deletion' =>  'Puó scegliere di disattivare il suo account e preservando la sua identitá su %s,
@@ -127,32 +117,7 @@ visto che le puó cambiare solo ogni %s.
 	 
  Cordiali saluti,
  Il suo %2$s Team.',
-##########################################################
-'mail_subj_account_alert' =>'[%s] Avviso di accesso',
-'mail_body_account_alert' =>  '
-Salve %s,
-
-Abbiamo notato un accesso con una configurazione insolita sul suo account %s.
-	
-	UserAgent:		%s
-	Indirizzo IP:	%s
-	Hostname/ISP:	%s
-		
-Puó verificare i suoi accessi nel link seguente:
-	
-	%s
-		
-Puó disattivare l´avviso di accesso qui:
-	
-	%s
-		
-Saluti,
-Il suo %2$s Team.',
-##########################################################
-'table_account_access' => '%s accessi sono stati registrati per te.',
 'confirm_account_prune' => 'Sei sicuro di voler rimuovere completamente il tuo account? Questo non può essere annullato!',
 'confirm_account_delete' => 'Sei sicuro di voler contrassegnare il tuo account come eliminato? Questo non è definitivo. Un dipendente può riattivare il tuo account in un secondo momento.',
 'msg_mail_changed' => 'La tua email è stata cambiata in %s.',
-'mdescr_account_access' => 'Review logins for your account.',
-'mdescr_account_access' => 'Sehen Sie sich Ihre letzten Authentifizierungen an.',
 );

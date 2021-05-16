@@ -1,7 +1,6 @@
 <?php
 namespace GDO\Account;
 
-use GDO\Core\Application;
 use GDO\Core\GDO_Module;
 use GDO\Date\GDT_Duration;
 use GDO\DB\GDT_Checkbox;
@@ -32,10 +31,8 @@ final class Module_Account extends GDO_Module
 	public function getClasses()
 	{
 	    return [
-	        GDO_AccountAccess::class,
 	        GDO_AccountChange::class,
 	        GDO_AccountDelete::class,
-	        GDO_AccountSetting::class,
 	    ];
 	}
 
@@ -53,24 +50,12 @@ final class Module_Account extends GDO_Module
 			GDT_Checkbox::make('allow_lang_change')->initial('1'),
 			GDT_Checkbox::make('allow_gender_change')->initial('1'),
 			GDT_Checkbox::make('allow_email_change')->initial('1'),
-			GDT_Checkbox::make('feature_access_history')->initial('1'),
 			GDT_Checkbox::make('feature_account_deletion')->initial('1'),
 			GDT_Checkbox::make('feature_demographic_mail_confirm')->initial('1'),
 		    GDT_Checkbox::make('hook_right_bar')->initial('1'),
 		];
 	}
 	
-	#############
-	### Hooks ###
-	#############
-	public function hookUserAuthenticated(GDO_User $user)
-	{
-		if (!Application::instance()->isCLI())
-		{
-			GDO_AccountAccess::onAccess($this, $user);
-		}
-	}
-
 	##################
 	### Convinient ###
 	##################
@@ -86,7 +71,6 @@ final class Module_Account extends GDO_Module
 	public function cfgAllowGenderChange() { return $this->getConfigValue('allow_gender_change'); }
 	public function cfgAllowEmailChange() { return module_enabled('Mail') && $this->getConfigValue('allow_email_change'); }
 	
-	public function cfgFeatureAccess() { return $this->getConfigValue('feature_access_history'); }
 	public function cfgFeatureDeletion() { return $this->getConfigValue('feature_account_deletion'); }
 	
 	public function cfgHookRightBar() { return $this->getConfigValue('hook_right_bar'); }

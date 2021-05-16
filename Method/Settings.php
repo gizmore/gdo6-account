@@ -71,17 +71,28 @@ final class Settings extends MethodForm
 	
 	public function navModules()
 	{
+	    $modules = [];
 		$navbar = GDT_Bar::make()->horizontal();
 		foreach (ModuleLoader::instance()->getEnabledModules() as $module)
 		{
-			$href = $module->getUserSettingsURL();
-			if ($module->getUserSettings() || $module->getUserSettingBlobs() || $href)
-			{
-				$name = $module->getName();
-				$href = $href ? $href : href('Account', 'Settings', "&module=$name");
-				$button = GDT_Link::make("link_$name")->labelRaw($name)->href($href)->icon('settings');
-				$navbar->addField($button);
-			}
+		    $href = $module->getUserSettingsURL();
+		    if ($module->getUserSettings() || $module->getUserSettingBlobs() || $href)
+		    {
+		        $modules[] = $module;
+		    }
+		}
+		
+		usort($modules, function(GDO_Module $m1, GDO_Module $m2) {
+		    return strcasecmp($m1->getName(), $m2->getName());
+		});
+		
+		foreach ($modules as $module)
+		{
+		    $href = $module->getUserSettingsURL();
+			$name = $module->getName();
+			$href = $href ? $href : href('Account', 'Settings', "&module=$name");
+			$button = GDT_Link::make("link_$name")->labelRaw($name)->href($href)->icon('settings');
+			$navbar->addField($button);
 		}
 		Website::topResponse()->addField($navbar);
 	}
