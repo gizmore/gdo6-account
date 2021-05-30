@@ -1,6 +1,6 @@
 <?php
 return array(
-'module_account' => 'User accounts',
+'module_account' => 'Accounts',
 'btn_account' => 'Account',
 'link_account_form' => 'Account',
 'link_account_delete' => 'Delete',

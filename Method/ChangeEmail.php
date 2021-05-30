@@ -26,7 +26,7 @@ use GDO\Core\GDT_Response;
  */
 final class ChangeEmail extends Method
 {
-	public function getUserType() { return GDO_User::MEMBER; }
+	public function isUserRequired() { return true; }
 	public function isEnabled() { return Module_Account::instance()->cfgAllowEmailChange(); }
 	
 	public function getTitleLangKey() { return 'ft_change_mail'; }

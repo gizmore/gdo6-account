@@ -14,8 +14,8 @@ use GDO\Core\GDT_Response;
 /**
  * Change account settings.
  * @author gizmore
- * @version 6.10.1
- * @since 2.0
+ * @version 6.10.4
+ * @since 1.2.0
  */
 final class Form extends MethodForm
 {
@@ -79,7 +79,13 @@ final class Form extends MethodForm
 		$user = GDO_User::current();
 		$guest = $user->isGuest();
 		
-		$user->setVar('user_timezone', $form->getFormVar('user_timezone'));
+		$old = $user->getTimezone();
+		$new = $form->getFormVar('user_timezone');
+		if ($old !== $new)
+		{
+    		$user->tempUnset('timezone');
+    		$user->setVar('user_timezone', $new);
+		}
 		
 		# Real Name
 		if ( (!$guest) && ($m->cfgAllowRealName()) )
@@ -95,7 +101,7 @@ final class Form extends MethodForm
 		}
 		
 		# Change EMAIL
-		if ( (!$guest) && ($m->cfgAllowEmailChange()) )
+		if ($m->cfgAllowEmailChange())
 		{
 			$oldmail = $user->getVar('user_email');
 			$newmail = $form->getFormVar('user_email');
@@ -120,11 +126,11 @@ final class Form extends MethodForm
 		
 		if ($demo_changed)
 		{
-			$demo_vars = array(
+			$demo_vars = [
 				'user_country' => $newcid,
 				'user_language' => $newlid,
 				'user_gender' => $newgender,
-			);
+			];
 			
 			if ($guest)
 			{

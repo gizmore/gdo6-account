@@ -163,7 +163,7 @@ final class Settings extends MethodForm
 					$changes[$key] = array($old, $new);
 					
 					# Validate first
-					if (!$gdt->validate($gdt->toValue($new)))
+					if (!$gdt->validate($gdt->getValue()))
 					{
 						$error[] = t('err_settings_save', $gdt->error);
 						continue;
