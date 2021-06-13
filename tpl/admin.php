@@ -6,4 +6,4 @@ echo Module_Account::instance()->renderAdminTabs();
 
 $numWaitingActivation = 0;
 
-echo GDT_Panel::make()->html(t('box_content_account_admin', [$numWaitingActivation]))->render();
+echo GDT_Panel::make()->text('box_content_account_admin', [$numWaitingActivation])->render();

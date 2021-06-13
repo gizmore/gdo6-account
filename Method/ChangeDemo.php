@@ -22,7 +22,9 @@ use GDO\Core\Application;
  */
 final class ChangeDemo extends Method
 {
-	public function isAlwaysTransactional() { return true; }
+    public function isCLI() { return false; }
+    
+    public function isAlwaysTransactional() { return true; }
 	
 	public function gdoParameters()
 	{

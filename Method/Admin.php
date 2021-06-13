@@ -9,6 +9,8 @@ final class Admin extends Method
 {
     use MethodAdmin;
     
+	public function isCLI() { return false; }
+
 	public function getPermission() { return 'staff'; }
 	
 	public function beforeExecute()

@@ -5,6 +5,7 @@ return array(
 'link_account_form' => 'Il suo conto',
 'link_account_delete' => 'Cancellare conto',
 'link_settings' => 'Impostazioni',
+'prune' => 'Rimuovere',
 ##########################################################
 'cfg_adult_age' => 'etá adulta',
 'cfg_tt_adult_age' => 'inserisca l´etá per contenuti d´adulto',

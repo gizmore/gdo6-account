@@ -26,14 +26,15 @@ use GDO\Core\GDT_Response;
  */
 final class ChangeEmail extends Method
 {
-	public function isUserRequired() { return true; }
+    public function isCLI() { return false; }
+	public function isUserRequired() { return false; }
 	public function isEnabled() { return Module_Account::instance()->cfgAllowEmailChange(); }
 	
 	public function getTitleLangKey() { return 'ft_change_mail'; }
 	
 	public function execute()
 	{
-		if (isset($_POST['form']['btn_changemail']))
+		if (isset($_POST[GDT_Form::DEFAULT_NAME]['btn_changemail']))
 		{
 			# Step 2 - Form for mail 2
 			return $this->onRequestB();
@@ -106,7 +107,7 @@ final class ChangeEmail extends Method
 	
 	private function getChangeMailForm(GDO_AccountChange $ac)
 	{
-		$form = GDT_Form::make('form');
+		$form = GDT_Form::make();
 		$form->title('ft_change_mail', [sitename()]);
 		$form->addFields(array(
 			GDT_Email::make('email')->required(),

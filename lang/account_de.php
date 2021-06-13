@@ -5,6 +5,7 @@ return array(
 'link_account_form' => 'Ihr Konto',
 'link_account_delete' => 'Konto Löschen',
 'link_settings' => 'Einstellungen',
+'prune' => 'Entfernen',
 ##########################################################
 'cfg_adult_age' => 'Erwachsenenalter',
 'cfg_tt_adult_age' => 'Geben Sie das Mindestalter an für Inhalt für Erwachsene.',

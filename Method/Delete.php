@@ -47,7 +47,7 @@ final class Delete extends MethodForm
 			GDT_AntiCSRF::make(),
 		]);
 		$form->actions()->addFields([
-		    GDT_DeleteButton::make()->label('btn_delete_account')->confirmText('confirm_account_delete'),
+		    GDT_DeleteButton::make('submit')->label('btn_delete_account')->confirmText('confirm_account_delete'),
 		    GDT_DeleteButton::make('prune')->label('btn_prune_account')->confirmText('confirm_account_prune'),
 		]);
 	}
@@ -57,7 +57,7 @@ final class Delete extends MethodForm
 		$user = GDO_User::current();
 		
 		# Store note in database
-		if ($note = $form->getVar('accrm_note'))
+		if ($note = $form->getFormVar('accrm_note'))
 		{
 			GDO_AccountDelete::insertNote($user, $note);
 		}
@@ -69,16 +69,16 @@ final class Delete extends MethodForm
 		{
 			$user->delete();
 			# Report and logout
-			return $this->message('msg_account_pruned')->addField(method('Login', 'Logout')->execute());
+			$this->message('msg_account_pruned')->addField(method('Login', 'Logout')->executeWithInit());
 		}
 		else # Mark deleted
 		{
     		$user->saveVar('user_deleted_at', Time::getDate());
 			# Report and logout
-			return $this->message('msg_account_marked_deleted')->addField(method('Login', 'Logout')->execute());
+			$this->message('msg_account_marked_deleted')->addField(method('Login', 'Logout')->executeWithInit());
 		}
 
-		GDT_Hook::callWithIPC('UserQuit', $user);
+		GDT_Hook::callWithIPC('UserDeleted', $user);
 	}
 	
 	private function onSendEmail(GDO_User $user, $note)

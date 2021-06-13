@@ -65,7 +65,7 @@ final class Form extends MethodForm
 		$form->actions()->addField(GDT_Submit::make());
 		$form->addField(GDT_AntiCSRF::make());
 		
-		$form->withGDOValuesFrom($user);
+// 		$form->withGDOValuesFrom($user);
 	}
 
 	#######################

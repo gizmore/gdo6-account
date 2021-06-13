@@ -5,6 +5,7 @@ return array(
 'link_account_form' => 'Account',
 'link_account_delete' => 'Delete',
 'link_settings' => 'Settings',
+'prune' => 'Prune',
 ##########################################################
 'cfg_adult_age' => 'Adult age',
 'cfg_tt_adult_age' => 'Specify what the min age is for adult content.',
