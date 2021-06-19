@@ -7,7 +7,6 @@ use GDO\Form\GDT_AntiCSRF;
 use GDO\Form\GDT_Form;
 use GDO\Form\GDT_Submit;
 use GDO\Form\MethodForm;
-use GDO\UI\GDT_Bar;
 use GDO\UI\GDT_Panel;
 use GDO\UI\GDT_Divider;
 use GDO\UI\GDT_Link;
@@ -17,15 +16,13 @@ use GDO\Core\GDT_Response;
 use GDO\Core\GDT_Hook;
 use GDO\User\GDO_User;
 use GDO\Language\Trans;
-use GDO\UI\GDT_Page;
-use GDO\Core\Website;
 
 /**
  * Generic setting functionality.
  * Simply return GDT[] in Module->getUserSettings() and you can configure stuff.
  * 
  * @author gizmore
- * @version 6.10.3
+ * @version 6.10.4
  * @since 5.0.0
  */
 final class Settings extends MethodForm
@@ -42,7 +39,7 @@ final class Settings extends MethodForm
 	    if (Application::instance()->isHTML())
 	    {
     	    Module_Account::instance()->renderAccountTabs();
-    	    GDT_Page::$INSTANCE->topTabs->addField($this->navModules());
+//     	    GDT_Page::$INSTANCE->topTabs->addField($this->navModules());
 	    }
 	}
 	
@@ -69,10 +66,10 @@ final class Settings extends MethodForm
 		    GDT_Panel::make()->title('link_settings')->text('box_content_account_settings'));
 	}
 	
-	public function navModules()
+	public function navLinks()
 	{
+	    $links = [];
 	    $modules = [];
-		$navbar = GDT_Bar::make()->horizontal();
 		foreach (ModuleLoader::instance()->getEnabledModules() as $module)
 		{
 		    $href = $module->getUserSettingsURL();
@@ -82,23 +79,23 @@ final class Settings extends MethodForm
 		    }
 		}
 		
-		usort($modules, function(GDO_Module $m1, GDO_Module $m2) {
-		    return strcasecmp($m1->getName(), $m2->getName());
-		});
-		
 		foreach ($modules as $module)
 		{
 		    $href = $module->getUserSettingsURL();
 			$name = $module->getName();
 			$href = $href ? $href : href('Account', 'Settings', "&module=$name");
 			$button = GDT_Link::make("link_$name")->labelRaw($name)->href($href)->icon('settings');
-			$navbar->addField($button);
+			$links[] = $button;
 		}
-		Website::topResponse()->addField($navbar);
+		return $links;
 	}
 	
 	public function createForm(GDT_Form $form)
 	{
+	    if (!$this->configModule)
+	    {
+	        return;
+	    }
 		$moduleName = $this->configModule->getName();
 		$this->title(t('ft_account_settings', [$moduleName]));
 		if ($settings = $this->configModule->getUserSettings())
