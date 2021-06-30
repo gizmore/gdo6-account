@@ -17,12 +17,12 @@ use GDO\Core\Module_Core;
  * @see GDO_User
  * 
  * @author gizmore
- * @version 6.10.3
+ * @version 6.10.4
  * @since 3.0.0
  */
 final class Module_Account extends GDO_Module
 {
-    public $module_priority = 20;
+    public $module_priority = 25;
     
     ##############
 	### Module ###
@@ -72,7 +72,6 @@ final class Module_Account extends GDO_Module
 	public function cfgAllowEmailChange() { return module_enabled('Mail') && $this->getConfigValue('allow_email_change'); }
 	
 	public function cfgFeatureDeletion() { return $this->getConfigValue('feature_account_deletion'); }
-	
 	public function cfgHookRightBar() { return $this->getConfigValue('hook_right_bar'); }
 	
 	##############
@@ -96,12 +95,14 @@ final class Module_Account extends GDO_Module
 	
 	public function renderAdminTabs()
 	{
-        GDT_Page::$INSTANCE->topTabs->addField(GDT_Template::templatePHP('Account', 'admin_tabs.php'));
+        GDT_Page::$INSTANCE->topTabs->addField(
+            GDT_Template::templatePHP('Account', 'admin_tabs.php'));
 	}
 
 	public function renderAccountTabs()
 	{
-        GDT_Page::$INSTANCE->topTabs->addField(GDT_Template::templatePHP('Account', 'overview.php'));
+        GDT_Page::$INSTANCE->topTabs->addField(
+            GDT_Template::templatePHP('Account', 'overview.php'));
 	}
 	
 }

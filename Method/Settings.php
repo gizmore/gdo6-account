@@ -39,7 +39,6 @@ final class Settings extends MethodForm
 	    if (Application::instance()->isHTML())
 	    {
     	    Module_Account::instance()->renderAccountTabs();
-//     	    GDT_Page::$INSTANCE->topTabs->addField($this->navModules());
 	    }
 	}
 	
