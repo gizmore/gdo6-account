@@ -25,7 +25,7 @@ final class AjaxSettings extends MethodAjax
 			
 			foreach ($module->getSettingsCache() as $gdt)
 			{
-			    $gdt = $module->userSetting($user, $gdt->name);
+			    $gdt = $module->userSetting($user, $gdt->name); # to assign current user to gdt
 			    
 			    if ($gdt->isSerializable())
 			    {
