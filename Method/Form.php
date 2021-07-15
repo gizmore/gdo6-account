@@ -35,8 +35,11 @@ final class Form extends MethodForm
 		$m = Module_Account::instance();
 		$user = GDO_User::current();
 		
-		$delay = Time::humanDuration(Module_Account::instance()->cfgChangeTime());
-		$form->info(t('infobox_account_form', [$delay]));
+		if ($delaytime = Module_Account::instance()->cfgChangeTime())
+		{
+    		$delay = Time::humanDuration($delaytime);
+    		$form->info(t('infobox_account_form', [$delay]));
+		}
 		
 		# Section1
 		$form->addField(GDT_Divider::make('div1')->label('section_login'));
@@ -132,7 +135,9 @@ final class Form extends MethodForm
 				'user_gender' => $newgender,
 			];
 			
-			if ($guest)
+			$delaytime = Module_Account::instance()->cfgChangeTime();
+			
+			if (($guest) || (!$delaytime))
 			{
 				$user->setVars($demo_vars);
 				$back->addField($this->message('msg_demo_changed'));

@@ -43,7 +43,7 @@ final class Module_Account extends GDO_Module
 	{
 		return [
 			GDT_Int::make('adult_age')->unsigned()->min(12)->max(40)->initial('21'),
-			GDT_Duration::make('account_changetime')->min(0)->initial('90d'),
+			GDT_Duration::make('account_changetime')->min(0)->initial('0s'),
 			GDT_Checkbox::make('allow_real_name')->initial('1'),
 			GDT_Checkbox::make('allow_guest_settings')->initial('1'),
 			GDT_Checkbox::make('allow_country_change')->initial('1'),
