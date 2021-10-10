@@ -136,7 +136,7 @@ final class Settings extends MethodForm
 				$form->addField($gdt);
 			}
 		}
-		$form->addField(GDT_AntiCSRF::make());
+		$form->addField(GDT_AntiCSRF::make()->fixed());
 		$form->actions()->addField(GDT_Submit::make());
 	}
 	
