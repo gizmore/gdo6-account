@@ -17,7 +17,7 @@ final class AjaxSettings extends MethodAjax
 	public function execute()
 	{
 	    $user = GDO_User::current();
-		$json = [];
+		$json = ['user' => $user->toJSON()];
 		$modules = ModuleLoader::instance()->getEnabledModules();
 		foreach ($modules as $module)
 		{

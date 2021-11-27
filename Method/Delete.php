@@ -12,6 +12,7 @@ use GDO\UI\GDT_Message;
 use GDO\User\GDO_User;
 use GDO\Date\Time;
 use GDO\Form\GDT_DeleteButton;
+use GDO\Core\Application;
 
 /**
  * Delete your account.
@@ -73,7 +74,7 @@ final class Delete extends MethodForm
 		}
 		else # Mark deleted
 		{
-    		$user->saveVar('user_deleted_at', Time::getDate());
+    		$user->saveVar('user_deleted_at', Application::$MICROTIME);
 			# Report and logout
 			$this->message('msg_account_marked_deleted')->addField(method('Login', 'Logout')->executeWithInit());
 		}
