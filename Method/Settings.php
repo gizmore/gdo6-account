@@ -100,12 +100,12 @@ final class Settings extends MethodForm
 		if ($settings = $this->configModule->getUserSettings())
 		{
 			$form->addField(GDT_Divider::make()->label('div_user_settings', [$moduleName]));
-			foreach ($settings as $gdoType)
+			foreach ($settings as $gdt)
 			{
-				$gdt = $this->configModule->setting($gdoType->name);
-				if (Trans::hasKey('cfg_'.$gdoType->name) || (!$gdt->hasName()))
+				$gdt = $this->configModule->setting($gdt->name);
+				if (Trans::hasKey('cfg_'.$gdt->name) || (!$gdt->hasName()))
 				{
-					$gdt->label('cfg_'.$gdoType->name);
+					$gdt->label('cfg_'.$gdt->name);
 				}
 				$form->addField($gdt);
 			}
@@ -113,12 +113,12 @@ final class Settings extends MethodForm
 		if ($settings = $this->configModule->getUserSettingBlobs())
 		{
 			$form->addField(GDT_Divider::make()->label('div_user_textual_settings', [$moduleName]));
-			foreach ($settings as $gdoType)
+			foreach ($settings as $gdt)
 			{
-			    $gdt = $this->configModule->setting($gdoType->name);
-				if (Trans::hasKey('cfg_'.$gdoType->name) || (!$gdt->hasName()))
+			    $gdt = $this->configModule->setting($gdt->name);
+				if (Trans::hasKey('cfg_'.$gdt->name) || (!$gdt->hasName()))
 				{
-					$gdt->label('cfg_'.$gdoType->name);
+					$gdt->label('cfg_'.$gdt->name);
 				}
 				$form->addField($gdt);
 			}
@@ -126,12 +126,12 @@ final class Settings extends MethodForm
 		if ($settings = $this->configModule->getUserConfig())
 		{
 			$form->addField(GDT_Divider::make()->label('div_variables', [$moduleName]));
-			foreach ($settings as $gdoType)
+			foreach ($settings as $gdt)
 			{
-			    $gdt = $this->configModule->setting($gdoType->name);
-				if (Trans::hasKey('cfg_'.$gdoType->name) || (!$gdt->hasName()))
+			    $gdt = $this->configModule->setting($gdt->name);
+				if (Trans::hasKey('cfg_'.$gdt->name) || (!$gdt->hasName()))
 				{
-					$gdt->label('cfg_'.$gdoType->name);
+					$gdt->label('cfg_'.$gdt->name);
 				}
 				$form->addField($gdt);
 			}

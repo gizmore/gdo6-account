@@ -120,17 +120,17 @@ final class ChangeEmail extends Method
 		return $form;
 	}
 	
-	public function validateEmailRetype(GDT_Form $form, GDT $gdoType)
+	public function validateEmailRetype(GDT_Form $form, GDT $gdt)
 	{
 		$new1 = $form->getField('email')->getVar();
 		$new2 = $form->getField('email_re')->getVar();
-		return $new1 === $new2 ? true : $gdoType->error('err_email_retype');
+		return $new1 === $new2 ? true : $gdt->error('err_email_retype');
 	}
 
-	public function validateEmailUnique(GDT_Form $form, GDT $gdoType)
+	public function validateEmailUnique(GDT_Form $form, GDT $gdt)
 	{
-		$count = GDO_User::table()->countWhere("user_email=" . quote($gdoType->getVar()));
-		return $count > 0 ? $gdoType->error('err_email_taken') : true;
+		$count = GDO_User::table()->countWhere("user_email=" . quote($gdt->getVar()));
+		return $count > 0 ? $gdt->error('err_email_taken') : true;
 	}
 	
 	private function templateChangeMailB(GDO_AccountChange $ac)

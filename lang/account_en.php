@@ -145,4 +145,6 @@ The %2$s Team',
 'confirm_account_delete' => 'Do you really want to mark your account as deleted? This is not final. An admin could recover your account later.',
 'msg_mail_changed' => 'Your email has been changed to %s.',
 'mdescr_account_access' => 'Review logins for your account.',
+# 6.11.0
+'div_user_textual_settings' => 'Textual settings',
 );

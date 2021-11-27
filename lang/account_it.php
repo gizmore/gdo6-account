@@ -121,4 +121,6 @@ visto che le puó cambiare solo ogni %s.
 'confirm_account_prune' => 'Sei sicuro di voler rimuovere completamente il tuo account? Questo non può essere annullato!',
 'confirm_account_delete' => 'Sei sicuro di voler contrassegnare il tuo account come eliminato? Questo non è definitivo. Un dipendente può riattivare il tuo account in un secondo momento.',
 'msg_mail_changed' => 'La tua email è stata cambiata in %s.',
+# 6.11.0
+'div_user_textual_settings' => 'Impostazioni testo',
 );
