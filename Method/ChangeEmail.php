@@ -39,7 +39,7 @@ final class ChangeEmail extends Method
 			# Step 2 - Form for mail 2
 			return $this->onRequestB();
 		}
-		elseif ($token = Common::getGetString('token'))
+		elseif ($token = Common::getRequestString('token'))
 		{
 			# Step 1 - from first mail
 			return $this->onChangeA($token);
@@ -98,7 +98,7 @@ final class ChangeEmail extends Method
 	##############
 	private function onChangeA($token)
 	{
-		if (!($row = GDO_AccountChange::getRow(Common::getGetString('userid'), 'email', $token)))
+		if (!($row = GDO_AccountChange::getRow(Common::getRequestString('userid'), 'email', $token)))
 		{
 			return $this->error('err_token');
 		}
@@ -144,8 +144,8 @@ final class ChangeEmail extends Method
 	##############
 	private function onRequestB()
 	{
-		$token = Common::getGetString('token');
-		$userid = Common::getGetString('userid');
+		$token = Common::getRequestString('token');
+		$userid = Common::getRequestString('userid');
 		if (!($row = GDO_AccountChange::getRow($userid, 'email', $token)))
 		{
 			return $this->error('err_token');
@@ -187,7 +187,7 @@ final class ChangeEmail extends Method
 	##############
 	private function onChangeB($token)
 	{
-		if (!($ac = GDO_AccountChange::getRow(Common::getGetString('userid'), 'email2', $token)))
+		if (!($ac = GDO_AccountChange::getRow(Common::getRequestString('userid'), 'email2', $token)))
 		{
 			return $this->error('err_token');
 		}

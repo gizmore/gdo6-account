@@ -35,7 +35,7 @@ final class ChangeDemo extends Method
 	
 	public function execute()
 	{
-		if ($token = Common::getGetString('token'))
+		if ($token = Common::getRequestString('token'))
 		{
 			return $this->onChange($token);
 		}
@@ -106,7 +106,7 @@ final class ChangeDemo extends Method
 	
 	private function onChange($token)
 	{
-		$userid = Common::getGetString('userid');
+		$userid = Common::getRequestString('userid');
 		if (!($ac = GDO_AccountChange::getRow($userid, 'demo', $token)))
 		{
 			return $this->error('err_token');
