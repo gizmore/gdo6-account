@@ -74,7 +74,7 @@ final class Delete extends MethodForm
 		}
 		else # Mark deleted
 		{
-    		$user->saveVar('user_deleted_at', Application::$MICROTIME);
+    		$user->saveVar('user_deleted_at', Time::getDate());
 			# Report and logout
 			$this->message('msg_account_marked_deleted')->addField(method('Login', 'Logout')->executeWithInit());
 		}
