@@ -12,12 +12,13 @@ use GDO\UI\GDT_Message;
 use GDO\User\GDO_User;
 use GDO\Date\Time;
 use GDO\Form\GDT_DeleteButton;
-use GDO\Core\Application;
 
 /**
- * Delete your account.
+ * Delete or prune your account.
+ * Send mail to admins with optional note.
+ * 
  * @author gizmore
- * @version 6.10.1
+ * @version 6.11.0
  * @since 3.0.0
  */
 final class Delete extends MethodForm
@@ -49,7 +50,7 @@ final class Delete extends MethodForm
 		]);
 		$form->actions()->addFields([
 		    GDT_DeleteButton::make('submit')->label('btn_delete_account')->confirmText('confirm_account_delete'),
-		    GDT_DeleteButton::make('prune')->label('btn_prune_account')->confirmText('confirm_account_prune'),
+			GDT_DeleteButton::make('prune')->label('btn_prune_account')->confirmText('confirm_account_prune'),
 		]);
 	}
 	
@@ -93,9 +94,7 @@ final class Delete extends MethodForm
 			$note = htmlspecialchars($note);
 			$args = [$adminame, $username, $operation, $note, $sitename];
 			
-			$mail = new Mail();
-			$mail->setSender(GDO_BOT_EMAIL);
-			$mail->setSenderName(GDO_BOT_NAME);
+			$mail = Mail::botMail();
 			$mail->setSubject(tusr($admin, 'mail_subj_account_deleted', [$sitename, $username]));
 			$mail->setBody(tusr($admin, 'mail_body_account_deleted', $args));
 			$mail->sendToUser($admin);

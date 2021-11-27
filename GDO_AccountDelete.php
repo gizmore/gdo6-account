@@ -29,6 +29,9 @@ final class GDO_AccountDelete extends GDO
 	##############
 	public static function insertNote(GDO_User $user, $note)
 	{
-		return self::blank(['accrm_username' => $user->getName(), 'accrm_note' => $note])->insert();
+		return self::blank([
+			'accrm_username' => $user->getName(),
+			'accrm_note' => $note,
+		])->insert();
 	}
 }
