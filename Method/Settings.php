@@ -171,10 +171,10 @@ final class Settings extends MethodForm
 					# Prepare response text
 					$old = $old === null ?
 					   '<i class="null gdo-setting-old">null</i>' :
-					   '<i class="gdo-setting-old">' . $gdt->displayValue($old) . '</i>';
+					   '<i class="gdo-setting-old">' . $gdt->displayVar($old) . '</i>';
 					$new = $new === null ?
 					   '<i class="null gdo-setting-new">null</i>' :
-					   '<i class="gdo-setting-new">' . $gdt->displayValue($new) . '</i>';
+					   '<i class="gdo-setting-new">' . $gdt->displayVar($new) . '</i>';
 					$name  = sprintf('<i class="gdo-setting-name">%s</i>', $gdt->displayLabel());
 					$info[] = t('msg_modulevar_changed', [$name, $old, $new]);
 				}

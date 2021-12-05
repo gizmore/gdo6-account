@@ -63,12 +63,14 @@ final class Form extends MethodForm
 		$form->addField(GDT_Divider::make('div3')->label('section_demographic'));
 		$form->addField($user->gdoColumn('user_language')->writable($m->cfgAllowLanguageChange()));
 		$form->addField($user->gdoColumn('user_country')->withCompletion()->writable($m->cfgAllowCountryChange())->emptyInitial(t('no_country')));
-		if ($m->cfgAllowGenderChange()) $form->addField($user->gdoColumn('user_gender'));
+		if ($m->cfgAllowGenderChange())
+		{
+			$form->addField($user->gdoColumn('user_gender'));
+		}
+
+		$form->addField(GDT_AntiCSRF::make());
 
 		$form->actions()->addField(GDT_Submit::make());
-		$form->addField(GDT_AntiCSRF::make());
-		
-// 		$form->withGDOValuesFrom($user);
 	}
 
 	#######################
