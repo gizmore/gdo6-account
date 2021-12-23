@@ -34,7 +34,7 @@ final class ChangeEmail extends Method
 	
 	public function execute()
 	{
-		if (isset($_POST[GDT_Form::DEFAULT_NAME]['btn_changemail']))
+		if (isset($_REQUEST[GDT_Form::DEFAULT_NAME]['btn_changemail']))
 		{
 			# Step 2 - Form for mail 2
 			return $this->onRequestB();
