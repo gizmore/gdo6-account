@@ -52,7 +52,8 @@ final class Settings extends MethodForm
 	
 	public function execute()
 	{
-		if ($this->configModule = ModuleLoader::instance()->getModule(@$_REQUEST['module']))
+		$modulename = (string)@$_REQUEST['module'];
+		if ($this->configModule = ModuleLoader::instance()->getModule($modulename))
 		{
 			return parent::execute();
 		}
